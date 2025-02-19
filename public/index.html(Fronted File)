@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UltraPredict - Football Predictions</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>UltraPredict</h1>
+        <nav>
+            <a href="#">Football Predictions</a>
+            <a href="#">Expert Tips</a>
+            <a href="#">Fantasy League</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="predictions">
+            <h2>Today's Football Predictions</h2>
+            <table id="predictionsTable">
+                <tr>
+                    <th>Match</th>
+                    <th>Prediction</th>
+                </tr>
+            </table>
+        </section>
+
+        <section id="fantasy-league">
+            <h2>Fantasy League Predictions</h2>
+            <table id="fantasyLeagueTable">
+                <tr>
+                    <th>Player</th>
+                    <th>Team</th>
+                    <th>Points</th>
+                </tr>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 UltraPredict | 
+            <a href="#">Weekend Betslip</a> | 
+            <a href="#">Expert Tips</a> | 
+            <a href="#">All Predictions</a> | 
+            <a href="#">Fantasy League Prediction</a>
+        </p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
