@@ -6,16 +6,16 @@ const PORT = process.env.PORT || 3000;
 
 // Sample prediction data
 const predictions = [
-    { match: "Barcelona vs Real Madrid", prediction: "Over 2.5 Goals" },
-    { match: "Manchester City vs Liverpool", prediction: "Both Teams to Score" },
-    { match: "Bayern Munich vs Dortmund", prediction: "Bayern Win" }
+    { match: "Real Madrid vs Manchester City", prediction: "1X" },
+    { match: "Aston Villa  vs  Liverpool  ", prediction: "2" },
+    { match: "PSG  vs  Stade Brest", prediction: "1" }
 ];
 
 // Sample fantasy league data
 const fantasyLeague = [
-    { player: "Erling Haaland", team: "Man City", points: 15 },
-    { player: "Mohamed Salah", team: "Liverpool", points: 12 },
-    { player: "Harry Kane", team: "Bayern", points: 14 }
+    { player: "Erling Haaland", team: "Man City", points: 12 },
+    { player: "Mohamed Salah", team: "Liverpool", points: 10 },
+    { player: "Bukayo  Saka", team: "Arsenal", points: 9 }
 ];
 
 // Serve static files from public folder
