@@ -95,12 +95,13 @@
         <ul class="nav-links">
             <li><a href="#bet-of-the-day">🔥 Bet of the Day</a></li>
             <li><a href="#football-predictions">📅 Football Predictions</a></li>
+            <li><a href="#yesterday-predictions">⏳ Yesterday's Predictions</a></li>
             <li><a href="#weekend-betslip">💰 Weekend Betslip</a></li>
         </ul>
     </nav>
     
     <div class="date-section">
-        <p><strong>Date:</strong> <span id="current-date">February 20, 2025</span></p>
+        <p><strong>Date:</strong> <span id="current-date"></span></p>
     </div>
     
     <div id="bet-of-the-day" class="section">
@@ -111,43 +112,14 @@
     
     <div id="football-predictions" class="section">
         <h2>Football Predictions Today</h2>
-        <div class="predictions-container">
-            <div class="prediction-card">
-                <p><strong>Plzen vs Ferencvarosi</strong></p>
-                <p>Prediction: <span class="highlight">BTTS</span></p>
-            </div>
-            <div class="prediction-card">
-                <p><strong>Shamrock Rovers vs Molde</strong></p>
-                <p>Prediction: <span class="highlight">BTTS</span></p>
-            </div>
-            <div class="prediction-card">
-                <p><strong>Real Sociedad vs FC Midtjylland</strong></p>
-                <p>Prediction: <span class="highlight">1</span></p>
-            </div>
-            <div class="prediction-card">
-                <p><strong>Real Betis vs Gent</strong></p>
-                <p>Prediction: <span class="highlight">1DNB</span></p>
-            </div>
-        </div>
-        <div id="more-predictions" class="predictions-container hidden">
-            <div class="prediction-card">
-                <p><strong>Palmeiras vs Botafogo Sp</strong></p>
-                <p>Prediction: <span class="highlight">Under 2.5</span></p>
-            </div>
-            <div class="prediction-card">
-                <p><strong>Ajax vs Union Saint Gilloise</strong></p>
-                <p>Prediction: <span class="highlight">1</span></p>
-            </div>
-            <div class="prediction-card">
-                <p><strong>Roma vs FC Porto</strong></p>
-                <p>Prediction: <span class="highlight">1X</span></p>
-            </div>
-            <div class="prediction-card">
-                <p><strong>Bodo/Glimt vs FC Twente</strong></p>
-                <p>Prediction: <span class="highlight">Over 2.5</span></p>
-            </div>
-        </div>
-        <p><a href="#" onclick="togglePredictions(event)">View all predictions</a></p>
+        <div id="predictions-container" class="predictions-container"></div>
+        <p><a href="#" onclick="togglePredictions(event, 'predictions-container')">View all predictions</a></p>
+    </div>
+    
+    <div id="yesterday-predictions" class="section">
+        <h2>Yesterday's Predictions</h2>
+        <div id="yesterday-container" class="predictions-container"></div>
+        <p><a href="#" onclick="togglePredictions(event, 'yesterday-container')">View all predictions</a></p>
     </div>
     
     <div id="weekend-betslip" class="section">
@@ -162,15 +134,33 @@
     </footer>
     
     <script>
-        function togglePredictions(event) {
-            event.preventDefault();
-            var morePredictions = document.getElementById("more-predictions");
-            if (morePredictions.classList.contains("hidden")) {
-                morePredictions.classList.remove("hidden");
-            } else {
-                morePredictions.classList.add("hidden");
-            }
+        document.getElementById("current-date").textContent = new Date().toDateString();
+        
+        async function loadPredictions() {
+            const response = await fetch('predictions.json');
+            const data = await response.json();
+            
+            document.getElementById("predictions-container").innerHTML = data.today.map(match => `
+                <div class="prediction-card">
+                    <p><strong>${match.match}</strong></p>
+                    <p>Prediction: <span class="highlight">${match.prediction}</span></p>
+                </div>`
+            ).join('');
+            
+            document.getElementById("yesterday-container").innerHTML = data.yesterday.map(match => `
+                <div class="prediction-card">
+                    <p><strong>${match.match}</strong></p>
+                    <p>Prediction: <span class="highlight">${match.prediction}</span></p>
+                </div>`
+            ).join('');
         }
+        
+        function togglePredictions(event, containerId) {
+            event.preventDefault();
+            document.getElementById(containerId).classList.toggle('hidden');
+        }
+        
+        loadPredictions();
     </script>
 </body>
 </html>
