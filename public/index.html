@@ -5,229 +5,87 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>UltraPredict - Football Predictions</title>
   <link rel="stylesheet" href="styles.css">
-  <script src="predictions.js" defer></script> <!-- Link to your predictions.js file -->
-  
-  <!-- Google AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7975016400316135" crossorigin="anonymous"></script>
-  <script>
-      (adsbygoogle = window.adsbygoogle || []).push({
-          google_ad_client: "ca-pub-7975016400316135",
-          enable_page_level_ads: true
-      });
-  </script>
-
-  <style>
-    /* General layout */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f4;
-      color: #333;
-    }
-
-    header {
-      background-color: #2a7f54; /* Green background for the header */
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-
-    header nav ul {
-      list-style-type: none;
-      padding: 0;
-      text-align: center;
-    }
-
-    header nav ul li {
-      display: inline;
-      margin: 0 15px;
-    }
-
-    header nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-size: 18px;
-      font-weight: bold;
-      transition: color 0.3s ease;
-    }
-
-    header nav ul li a:hover {
-      color: #e6b3f2; /* Pinkish color on hover */
-    }
-
-    /* Section Titles */
-    h2 {
-      color: #2a7f54; /* Green color for section titles */
-      text-align: center;
-      font-size: 24px;
-      margin-top: 20px;
-    }
-
-    /* Icon Buttons */
-    button {
-      background-color: #8a2be2; /* Purple background */
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
-      border-radius: 5px;
-      transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #e6b3f2; /* Light pinkish hover effect */
-    }
-
-    /* Prediction Section Styles */
-    section {
-      margin: 20px;
-      padding: 15px;
-      background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    section p {
-      font-size: 18px;
-      font-weight: bold;
-    }
-
-    section .adsense-container {
-      margin-top: 20px;
-      text-align: center;
-    }
-
-    /* Footer Styles */
-    footer {
-      background-color: #2a7f54; /* Green background for footer */
-      color: white;
-      padding: 15px;
-      text-align: center;
-    }
-
-    footer a {
-      color: white;
-      text-decoration: none;
-      margin: 0 10px;
-      font-size: 14px;
-    }
-
-    footer a:hover {
-      color: #e6b3f2; /* Pinkish hover effect on footer links */
-    }
-  </style>
 </head>
 <body>
-
-  <!-- Header -->
   <header>
-    <h1>Welcome to UltraPredict</h1>
     <nav>
       <ul>
         <li><a href="#bet-of-the-day">Bet of the Day</a></li>
-        <li><a href="#todays-predictions">Today's Predictions</a></li>
+        <li><a href="#football-predictions">Football Predictions Today</a></li>
         <li><a href="#yesterdays-predictions">Yesterday's Predictions</a></li>
         <li><a href="#weekend-betslip">Weekend Betslip</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Bet of the Day Section -->
-  <section id="bet-of-the-day">
-    <h2>Bet of the Day</h2>
-    <div id="bet-of-the-day-predictions">
-      <!-- Small portion of predictions -->
-      <p>Match 1: <span id="bet-of-the-day-match"></span> - Prediction: <span id="bet-of-the-day-prediction"></span></p>
-      <button onclick="window.location.href='bet-of-the-day.html'">See Full Predictions</button>
-    </div>
-    <div class="adsense-container">
-      <!-- Google AdSense ad here -->
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-7975016400316135"
-           data-ad-slot="your-ad-slot" <!-- Replace with your ad slot ID -->
-           data-ad-format="auto"></ins>
-    </div>
-  </section>
+  <main>
+    <!-- Bet of the Day -->
+    <section id="bet-of-the-day">
+      <h2>Bet of the Day</h2>
+      <p id="bet-of-the-day-content"></p>
+      <a href="#">View more</a>
+    </section>
 
-  <!-- Today's Predictions Section -->
-  <section id="todays-predictions">
-    <h2>Today's Predictions</h2>
-    <div id="todays-predictions-preview">
-      <!-- Small portion of predictions -->
-      <p>Match 1: <span id="todays-prediction-match"></span> - Prediction: <span id="todays-prediction"></span></p>
-      <button onclick="window.location.href='todays-predictions.html'">See Full Predictions</button>
-    </div>
-  </section>
+    <!-- Football Predictions Today -->
+    <section id="football-predictions">
+      <h2>Football Predictions Today</h2>
+      <ul id="predictions-list"></ul>
+      <a href="#">View all predictions</a>
+    </section>
 
-  <!-- Yesterday's Predictions Section -->
-  <section id="yesterdays-predictions">
-    <h2>Yesterday's Predictions</h2>
-    <div id="yesterdays-predictions-preview">
-      <!-- Small portion of predictions -->
-      <p>Match 1: <span id="yesterdays-prediction-match"></span> - Prediction: <span id="yesterdays-prediction"></span></p>
-      <button onclick="window.location.href='yesterdays-predictions.html'">See Full Predictions</button>
-    </div>
-  </section>
+    <!-- Yesterday's Predictions -->
+    <section id="yesterdays-predictions">
+      <h2>Yesterday's Predictions</h2>
+      <ul id="yesterdays-predictions-list"></ul>
+      <a href="#">View all predictions</a>
+    </section>
 
-  <!-- Weekend Betslip Section -->
-  <section id="weekend-betslip">
-    <h2>Weekend Betslip</h2>
-    <div id="weekend-betslip-preview">
-      <!-- Small portion of predictions -->
-      <p>Match 1: <span id="weekend-betslip-match"></span> - Prediction: <span id="weekend-betslip-prediction"></span></p>
-      <button onclick="window.location.href='weekend-betslip.html'">See Full Betslip</button>
-    </div>
-  </section>
+    <!-- Weekend Betslip -->
+    <section id="weekend-betslip">
+      <h2>Weekend Betslip</h2>
+      <ul id="weekend-betslip-list"></ul>
+      <a href="#">View more</a>
+    </section>
+  </main>
 
-  <!-- Footer -->
   <footer>
-    <p>UltraPredict &copy; 2025 | Designed by Salee</p>
-    <div>
-      <a href="#bet-of-the-day">Bet of the Day</a> |
-      <a href="#todays-predictions">Today's Predictions</a> |
-      <a href="#yesterdays-predictions">Yesterday's Predictions</a> |
-      <a href="#weekend-betslip">Weekend Betslip</a>
-    </div>
+    <p>© 2025 UltraPredict. All rights reserved.</p>
+    <p>Contact (Kenya): <a href="tel:+254XXXXXXX">+254XXXXXXX</a></p>
   </footer>
 
-  <!-- Optional: More Google Adsense code for placement in footer or other sections -->
-  <div class="adsense-container">
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-7975016400316135"
-         data-ad-slot="your-ad-slot" <!-- Replace with your ad slot ID -->
-         data-ad-format="auto"></ins>
-  </div>
-
+  <script src="prediction.js"></script>
   <script>
-    // Predictions data from predictions.js
-    const predictions = {
-      "today": [
-        { "match": "Plzen vs Ferencvarosi", "prediction": "BTTS" },
-        { "match": "Shamrock Rovers vs Molde", "prediction": "BTTS" },
-        { "match": "Real Sociedad vs FC Midtjylland", "prediction": "1" },
-        { "match": "Real Betis vs Gent", "prediction": "1DNB" },
-        { "match": "Palmeiras vs Botafogo Sp", "prediction": "Under 2.5" }
-      ],
-      "yesterday": [
-        { "match": "Real Madrid vs Manchester City", "prediction": "1X" }
-      ]
-    };
+    // Bet of the Day
+    const betOfTheDay = predictions.betOfTheDay;
+    const betOfTheDayContent = document.getElementById('bet-of-the-day-content');
+    betOfTheDayContent.innerHTML = `<strong>${betOfTheDay.match}</strong> - Prediction: ${betOfTheDay.prediction}`;
 
-    // Display Today's Prediction on Homepage
-    document.getElementById("todays-prediction-match").innerText = predictions.today[0].match;
-    document.getElementById("todays-prediction").innerText = predictions.today[0].prediction;
+    // Football Predictions Today
+    const footballPredictions = predictions.footballPredictionsToday;
+    const footballList = document.getElementById('predictions-list');
+    footballPredictions.forEach(prediction => {
+      const listItem = document.createElement('li');
+      listItem.innerHTML = `<strong>${prediction.match}</strong> - Prediction: ${prediction.prediction}`;
+      footballList.appendChild(listItem);
+    });
 
-    // Display Bet of the Day Prediction on Homepage
-    document.getElementById("bet-of-the-day-match").innerText = predictions.today[0].match;
-    document.getElementById("bet-of-the-day-prediction").innerText = predictions.today[0].prediction;
+    // Yesterday's Predictions
+    const yesterdaysPredictions = predictions.yesterdaysPredictions;
+    const yesterdaysList = document.getElementById('yesterdays-predictions-list');
+    yesterdaysPredictions.forEach(prediction => {
+      const listItem = document.createElement('li');
+      listItem.innerHTML = `<strong>${prediction.match}</strong> - Prediction: ${prediction.prediction}`;
+      yesterdaysList.appendChild(listItem);
+    });
 
-    // Display Yesterday's Prediction on Homepage
-    document.getElementById("yesterdays-prediction-match").innerText = predictions.yesterday[0].match;
-    document.getElementById("yesterdays-prediction").innerText = predictions.yesterday[0].prediction;
+    // Weekend Betslip
+    const weekendBetslip = predictions.weekendBetslip;
+    const weekendBetslipList = document.getElementById('weekend-betslip-list');
+    weekendBetslip.forEach(prediction => {
+      const listItem = document.createElement('li');
+      listItem.innerHTML = `<strong>${prediction.match}</strong> - Prediction: ${prediction.prediction}`;
+      weekendBetslipList.appendChild(listItem);
+    });
   </script>
 </body>
 </html>
