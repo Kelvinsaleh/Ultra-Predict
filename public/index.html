@@ -77,6 +77,9 @@
             margin-top: 20px;
             font-weight: bold;
         }
+        .hidden {
+            display: none;
+        }
         footer {
             text-align: center;
             padding: 20px;
@@ -90,14 +93,20 @@
     <nav class="navbar">
         <div class="logo">UltraPredict</div>
         <ul class="nav-links">
-            <li><a href="#football-predictions">📅 Football Predictions</a></li>
             <li><a href="#bet-of-the-day">🔥 Bet of the Day</a></li>
+            <li><a href="#football-predictions">📅 Football Predictions</a></li>
             <li><a href="#weekend-betslip">💰 Weekend Betslip</a></li>
         </ul>
     </nav>
     
     <div class="date-section">
         <p><strong>Date:</strong> <span id="current-date">February 20, 2025</span></p>
+    </div>
+    
+    <div id="bet-of-the-day" class="section">
+        <h2>Bet of the Day</h2>
+        <p>No bet posted yet</p>
+        <p><a href="#bet-of-the-day">View more</a></p>
     </div>
     
     <div id="football-predictions" class="section">
@@ -120,13 +129,25 @@
                 <p>Prediction: <span class="highlight">1DNB</span></p>
             </div>
         </div>
-        <p><a href="#football-predictions">View all predictions</a></p>
-    </div>
-    
-    <div id="bet-of-the-day" class="section">
-        <h2>Bet of the Day</h2>
-        <p>No bet posted yet</p>
-        <p><a href="#bet-of-the-day">View more</a></p>
+        <div id="more-predictions" class="predictions-container hidden">
+            <div class="prediction-card">
+                <p><strong>Palmeiras vs Botafogo Sp</strong></p>
+                <p>Prediction: <span class="highlight">Under 2.5</span></p>
+            </div>
+            <div class="prediction-card">
+                <p><strong>Ajax vs Union Saint Gilloise</strong></p>
+                <p>Prediction: <span class="highlight">1</span></p>
+            </div>
+            <div class="prediction-card">
+                <p><strong>Roma vs FC Porto</strong></p>
+                <p>Prediction: <span class="highlight">1X</span></p>
+            </div>
+            <div class="prediction-card">
+                <p><strong>Bodo/Glimt vs FC Twente</strong></p>
+                <p>Prediction: <span class="highlight">Over 2.5</span></p>
+            </div>
+        </div>
+        <p><a href="#" onclick="togglePredictions(event)">View all predictions</a></p>
     </div>
     
     <div id="weekend-betslip" class="section">
@@ -139,5 +160,17 @@
         <p>&copy; 2025 UltraPredict. All rights reserved.</p>
         <p>Contact (Kenya): +254 797 236260</p>
     </footer>
+    
+    <script>
+        function togglePredictions(event) {
+            event.preventDefault();
+            var morePredictions = document.getElementById("more-predictions");
+            if (morePredictions.classList.contains("hidden")) {
+                morePredictions.classList.remove("hidden");
+            } else {
+                morePredictions.classList.add("hidden");
+            }
+        }
+    </script>
 </body>
 </html>
