@@ -1,13 +1,62 @@
-
-  footballPredictionsToday: [
-    { match: "Shamrock Rovers vs Molde", prediction: "BTTS" },
-    { match: "Real Sociedad vs FC Midtjylland", prediction: "1" },
-    { match: "Real Betis vs Gent", prediction: "1DNB" },
-    { match: "Palmeiras vs Botafogo Sp", prediction: "Under 2.5" },
-    { match: "Ajax vs Union Saint Gilloise", prediction: "1" },
-    { match: "Roma vs FC Porto", prediction: "1X" },
-    { match: "Bodo/Glimt vs FC Twente", prediction: "Over 2.5" },
-    { match: "Panathinaikos vs Vikingur Reykjavik", prediction: "1" },
-    { match: "Al Fateh vs Al Orubah", prediction: "BTTS" }
-  ]
-};
+[
+  {
+    "match": "Team A vs Team B",
+    "prediction": "Team A Win",
+    "odds": 2.0
+  },
+  {
+    "match": "Team C vs Team D",
+    "prediction": "Draw",
+    "odds": 3.5
+  },
+  {
+    "match": "Team E vs Team F",
+    "prediction": "Team E Win",
+    "odds": 1.8
+  },
+  {
+    "match": "Team G vs Team H",
+    "prediction": "Team H Win",
+    "odds": 2.3
+  },
+  {
+    "match": "Team I vs Team J",
+    "prediction": "Team I Win",
+    "odds": 1.9
+  },
+  {
+    "match": "Team K vs Team L",
+    "prediction": "Draw",
+    "odds": 3.0
+  },
+  {
+    "match": "Team M vs Team N",
+    "prediction": "Team N Win",
+    "odds": 2.2
+  },
+  {
+    "match": "Team O vs Team P",
+    "prediction": "Team P Win",
+    "odds": 1.7
+  },
+  {
+    "match": "Team Q vs Team R",
+    "prediction": "Team Q Win",
+    "odds": 2.4
+  },
+  {
+    "match": "Team S vs Team T",
+    "prediction": "Team S Win",
+    "odds": 1.6
+  },
+  {
+    "match": "Team U vs Team V",
+    "prediction": "Draw",
+    "odds": 3.2
+  },
+  {
+    "match": "Team W vs Team X",
+    "prediction": "Team W Win",
+    "odds": 1.5
+  }
+]
