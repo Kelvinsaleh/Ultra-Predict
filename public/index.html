@@ -1,54 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="google-adsense-account" content="ca-pub-7975016400316135">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UltraPredict - Football Predictions</title>
-    <link rel="stylesheet" href="style.css">
+    <title>UltraPredict</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8f0;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: #006400;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+        .nav-links li {
+            display: inline;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.2em;
+            transition: color 0.3s ease-in-out;
+        }
+        .nav-links a:hover {
+            color: #90ee90;
+        }
+        .section {
+            padding: 50px;
+            text-align: center;
+        }
+        .predictions-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .prediction-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            width: 220px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .prediction-card:hover {
+            transform: scale(1.05);
+        }
+        .highlight {
+            color: #006400;
+            font-weight: bold;
+        }
+        .date-section {
+            text-align: center;
+            font-size: 1.4em;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #006400;
+            color: white;
+        }
+    </style>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7975016400316135" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header>
-        <h1>UltraPredict</h1>
-        <nav>
-            <a href="#">Football Predictions</a>
-            <a href="#">Expert Tips</a>
-            <a href="#">Fantasy League</a>
-        </nav>
-    </header>
-
-    <main>
-        <section id="predictions">
-            <h2>Today's Football Predictions</h2>
-            <table id="predictionsTable">
-                <tr>
-                    <th>Match</th>
-                    <th>Prediction</th>
-                </tr>
-            </table>
-        </section>
-
-        <section id="fantasy-league">
-            <h2>Fantasy League Predictions</h2>
-            <table id="fantasyLeagueTable">
-                <tr>
-                    <th>Player</th>
-                    <th>Team</th>
-                    <th>Points</th>
-                </tr>
-            </table>
-        </section>
-    </main>
-
+    <nav class="navbar">
+        <div class="logo">UltraPredict</div>
+        <ul class="nav-links">
+            <li><a href="#football-predictions">📅 Football Predictions</a></li>
+            <li><a href="#bet-of-the-day">🔥 Bet of the Day</a></li>
+            <li><a href="#weekend-betslip">💰 Weekend Betslip</a></li>
+        </ul>
+    </nav>
+    
+    <div class="date-section">
+        <p><strong>Date:</strong> <span id="current-date">February 20, 2025</span></p>
+    </div>
+    
+    <div id="football-predictions" class="section">
+        <h2>Football Predictions Today</h2>
+        <div class="predictions-container">
+            <div class="prediction-card">
+                <p><strong>Plzen vs Ferencvarosi</strong></p>
+                <p>Prediction: <span class="highlight">BTTS</span></p>
+            </div>
+            <div class="prediction-card">
+                <p><strong>Shamrock Rovers vs Molde</strong></p>
+                <p>Prediction: <span class="highlight">BTTS</span></p>
+            </div>
+            <div class="prediction-card">
+                <p><strong>Real Sociedad vs FC Midtjylland</strong></p>
+                <p>Prediction: <span class="highlight">1</span></p>
+            </div>
+            <div class="prediction-card">
+                <p><strong>Real Betis vs Gent</strong></p>
+                <p>Prediction: <span class="highlight">1DNB</span></p>
+            </div>
+        </div>
+        <p><a href="#football-predictions">View all predictions</a></p>
+    </div>
+    
+    <div id="bet-of-the-day" class="section">
+        <h2>Bet of the Day</h2>
+        <p>No bet posted yet</p>
+        <p><a href="#bet-of-the-day">View more</a></p>
+    </div>
+    
+    <div id="weekend-betslip" class="section">
+        <h2>Weekend Betslip</h2>
+        <p>No tips posted yet</p>
+        <p><a href="#weekend-betslip">View more</a></p>
+    </div>
+    
     <footer>
-        <p>&copy; 2025 UltraPredict | 
-            <a href="#">Weekend Betslip</a> | 
-            <a href="#">Expert Tips</a> | 
-            <a href="#">All Predictions</a> | 
-            <a href="#">Fantasy League Prediction</a>
-        </p>
+        <p>&copy; 2025 UltraPredict. All rights reserved.</p>
+        <p>Contact (Kenya): +254 797 236260</p>
     </footer>
-
-    <script src="script.js"></script>
 </body>
 </html>
