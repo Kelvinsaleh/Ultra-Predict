@@ -20,9 +20,9 @@ const predictions = [
 
 // Sample fantasy league data
 const fantasyLeague = [
-    { player: "", team: "", points:  },
-    { player: "", team: ", points:  },
-    { player: "", team: "", points:  }
+    { player: "", team: "", points:0  },
+    { player: "", team: ", points: 0 },
+    { player: "", team: "", points: 0 }
 ];
 
 // Serve static files from public folder
