@@ -33,7 +33,7 @@
 
     h1 {
       margin: 0;
-      font-size: 2.5rem;
+      font-size: 2rem;
     }
 
     nav ul {
@@ -51,7 +51,7 @@
     nav ul li a {
       color: white;
       text-decoration: none;
-      font-size: 1.2rem;
+      font-size: 1rem;
       font-weight: bold;
       transition: color 0.3s;
     }
@@ -61,7 +61,8 @@
     }
 
     .container {
-      width: 80%;
+      width: 90%;
+      max-width: 1200px;
       margin: 20px auto;
       padding: 10px;
     }
@@ -113,6 +114,30 @@
       text-decoration: none;
       color: #ffdd57;
     }
+
+    /* Mobile-friendly adjustments */
+    @media screen and (max-width: 768px) {
+      header h1 {
+        font-size: 1.5rem;
+      }
+
+      nav ul {
+        flex-direction: column;
+      }
+
+      nav ul li {
+        margin: 10px 0;
+      }
+
+      section h2 {
+        font-size: 1.5rem;
+      }
+
+      .container {
+        width: 95%;
+        margin: 10px auto;
+      }
+    }
   </style>
 </head>
 <body>
@@ -149,27 +174,34 @@
   <!-- Footer Section -->
   <footer>
     <p>© 2025 UltraPredict. All rights reserved.</p>
-    <p>Contact (Kenya): <a href="tel:+254XXXXXXX">+254XXXXXXX</a></p>
+    <p>Contact (Kenya): <a href="tel:+254742608319">+254742608319</a></p>
   </footer>
 
-  <!-- Predictions Data Script -->
-  <script src="prediction.js"></script>
+  <!-- Fetch predictions from prediction.json -->
   <script>
-    // Dynamically populate Bet of the Day
-    const betOfTheDay = predictions.betOfTheDay;
-    const betOfTheDayList = document.getElementById('bet-of-the-day-list');
-    betOfTheDayList.innerHTML = `
-      <li><strong>${betOfTheDay.match}</strong> - Prediction: ${betOfTheDay.prediction}</li>
-    `;
+    // Fetch predictions from the prediction.json file
+    fetch('prediction.json')
+      .then(response => response.json())
+      .then(data => {
+        // Populate Bet of the Day
+        const betOfTheDay = data.betOfTheDay;
+        const betOfTheDayList = document.getElementById('bet-of-the-day-list');
+        betOfTheDayList.innerHTML = `
+          <li><strong>${betOfTheDay.match}</strong> - Prediction: ${betOfTheDay.prediction}</li>
+        `;
 
-    // Dynamically populate Football Predictions Today
-    const footballPredictions = predictions.footballPredictionsToday;
-    const footballPredictionsList = document.getElementById('football-predictions-list');
-    footballPredictions.forEach(prediction => {
-      const listItem = document.createElement('li');
-      listItem.innerHTML = `<strong>${prediction.match}</strong> - Prediction: ${prediction.prediction}`;
-      footballPredictionsList.appendChild(listItem);
-    });
+        // Populate Football Predictions Today
+        const footballPredictions = data.footballPredictionsToday;
+        const footballPredictionsList = document.getElementById('football-predictions-list');
+        footballPredictions.forEach(prediction => {
+          const listItem = document.createElement('li');
+          listItem.innerHTML = `<strong>${prediction.match}</strong> - Prediction: ${prediction.prediction}`;
+          footballPredictionsList.appendChild(listItem);
+        });
+      })
+      .catch(error => {
+        console.error('Error fetching predictions:', error);
+      });
   </script>
   
 </body>
