@@ -1,8 +1,4 @@
-const predictions = {
-  betOfTheDay: {
-    match: "Plzen vs Ferencvarosi",
-    prediction: "BTTS"
-  },
+
   footballPredictionsToday: [
     { match: "Shamrock Rovers vs Molde", prediction: "BTTS" },
     { match: "Real Sociedad vs FC Midtjylland", prediction: "1" },
