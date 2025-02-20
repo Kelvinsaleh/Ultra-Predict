@@ -54,6 +54,7 @@
                 <div class="prediction-card">
                     <p><strong>${match.match}</strong></p>
                     <p>Prediction: <span class="highlight">${match.prediction}</span></p>
+                    <p>Live Score: <span id="score-${match.match.replace(/\s+/g, '-').toLowerCase()}">Loading...</span></p>
                 </div>`
             ).join('') : '<p>No predictions available.</p>';
 
@@ -61,13 +62,38 @@
                 <div class="prediction-card">
                     <p><strong>${match.match}</strong></p>
                     <p>Prediction: <span class="highlight">${match.prediction}</span></p>
+                    <p>Live Score: <span id="score-${match.match.replace(/\s+/g, '-').toLowerCase()}">Loading...</span></p>
                 </div>`
             ).join('') : '<p>No predictions available.</p>';
+        
+            fetchLiveScores(data.today);
+            fetchLiveScores(data.yesterday);
         } catch (error) {
             console.error("Error loading predictions:", error);
             document.getElementById("todays-predictions-container").innerHTML = '<p>Failed to load predictions.</p>';
             document.getElementById("yesterdays-predictions-container").innerHTML = '<p>Failed to load predictions.</p>';
         }
+    }
+
+    async function fetchLiveScores(matches) {
+        if (!matches) return;
+        matches.forEach(async (match) => {
+            try {
+                const apiKey = "d5a624a78e958cdc1373754ad2b89950";
+                const response = await fetch(`https://api.football-data.org/v2/matches?team=${match.teamId}`, {
+                    headers: { "X-Auth-Token": apiKey }
+                });
+                const data = await response.json();
+                const scoreElement = document.getElementById(`score-${match.match.replace(/\s+/g, '-').toLowerCase()}`);
+                if (data.matches && data.matches.length > 0) {
+                    scoreElement.textContent = `${data.matches[0].score.fullTime.homeTeam} - ${data.matches[0].score.fullTime.awayTeam}`;
+                } else {
+                    scoreElement.textContent = "Not available";
+                }
+            } catch (error) {
+                console.error("Error fetching live scores:", error);
+            }
+        });
     }
 
     loadPredictions();
