@@ -139,7 +139,7 @@
     <h2>Bet of the Day</h2>
     <div id="bet-of-the-day-predictions">
       <!-- Small portion of predictions -->
-      <p>Match 1: Team A vs Team B - Prediction: <span id="bet-of-the-day-prediction"></span></p>
+      <p>Match 1: <span id="bet-of-the-day-match"></span> - Prediction: <span id="bet-of-the-day-prediction"></span></p>
       <button onclick="window.location.href='bet-of-the-day.html'">See Full Predictions</button>
     </div>
     <div class="adsense-container">
@@ -157,7 +157,7 @@
     <h2>Today's Predictions</h2>
     <div id="todays-predictions-preview">
       <!-- Small portion of predictions -->
-      <p>Match 1: Team A vs Team B - Prediction: <span id="todays-prediction"></span></p>
+      <p>Match 1: <span id="todays-prediction-match"></span> - Prediction: <span id="todays-prediction"></span></p>
       <button onclick="window.location.href='todays-predictions.html'">See Full Predictions</button>
     </div>
   </section>
@@ -167,7 +167,7 @@
     <h2>Yesterday's Predictions</h2>
     <div id="yesterdays-predictions-preview">
       <!-- Small portion of predictions -->
-      <p>Match 1: Team A vs Team B - Prediction: <span id="yesterdays-prediction"></span></p>
+      <p>Match 1: <span id="yesterdays-prediction-match"></span> - Prediction: <span id="yesterdays-prediction"></span></p>
       <button onclick="window.location.href='yesterdays-predictions.html'">See Full Predictions</button>
     </div>
   </section>
@@ -177,7 +177,7 @@
     <h2>Weekend Betslip</h2>
     <div id="weekend-betslip-preview">
       <!-- Small portion of predictions -->
-      <p>Match 1: Team A vs Team B - Prediction: <span id="weekend-betslip-prediction"></span></p>
+      <p>Match 1: <span id="weekend-betslip-match"></span> - Prediction: <span id="weekend-betslip-prediction"></span></p>
       <button onclick="window.location.href='weekend-betslip.html'">See Full Betslip</button>
     </div>
   </section>
@@ -202,5 +202,32 @@
          data-ad-format="auto"></ins>
   </div>
 
+  <script>
+    // Predictions data from predictions.js
+    const predictions = {
+      "today": [
+        { "match": "Plzen vs Ferencvarosi", "prediction": "BTTS" },
+        { "match": "Shamrock Rovers vs Molde", "prediction": "BTTS" },
+        { "match": "Real Sociedad vs FC Midtjylland", "prediction": "1" },
+        { "match": "Real Betis vs Gent", "prediction": "1DNB" },
+        { "match": "Palmeiras vs Botafogo Sp", "prediction": "Under 2.5" }
+      ],
+      "yesterday": [
+        { "match": "Real Madrid vs Manchester City", "prediction": "1X" }
+      ]
+    };
+
+    // Display Today's Prediction on Homepage
+    document.getElementById("todays-prediction-match").innerText = predictions.today[0].match;
+    document.getElementById("todays-prediction").innerText = predictions.today[0].prediction;
+
+    // Display Bet of the Day Prediction on Homepage
+    document.getElementById("bet-of-the-day-match").innerText = predictions.today[0].match;
+    document.getElementById("bet-of-the-day-prediction").innerText = predictions.today[0].prediction;
+
+    // Display Yesterday's Prediction on Homepage
+    document.getElementById("yesterdays-prediction-match").innerText = predictions.yesterday[0].match;
+    document.getElementById("yesterdays-prediction").innerText = predictions.yesterday[0].prediction;
+  </script>
 </body>
 </html>
