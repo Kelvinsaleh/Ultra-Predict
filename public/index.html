@@ -6,9 +6,15 @@
   <title>UltraPredict - Football Predictions</title>
   <link rel="stylesheet" href="styles.css">
   
-  <!-- Google AdSense Script -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7975016400316135"
-     crossorigin="anonymous"></script>
+  <!-- Google AdSense Script for Auto Ads -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+          type="text/javascript"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-7975016400316135",
+      enable_page_level_ads: true
+    });
+  </script>
 </head>
 <body>
   <header>
@@ -37,19 +43,10 @@
       <a href="#">View all predictions</a>
     </section>
 
-    <!-- Google AdSense Code (Ad Unit) -->
+    <!-- Google AdSense Code (Auto Ads) -->
     <section id="adsense-ad">
       <h2>Sponsored</h2>
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7975016400316135"
-              crossorigin="anonymous"></script>
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-7975016400316135"
-           data-ad-slot="1234567890" <!-- Replace with your actual ad slot ID -->
-           data-ad-format="auto"></ins>
-      <script>
-           (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
+      <!-- Auto Ads will be placed automatically based on your settings -->
     </section>
 
     <!-- Yesterday's Predictions -->
@@ -72,4 +69,40 @@
     <p>Contact (Kenya): <a href="tel:+254XXXXXXX">+254XXXXXXX</a></p>
   </footer>
 
-  <script src="p
+  <script src="prediction.js"></script>
+  <script>
+    // Bet of the Day
+    const betOfTheDay = predictions.betOfTheDay;
+    const betOfTheDayContent = document.getElementById('bet-of-the-day-content');
+    betOfTheDayContent.innerHTML = `<strong>${betOfTheDay.match}</strong> - Prediction: ${betOfTheDay.prediction}`;
+
+    // Football Predictions Today
+    const footballPredictions = predictions.footballPredictionsToday;
+    const footballList = document.getElementById('predictions-list');
+    footballPredictions.forEach(prediction => {
+      const listItem = document.createElement('li');
+      listItem.innerHTML = `<strong>${prediction.match}</strong> - Prediction: ${prediction.prediction}`;
+      footballList.appendChild(listItem);
+    });
+
+    // Yesterday's Predictions
+    const yesterdaysPredictions = predictions.yesterdaysPredictions;
+    const yesterdaysList = document.getElementById('yesterdays-predictions-list');
+    yesterdaysPredictions.forEach(prediction => {
+      const listItem = document.createElement('li');
+      listItem.innerHTML = `<strong>${prediction.match}</strong> - Prediction: ${prediction.prediction}`;
+      yesterdaysList.appendChild(listItem);
+    });
+
+    // Weekend Betslip
+    const weekendBetslip = predictions.weekendBetslip;
+    const weekendBetslipList = document.getElementById('weekend-betslip-list');
+    weekendBetslip.forEach(prediction => {
+      const listItem = document.createElement('li');
+      listItem.innerHTML = `<strong>${prediction.match}</strong> - Prediction: ${prediction.prediction}`;
+      weekendBetslipList.appendChild(listItem);
+    });
+  </script>
+</body>
+</html>
+
