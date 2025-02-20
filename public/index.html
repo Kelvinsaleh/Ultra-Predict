@@ -5,163 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UltraPredict</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f8f0;
-        }
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 30px;
-            background-color: #006400;
-            color: white;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .logo {
-            font-size: 1.8em;
-            font-weight: bold;
-        }
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 20px;
-        }
-        .nav-links li {
-            display: inline;
-        }
-        .nav-links a {
-            text-decoration: none;
-            color: white;
-            font-size: 1.2em;
-            transition: color 0.3s ease-in-out;
-        }
-        .nav-links a:hover {
-            color: #90ee90;
-        }
-        .section {
-            padding: 50px;
-            text-align: center;
-        }
-        .predictions-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-        }
-        .prediction-card {
-            background: white;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-            text-align: center;
-            width: 220px;
-            transition: transform 0.3s ease-in-out;
-        }
-        .prediction-card:hover {
-            transform: scale(1.05);
-        }
-        .highlight {
-            color: #006400;
-            font-weight: bold;
-        }
-        .date-section {
-            text-align: center;
-            font-size: 1.4em;
-            margin-top: 20px;
-            font-weight: bold;
-        }
-        .hidden {
-            display: none;
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #006400;
-            color: white;
-        }
-    </style>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7975016400316135" crossorigin="anonymous"></script>
 </head>
 <body>
     <nav class="navbar">
-        <div class="logo">UltraPredict</div>
-        <ul class="nav-links">
-            <li><a href="#bet-of-the-day">🔥 Bet of the Day</a></li>
-            <li><a href="#football-predictions">📅 Football Predictions</a></li>
-            <li><a href="#yesterday-predictions">⏳ Yesterday's Predictions</a></li>
-            <li><a href="#weekend-betslip">💰 Weekend Betslip</a></li>
+        <ul>
+            <li><a href="#bet-of-the-day">Bet of the Day</a></li>
+            <li><a href="#todays-predictions">Today's Predictions</a></li>
+            <li><a href="#weekend-betslip">Weekend Betslip</a></li>
         </ul>
     </nav>
-    
-    <div class="date-section">
-        <p><strong>Date:</strong> <span id="current-date"></span></p>
-    </div>
-    
-    <div id="bet-of-the-day" class="section">
+
+    <section id="bet-of-the-day" class="section">
         <h2>Bet of the Day</h2>
-        <p>No bet posted yet</p>
-        <p><a href="#bet-of-the-day">View more</a></p>
-    </div>
-    
-    <div id="football-predictions" class="section">
-        <h2>Football Predictions Today</h2>
-        <div id="predictions-container" class="predictions-container"></div>
-        <p><a href="#" onclick="togglePredictions(event, 'predictions-container')">View all predictions</a></p>
-    </div>
-    
-    <div id="yesterday-predictions" class="section">
+        <p>No bet posted yet.</p>
+    </section>
+
+    <section id="todays-predictions" class="section">
+        <h2>Today's Football Predictions</h2>
+        <div id="todays-predictions-container">Loading...</div>
+        <a href="predictions.html">View All Predictions</a>
+    </section>
+
+    <section id="yesterdays-predictions" class="section">
         <h2>Yesterday's Predictions</h2>
-        <div id="yesterday-container" class="predictions-container"></div>
-        <p><a href="#" onclick="togglePredictions(event, 'yesterday-container')">View all predictions</a></p>
-    </div>
-    
-    <div id="weekend-betslip" class="section">
+        <div id="yesterdays-predictions-container">Loading...</div>
+    </section>
+
+    <section id="weekend-betslip" class="section">
         <h2>Weekend Betslip</h2>
-        <p>No tips posted yet</p>
-        <p><a href="#weekend-betslip">View more</a></p>
-    </div>
-    
+        <p>No tips posted yet.</p>
+    </section>
+
     <footer>
-        <p>&copy; 2025 UltraPredict. All rights reserved.</p>
-        <p>Contact (Kenya): +254 797 236260</p>
+        <p>Contact: 0797236260</p>
     </footer>
-    
+
     <script>
-        document.getElementById("current-date").textContent = new Date().toDateString();
-        
-        async function loadPredictions() {
-            const response = await fetch('predictions.json');
+    async function loadPredictions() {
+        try {
+            const response = await fetch("predictions.json");
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
             const data = await response.json();
-            
-            document.getElementById("predictions-container").innerHTML = data.today.map(match => `
+
+            document.getElementById("todays-predictions-container").innerHTML = data.today && data.today.length ? data.today.map(match => `
                 <div class="prediction-card">
                     <p><strong>${match.match}</strong></p>
                     <p>Prediction: <span class="highlight">${match.prediction}</span></p>
                 </div>`
-            ).join('');
-            
-            document.getElementById("yesterday-container").innerHTML = data.yesterday.map(match => `
+            ).join('') : '<p>No predictions available.</p>';
+
+            document.getElementById("yesterdays-predictions-container").innerHTML = data.yesterday && data.yesterday.length ? data.yesterday.map(match => `
                 <div class="prediction-card">
                     <p><strong>${match.match}</strong></p>
                     <p>Prediction: <span class="highlight">${match.prediction}</span></p>
                 </div>`
-            ).join('');
+            ).join('') : '<p>No predictions available.</p>';
+        } catch (error) {
+            console.error("Error loading predictions:", error);
+            document.getElementById("todays-predictions-container").innerHTML = '<p>Failed to load predictions.</p>';
+            document.getElementById("yesterdays-predictions-container").innerHTML = '<p>Failed to load predictions.</p>';
         }
-        
-        function togglePredictions(event, containerId) {
-            event.preventDefault();
-            document.getElementById(containerId).classList.toggle('hidden');
-        }
-        
-        loadPredictions();
+    }
+
+    loadPredictions();
     </script>
 </body>
 </html>
-
