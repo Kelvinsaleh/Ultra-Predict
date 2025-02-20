@@ -4,8 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>UltraPredict - Football Predictions</title>
-  <link rel="stylesheet" href="styles.css">
-
+  
   <!-- Google AdSense Script for Auto Ads -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7975016400316135"
           crossorigin="anonymous"></script>
@@ -15,9 +14,9 @@
       enable_page_level_ads: true
     });
   </script>
-
+  
   <style>
-    /* Green-themed appealing layout */
+    /* Basic Style Setup */
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -28,14 +27,13 @@
     header {
       background-color: #4CAF50;
       color: white;
-      padding: 20px 0;
       text-align: center;
+      padding: 20px 0;
     }
 
-    header h1 {
+    h1 {
       margin: 0;
       font-size: 2.5rem;
-      font-weight: bold;
     }
 
     nav ul {
@@ -51,9 +49,9 @@
     }
 
     nav ul li a {
-      text-decoration: none;
       color: white;
-      font-size: 1.1rem;
+      text-decoration: none;
+      font-size: 1.2rem;
       font-weight: bold;
       transition: color 0.3s;
     }
@@ -62,34 +60,30 @@
       color: #ffdd57;
     }
 
+    .container {
+      width: 80%;
+      margin: 20px auto;
+      padding: 10px;
+    }
+
     section {
-      padding: 40px;
-      margin: 20px 0;
       background-color: white;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
     }
 
     section h2 {
-      font-size: 2rem;
+      font-size: 1.8rem;
       color: #333;
+      display: flex;
+      align-items: center;
     }
 
-    section a {
-      text-decoration: none;
-      color: #4CAF50;
-      font-weight: bold;
-    }
-
-    footer {
-      background-color: #333;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-
-    footer a {
-      text-decoration: none;
-      color: #ffdd57;
+    section h2 img {
+      width: 24px;
+      height: 24px;
+      margin-right: 10px;
     }
 
     .prediction-list {
@@ -98,66 +92,85 @@
     }
 
     .prediction-list li {
-      margin-bottom: 10px;
+      background: #f9f9f9;
+      margin: 10px 0;
+      padding: 10px;
+      border-left: 5px solid #4CAF50;
+    }
+
+    .prediction-list li strong {
+      color: #4CAF50;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    footer a {
+      text-decoration: none;
+      color: #ffdd57;
     }
   </style>
 </head>
 <body>
 
+  <!-- Header Section -->
   <header>
     <h1>UltraPredict</h1>
     <nav>
       <ul>
         <li><a href="#bet-of-the-day">Bet of the Day</a></li>
-        <li><a href="#football-predictions">Today's Predictions</a></li>
+        <li><a href="#football-predictions">Football Predictions Today</a></li>
       </ul>
     </nav>
   </header>
 
-  <main>
-    <!-- Bet of the Day -->
+  <div class="container">
+    <!-- Bet of the Day Section -->
     <section id="bet-of-the-day">
-      <h2>Bet of the Day</h2>
-      <p id="bet-of-the-day-content"></p>
-      <a href="#">View more</a>
+      <h2><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Football_icon.svg/800px-Football_icon.svg.png" alt="Bet of the Day Icon"> Bet of the Day</h2>
+      <ul id="bet-of-the-day-list" class="prediction-list">
+        <!-- Bet of the Day Predictions will be inserted here -->
+      </ul>
     </section>
 
-    <!-- Today's Predictions -->
+    <!-- Today's Predictions Section -->
     <section id="football-predictions">
-      <h2>Today's Predictions</h2>
-      <ul id="predictions-list" class="prediction-list"></ul>
-      <a href="#">View all predictions</a>
+      <h2><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Football_icon.svg/800px-Football_icon.svg.png" alt="Football Predictions Icon"> Today's Predictions</h2>
+      <ul id="football-predictions-list" class="prediction-list">
+        <!-- Today's Predictions will be inserted here -->
+      </ul>
     </section>
+  </div>
 
-    <!-- Google AdSense Code (Auto Ads) -->
-    <section id="adsense-ad">
-      <h2>Sponsored</h2>
-      <!-- Auto Ads will be placed automatically based on your settings -->
-    </section>
-
-  </main>
-
+  <!-- Footer Section -->
   <footer>
     <p>© 2025 UltraPredict. All rights reserved.</p>
     <p>Contact (Kenya): <a href="tel:+254XXXXXXX">+254XXXXXXX</a></p>
   </footer>
 
-  <!-- Script for Fetching Predictions Dynamically from prediction.js -->
+  <!-- Predictions Data Script -->
   <script src="prediction.js"></script>
   <script>
-    // Bet of the Day
+    // Dynamically populate Bet of the Day
     const betOfTheDay = predictions.betOfTheDay;
-    const betOfTheDayContent = document.getElementById('bet-of-the-day-content');
-    betOfTheDayContent.innerHTML = `<strong>${betOfTheDay.match}</strong> - Prediction: ${betOfTheDay.prediction}`;
+    const betOfTheDayList = document.getElementById('bet-of-the-day-list');
+    betOfTheDayList.innerHTML = `
+      <li><strong>${betOfTheDay.match}</strong> - Prediction: ${betOfTheDay.prediction}</li>
+    `;
 
-    // Today's Predictions
+    // Dynamically populate Football Predictions Today
     const footballPredictions = predictions.footballPredictionsToday;
-    const footballList = document.getElementById('predictions-list');
+    const footballPredictionsList = document.getElementById('football-predictions-list');
     footballPredictions.forEach(prediction => {
       const listItem = document.createElement('li');
       listItem.innerHTML = `<strong>${prediction.match}</strong> - Prediction: ${prediction.prediction}`;
-      footballList.appendChild(listItem);
+      footballPredictionsList.appendChild(listItem);
     });
   </script>
+  
 </body>
 </html>
