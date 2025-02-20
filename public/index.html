@@ -1,41 +1,206 @@
-<script>
-    async function loadPredictions() {
-        try {
-            const response = await fetch("predictions.json");
-            const data = await response.json();
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UltraPredict - Football Predictions</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="predictions.js" defer></script> <!-- Link to your predictions.js file -->
+  
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7975016400316135" crossorigin="anonymous"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-7975016400316135",
+          enable_page_level_ads: true
+      });
+  </script>
 
-            // Update Bet of the Day
-            document.getElementById("bet-of-the-day").innerHTML = `
-                <h2>Bet of the Day</h2>
-                <p><strong>${data.betOfTheDay.match}</strong></p>
-                <p>Prediction: <span class="highlight">${data.betOfTheDay.prediction}</span></p>
-            `;
-
-            // Update Football Predictions
-            const footballContainer = document.getElementById("football-predictions-container");
-            footballContainer.innerHTML = data.footballPredictions.map(prediction => `
-                <div class="prediction-card">
-                    <p><strong>${prediction.match}</strong></p>
-                    <p>Prediction: <span class="highlight">${prediction.prediction}</span></p>
-                </div>
-            `).join("");
-
-            // Update Weekend Betslip
-            const weekendContainer = document.getElementById("weekend-betslip-container");
-            if (data.weekendBetslip.length > 0) {
-                weekendContainer.innerHTML = data.weekendBetslip.map(prediction => `
-                    <div class="prediction-card">
-                        <p><strong>${prediction.match}</strong></p>
-                        <p>Prediction: <span class="highlight">${prediction.prediction}</span></p>
-                    </div>
-                `).join("");
-            } else {
-                weekendContainer.innerHTML = "<p>No tips posted yet</p>";
-            }
-        } catch (error) {
-            console.error("Error loading predictions:", error);
-        }
+  <style>
+    /* General layout */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      color: #333;
     }
 
-    document.addEventListener("DOMContentLoaded", loadPredictions);
-</script>
+    header {
+      background-color: #2a7f54; /* Green background for the header */
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header nav ul {
+      list-style-type: none;
+      padding: 0;
+      text-align: center;
+    }
+
+    header nav ul li {
+      display: inline;
+      margin: 0 15px;
+    }
+
+    header nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    header nav ul li a:hover {
+      color: #e6b3f2; /* Pinkish color on hover */
+    }
+
+    /* Section Titles */
+    h2 {
+      color: #2a7f54; /* Green color for section titles */
+      text-align: center;
+      font-size: 24px;
+      margin-top: 20px;
+    }
+
+    /* Icon Buttons */
+    button {
+      background-color: #8a2be2; /* Purple background */
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #e6b3f2; /* Light pinkish hover effect */
+    }
+
+    /* Prediction Section Styles */
+    section {
+      margin: 20px;
+      padding: 15px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    section p {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    section .adsense-container {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    /* Footer Styles */
+    footer {
+      background-color: #2a7f54; /* Green background for footer */
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+
+    footer a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 14px;
+    }
+
+    footer a:hover {
+      color: #e6b3f2; /* Pinkish hover effect on footer links */
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>Welcome to UltraPredict</h1>
+    <nav>
+      <ul>
+        <li><a href="#bet-of-the-day">Bet of the Day</a></li>
+        <li><a href="#todays-predictions">Today's Predictions</a></li>
+        <li><a href="#yesterdays-predictions">Yesterday's Predictions</a></li>
+        <li><a href="#weekend-betslip">Weekend Betslip</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Bet of the Day Section -->
+  <section id="bet-of-the-day">
+    <h2>Bet of the Day</h2>
+    <div id="bet-of-the-day-predictions">
+      <!-- Small portion of predictions -->
+      <p>Match 1: Team A vs Team B - Prediction: <span id="bet-of-the-day-prediction"></span></p>
+      <button onclick="window.location.href='bet-of-the-day.html'">See Full Predictions</button>
+    </div>
+    <div class="adsense-container">
+      <!-- Google AdSense ad here -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7975016400316135"
+           data-ad-slot="your-ad-slot" <!-- Replace with your ad slot ID -->
+           data-ad-format="auto"></ins>
+    </div>
+  </section>
+
+  <!-- Today's Predictions Section -->
+  <section id="todays-predictions">
+    <h2>Today's Predictions</h2>
+    <div id="todays-predictions-preview">
+      <!-- Small portion of predictions -->
+      <p>Match 1: Team A vs Team B - Prediction: <span id="todays-prediction"></span></p>
+      <button onclick="window.location.href='todays-predictions.html'">See Full Predictions</button>
+    </div>
+  </section>
+
+  <!-- Yesterday's Predictions Section -->
+  <section id="yesterdays-predictions">
+    <h2>Yesterday's Predictions</h2>
+    <div id="yesterdays-predictions-preview">
+      <!-- Small portion of predictions -->
+      <p>Match 1: Team A vs Team B - Prediction: <span id="yesterdays-prediction"></span></p>
+      <button onclick="window.location.href='yesterdays-predictions.html'">See Full Predictions</button>
+    </div>
+  </section>
+
+  <!-- Weekend Betslip Section -->
+  <section id="weekend-betslip">
+    <h2>Weekend Betslip</h2>
+    <div id="weekend-betslip-preview">
+      <!-- Small portion of predictions -->
+      <p>Match 1: Team A vs Team B - Prediction: <span id="weekend-betslip-prediction"></span></p>
+      <button onclick="window.location.href='weekend-betslip.html'">See Full Betslip</button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>UltraPredict &copy; 2025 | Designed by Salee</p>
+    <div>
+      <a href="#bet-of-the-day">Bet of the Day</a> |
+      <a href="#todays-predictions">Today's Predictions</a> |
+      <a href="#yesterdays-predictions">Yesterday's Predictions</a> |
+      <a href="#weekend-betslip">Weekend Betslip</a>
+    </div>
+  </footer>
+
+  <!-- Optional: More Google Adsense code for placement in footer or other sections -->
+  <div class="adsense-container">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-7975016400316135"
+         data-ad-slot="your-ad-slot" <!-- Replace with your ad slot ID -->
+         data-ad-format="auto"></ins>
+  </div>
+
+</body>
+</html>
