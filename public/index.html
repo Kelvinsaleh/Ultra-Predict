@@ -4,205 +4,102 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>UltraPredict - Football Predictions</title>
-  
-  <!-- Google AdSense Script for Auto Ads -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7975016400316135"
-          crossorigin="anonymous"></script>
-  <script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-      google_ad_client: "ca-pub-7975016400316135",
-      enable_page_level_ads: true
-    });
-  </script>
-  
-  <style>
-    /* Basic Style Setup */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f4;
-    }
-
-    header {
-      background-color: #4CAF50;
-      color: white;
-      text-align: center;
-      padding: 20px 0;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: 2rem;
-    }
-
-    nav ul {
-      list-style: none;
-      padding: 0;
-      margin: 20px 0;
-      display: flex;
-      justify-content: center;
-    }
-
-    nav ul li {
-      margin: 0 15px;
-    }
-
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-size: 1rem;
-      font-weight: bold;
-      transition: color 0.3s;
-    }
-
-    nav ul li a:hover {
-      color: #ffdd57;
-    }
-
-    .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: 20px auto;
-      padding: 10px;
-    }
-
-    section {
-      background-color: white;
-      padding: 20px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      margin-bottom: 20px;
-    }
-
-    section h2 {
-      font-size: 1.8rem;
-      color: #333;
-      display: flex;
-      align-items: center;
-    }
-
-    section h2 img {
-      width: 24px;
-      height: 24px;
-      margin-right: 10px;
-    }
-
-    .prediction-list {
-      list-style-type: none;
-      padding-left: 0;
-    }
-
-    .prediction-list li {
-      background: #f9f9f9;
-      margin: 10px 0;
-      padding: 10px;
-      border-left: 5px solid #4CAF50;
-    }
-
-    .prediction-list li strong {
-      color: #4CAF50;
-    }
-
-    footer {
-      background-color: #333;
-      color: white;
-      text-align: center;
-      padding: 20px;
-    }
-
-    footer a {
-      text-decoration: none;
-      color: #ffdd57;
-    }
-
-    /* Mobile-friendly adjustments */
-    @media screen and (max-width: 768px) {
-      header h1 {
-        font-size: 1.5rem;
-      }
-
-      nav ul {
-        flex-direction: column;
-      }
-
-      nav ul li {
-        margin: 10px 0;
-      }
-
-      section h2 {
-        font-size: 1.5rem;
-      }
-
-      .container {
-        width: 95%;
-        margin: 10px auto;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-  <!-- Header Section -->
   <header>
-    <h1>UltraPredict</h1>
     <nav>
       <ul>
-        <li><a href="#bet-of-the-day">Bet of the Day</a></li>
-        <li><a href="#football-predictions">Football Predictions Today</a></li>
+        <li><a href="#fantasy-league">Fantasy League</a></li>
+        <li><a href="#expert-tips">Expert Tips</a></li>
+        <li><a href="#football-predictions-today">Football Predictions Today</a></li>
       </ul>
     </nav>
   </header>
 
-  <div class="container">
-    <!-- Bet of the Day Section -->
-    <section id="bet-of-the-day">
-      <h2><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Football_icon.svg/800px-Football_icon.svg.png" alt="Bet of the Day Icon"> Bet of the Day</h2>
-      <ul id="bet-of-the-day-list" class="prediction-list">
-        <!-- Bet of the Day Predictions will be inserted here -->
-      </ul>
+  <!-- Google AdSense Script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7975016400316135"
+     crossorigin="anonymous"></script>
+
+  <main>
+    <section id="fantasy-league">
+      <h2>Fantasy League Predictions</h2>
+      <table id="fantasy-league-table">
+        <thead>
+          <tr>
+            <th>Match</th>
+            <th>Prediction</th>
+            <th>Odds</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Dynamic content will go here -->
+        </tbody>
+      </table>
     </section>
 
-    <!-- Today's Predictions Section -->
-    <section id="football-predictions">
-      <h2><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Football_icon.svg/800px-Football_icon.svg.png" alt="Football Predictions Icon"> Today's Predictions</h2>
-      <ul id="football-predictions-list" class="prediction-list">
-        <!-- Today's Predictions will be inserted here -->
-      </ul>
+    <!-- AdSense Ad Unit Here -->
+    <section id="ads">
+      <h3>Sponsored Ads</h3>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7975016400316135"
+           data-ad-slot="1234567890"
+           data-ad-format="auto"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
     </section>
-  </div>
 
-  <!-- Footer Section -->
+    <section id="expert-tips">
+      <h2>Expert Tips</h2>
+      <p>Find tips and strategies from the experts for your football predictions.</p>
+    </section>
+
+    <section id="football-predictions-today">
+      <h2>Football Predictions Today</h2>
+      <table id="football-predictions-today-table">
+        <thead>
+          <tr>
+            <th>Match</th>
+            <th>Prediction</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Dynamic content will go here -->
+        </tbody>
+      </table>
+    </section>
+  </main>
+
   <footer>
-    <p>© 2025 UltraPredict. All rights reserved.</p>
-    <p>Contact (Kenya): <a href="tel:+254742608319">+254742608319</a></p>
+    <p>© 2025 UltraPredict - All Rights Reserved</p>
   </footer>
 
-  <!-- Fetch predictions from prediction.json -->
   <script>
-    // Fetch predictions from the prediction.json file
-    fetch('prediction.json')
+    // Fetch Fantasy League predictions from the API
+    fetch('/api/predictions')
       .then(response => response.json())
       .then(data => {
-        // Populate Bet of the Day
-        const betOfTheDay = data.betOfTheDay;
-        const betOfTheDayList = document.getElementById('bet-of-the-day-list');
-        betOfTheDayList.innerHTML = `
-          <li><strong>${betOfTheDay.match}</strong> - Prediction: ${betOfTheDay.prediction}</li>
-        `;
-
-        // Populate Football Predictions Today
-        const footballPredictions = data.footballPredictionsToday;
-        const footballPredictionsList = document.getElementById('football-predictions-list');
-        footballPredictions.forEach(prediction => {
-          const listItem = document.createElement('li');
-          listItem.innerHTML = `<strong>${prediction.match}</strong> - Prediction: ${prediction.prediction}`;
-          footballPredictionsList.appendChild(listItem);
+        const fantasyLeagueTable = document.getElementById('fantasy-league-table').getElementsByTagName('tbody')[0];
+        data.forEach(prediction => {
+          const row = fantasyLeagueTable.insertRow();
+          row.innerHTML = `<td>${prediction.match}</td><td>${prediction.prediction}</td><td>${prediction.odds}</td>`;
         });
       })
-      .catch(error => {
-        console.error('Error fetching predictions:', error);
-      });
+      .catch(err => console.error('Error fetching predictions:', err));
+
+    // Fetch Football Predictions Today from the API
+    fetch('/api/predictions')
+      .then(response => response.json())
+      .then(data => {
+        const footballPredictionsTodayTable = document.getElementById('football-predictions-today-table').getElementsByTagName('tbody')[0];
+        data.forEach(prediction => {
+          const row = footballPredictionsTodayTable.insertRow();
+          row.innerHTML = `<td>${prediction.match}</td><td>${prediction.prediction}</td>`;
+        });
+      })
+      .catch(err => console.error('Error fetching predictions:', err));
   </script>
-  
 </body>
 </html>
