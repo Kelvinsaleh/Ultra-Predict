@@ -6,16 +6,17 @@ const PORT = process.env.PORT || 3000;
 
 // Sample prediction data
 const predictions = [
-    { match: "Plzen vs Ferencvarosi", prediction: "BTTS" },
-    { match: "Shamrock Rovers vs Molde", prediction: "BTTS" },
-    { match: "Real Sociedad vs FC Midtjylland", prediction: "1" },
-    { match: "Real Betis vs Gent", prediction: "1DNB" },
-    { match: "Palmeiras vs Botafogo Sp", prediction: "Under 2.5" },
-    { match: "Ajax vs Union Saint Gilloise", prediction: "1" },
-    { match: "Roma vs FC Porto", prediction: "1X" },
-    { match: "Bodo/Glimt vs FC Twente", prediction: "Over 2.5" },
-    { match: "Panathinaikos vs Vikingur Reykjavik", prediction: "1" },
-    { match: "Al Fateh vs Al Orubah", prediction: "BTTS" }
+    { match: "Leicester Vs Brentford", prediction: "BTTS" },
+    { match: "Flint Mountain vs Mold Alexandra", prediction: "BTTS" },
+    { match: "Burnley vs Sheffield Wednesday", prediction: "1" },
+    { match:  "Al Nassr vs Al Ittifaq", prediction: "1" },
+    { match: "Us Lecce vs Udinese Calcio", prediction: "Under 2.5" },
+    { match: "Kuwait Sc vs Al Salmiyah", prediction: "2" },
+    { match: "Bala Town vs The New Saints Fc", prediction: "BTTS" },
+    { match: "Pharco  Fc vs Future Fc", prediction: "Over 1.5" },
+    { match: "Hertha vs Nuremberg", prediction: "BTTS" },
+    { match: "Stade Rennes vs Stade Reims", prediction: "Over 1.5" },
+    { match: "Freiburg vs Werder Bremen", prediction: "BTTS" }
 ];
 
 // Sample fantasy league data
