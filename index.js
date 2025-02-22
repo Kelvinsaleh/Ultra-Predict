@@ -1,8 +1,6 @@
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
-
-// Predictions provided earlier (converted to UTC for international use)
 const predictions = [
   { match: "Arsenal Vs. West Ham", time: "15:00 UTC", prediction: "Arsenal", odds: "1.33" },
   { match: "Aston Villa Vs Chelsea", time: "17:30 UTC", prediction: "Over 1.5 Goals", odds: "1.17" },
