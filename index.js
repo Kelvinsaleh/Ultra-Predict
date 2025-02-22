@@ -118,7 +118,7 @@
         <thead>
           <tr>
             <th>Match</th>
-            <th>Time (UTC)</th>
+            <th>Time (EAT)</th>
             <th>Prediction</th>
             <th>Odds</th>
           </tr>
@@ -135,12 +135,6 @@
   </footer>
 
   <script>
-    // Function to convert EAT (UTC+3) to UTC
-    function convertEATtoUTC(eatTime) {
-      const eatDate = new Date(eatTime + ' UTC+3');
-      return eatDate.toISOString().split('T')[1].slice(0, 5) + ' UTC';
-    }
-
     // Fetch Football Predictions Today from the API
     fetch('/api/predictions')
       .then(response => response.json())
@@ -148,8 +142,7 @@
         const footballPredictionsTodayTable = document.getElementById('football-predictions-today-table').getElementsByTagName('tbody')[0];
         data.forEach(prediction => {
           const row = footballPredictionsTodayTable.insertRow();
-          const utcTime = convertEATtoUTC(prediction.time);
-          row.innerHTML = `<td>${prediction.match}</td><td>${utcTime}</td><td>${prediction.prediction}</td><td>${prediction.odds}</td>`;
+          row.innerHTML = `<td>${prediction.match}</td><td>${prediction.time}</td><td>${prediction.prediction}</td><td>${prediction.odds}</td>`;
         });
       })
       .catch(err => console.error('Error fetching predictions:', err));
