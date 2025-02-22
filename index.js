@@ -45,17 +45,27 @@ const predictions = [
         analysis: "Both teams have shown defensive vulnerabilities but also attacking strength, making a high-scoring game likely."
     },
     { 
-        id: 6, match: "Ross County Fc Vs Dundee Fc", time: convertToUTC("22/02, 18:00"), prediction: "Yes (Both Teams To Score)", odds: "1.70",
+        id: 6, match: "Ross County Vs Dundee", time: convertToUTC("22/02, 18:00"), prediction: "Yes (Both Teams To Score)", odds: "1.70",
         team1: { name: "Ross County", analysis: "Good attacking side, but leaky defense.", injuries: "Midfielder doubtful.", form: "DLWWD" },
         team2: { name: "Dundee FC", analysis: "Struggles away but scores consistently.", injuries: "No key injuries.", form: "WLDWD" },
         analysis: "Both teams have attacking intent but struggle defensively, making goals likely."
     },
     { 
-        id: 7, match: "Wydad Ac Vs. Meknes", time: convertToUTC("22/02, 18:00"), prediction: "Wydad AC", odds: "1.29",
+        id: 7, match: "Wydad AC Vs. Meknes", time: convertToUTC("22/02, 18:00"), prediction: "Wydad AC", odds: "1.29",
         team1: { name: "Wydad AC", analysis: "Strongest team in the league.", injuries: "None.", form: "WWWDW" },
         team2: { name: "Meknes", analysis: "Poor form against top teams.", injuries: "Striker out.", form: "LLDWL" },
         analysis: "Wydad AC should dominate, especially given Meknes' struggles against top sides."
-    }
+    },
+    { id: 8, match: "Barry Town United Vs Connah's Quay", time: convertToUTC("22/02, 17:30"), prediction: "Over 1.5", odds: "1.21" },
+    { id: 9, match: "Borussia Dortmund Vs Union Berlin", time: convertToUTC("22/02, 20:30"), prediction: "Yes (Both Teams To Score)", odds: "1.69" },
+    { id: 10, match: "Venezia Vs Lazio", time: convertToUTC("22/02, 17:00"), prediction: "Over 1.5", odds: "1.25" },
+    { id: 11, match: "Torino Vs AC Milan", time: convertToUTC("22/02, 20:00"), prediction: "Over 1.5", odds: "1.39" },
+    { id: 12, match: "Inter Milan Vs Genoa", time: convertToUTC("22/02, 22:45"), prediction: "Inter Milan & Over 1.5", odds: "1.54" },
+    { id: 13, match: "Holstein Kiel Vs Leverkusen", time: convertToUTC("22/02, 17:30"), prediction: "Leverkusen", odds: "1.29" },
+    { id: 14, match: "Ipswich Vs Tottenham", time: convertToUTC("22/02, 18:00"), prediction: "Tottenham & Over 1.5", odds: "2.11" },
+    { id: 15, match: "Valencia Vs Atletico Madrid", time: convertToUTC("22/02, 20:30"), prediction: "Under 3.5", odds: "1.24" },
+    { id: 16, match: "Deportivo Alaves Vs Espanyol", time: convertToUTC("22/02, 16:00"), prediction: "Draw or Espanyol", odds: "2.01" },
+    { id: 17, match: "Everton Vs Manchester United", time: convertToUTC("22/02, 15:30"), prediction: "Everton", odds: "2.60" }
 ];
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -66,11 +76,7 @@ app.get('/api/predictions', (req, res) => {
 
 app.get('/api/match/:id', (req, res) => {
     const matchDetails = predictions.find(p => p.id === parseInt(req.params.id));
-    if (matchDetails) {
-        res.json(matchDetails); 
-    } else {
-        res.status(404).json({ error: "Match not found" });
-    }
+    matchDetails ? res.json(matchDetails) : res.status(404).json({ error: "Match not found" });
 });
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
