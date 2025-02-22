@@ -6,20 +6,50 @@
   <title>UltraPredict - Football Predictions</title>
   <link rel="stylesheet" href="styles.css">
   <style>
-    body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; }
-    .prediction-card { background-color: white; padding: 15px; margin-bottom: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }
+    body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0; }
+    header { background-color: #4CAF50; padding: 15px; text-align: center; color: white; font-size: 20px; }
+    main { padding: 20px; }
+    .prediction-card {
+      background-color: white; padding: 15px; margin-bottom: 15px;
+      border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
     .match-title { font-size: 18px; font-weight: bold; color: #333; }
     .match-info { color: #4CAF50; font-size: 14px; margin: 5px 0; }
     .match-prediction { font-weight: bold; font-size: 16px; }
     .match-odds { color: #555; font-size: 14px; }
-    .match-details { display: none; margin-top: 10px; padding: 10px; background: #f9f9f9; border-radius: 5px; }
+    .prediction-card a { text-decoration: none; color: #333; display: block; margin-top: 10px; font-weight: bold; }
+    .prediction-card a:hover { color: #4CAF50; }
+    #matchDetails { display: none; background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); margin-top: 20px; }
+    .team-section { margin-bottom: 10px; padding: 10px; background: #f9f9f9; border-radius: 5px; }
     .team-name { font-weight: bold; color: #4CAF50; }
-    .toggle-btn { color: #007bff; text-decoration: underline; cursor: pointer; display: block; margin-top: 5px; }
   </style>
 </head>
 <body>
 
+<header>UltraPredict - Football Predictions</header>
+
 <main id="predictionsContainer"></main>
+
+<!-- Match Details Section -->
+<div id="matchDetails">
+  <h2 id="matchTitle"></h2>
+  
+  <div class="team-section">
+    <p class="team-name" id="team1Name"></p>
+    <p><strong>Analysis:</strong> <span id="team1Analysis"></span></p>
+    <p><strong>Injuries:</strong> <span id="team1Injuries"></span></p>
+    <p><strong>Form:</strong> <span id="team1Form"></span></p>
+  </div>
+
+  <div class="team-section">
+    <p class="team-name" id="team2Name"></p>
+    <p><strong>Analysis:</strong> <span id="team2Analysis"></span></p>
+    <p><strong>Injuries:</strong> <span id="team2Injuries"></span></p>
+    <p><strong>Form:</strong> <span id="team2Form"></span></p>
+  </div>
+
+  <button onclick="closeMatchDetails()">Close</button>
+</div>
 
 <script>
   fetch('/api/predictions')
@@ -34,40 +64,30 @@
           <div class="match-info">Time: ${prediction.time}</div>
           <div class="match-prediction">Prediction: ${prediction.prediction}</div>
           <div class="match-odds">Odds: ${prediction.odds}</div>
-          <span class="toggle-btn" onclick="toggleMatchDetails(${prediction.id}, event)">View Analysis</span>
-          <div class="match-details" id="details-${prediction.id}"></div>
+          <a href="#" onclick="showMatchDetails(${prediction.id})">View Analysis</a>
         `;
         predictionsContainer.appendChild(card);
       });
-    })
-    .catch(error => console.error('Error fetching predictions:', error));
+    });
 
-  function toggleMatchDetails(matchId, event) {
-    event.preventDefault();
-    const detailsContainer = document.getElementById(`details-${matchId}`);
-    
-    if (detailsContainer.style.display === "block") {
-      detailsContainer.style.display = "none"; // Hide if already open
-      return;
-    }
-
+  function showMatchDetails(matchId) {
     fetch(`/api/match/${matchId}`)
       .then(response => response.json())
       .then(match => {
-        detailsContainer.innerHTML = `
-          <div class="team-name">${match.team1.name}</div>
-          <p><strong>Analysis:</strong> ${match.team1.analysis}</p>
-          <p><strong>Injuries:</strong> ${match.team1.injuries}</p>
-          <p><strong>Form:</strong> ${match.team1.form}</p>
-          <div class="team-name">${match.team2.name}</div>
-          <p><strong>Analysis:</strong> ${match.team2.analysis}</p>
-          <p><strong>Injuries:</strong> ${match.team2.injuries}</p>
-          <p><strong>Form:</strong> ${match.team2.form}</p>
-        `;
-        detailsContainer.style.display = "block";
-      })
-      .catch(error => console.error('Error fetching match details:', error));
+        document.getElementById('matchTitle').innerText = match.match;
+        document.getElementById('team1Name').innerText = match.team1.name;
+        document.getElementById('team1Analysis').innerText = match.team1.analysis;
+        document.getElementById('team1Injuries').innerText = match.team1.injuries;
+        document.getElementById('team1Form').innerText = match.team1.form;
+        document.getElementById('team2Name').innerText = match.team2.name;
+        document.getElementById('team2Analysis').innerText = match.team2.analysis;
+        document.getElementById('team2Injuries').innerText = match.team2.injuries;
+        document.getElementById('team2Form').innerText = match.team2.form;
+        document.getElementById('matchDetails').style.display = 'block';
+      });
   }
+
+  function closeMatchDetails() { document.getElementById('matchDetails').style.display = 'none'; }
 </script>
 
 </body>
