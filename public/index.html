@@ -7,10 +7,7 @@
   <link rel="stylesheet" href="styles.css">
   <style>
     body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; }
-    .prediction-card {
-      background-color: white; padding: 15px; margin-bottom: 15px;
-      border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
+    .prediction-card { background-color: white; padding: 15px; margin-bottom: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }
     .match-title { font-size: 18px; font-weight: bold; color: #333; }
     .match-info { color: #4CAF50; font-size: 14px; margin: 5px 0; }
     .match-prediction { font-weight: bold; font-size: 16px; }
@@ -42,7 +39,8 @@
         `;
         predictionsContainer.appendChild(card);
       });
-    });
+    })
+    .catch(error => console.error('Error fetching predictions:', error));
 
   function toggleMatchDetails(matchId, event) {
     event.preventDefault();
@@ -67,7 +65,8 @@
           <p><strong>Form:</strong> ${match.team2.form}</p>
         `;
         detailsContainer.style.display = "block";
-      });
+      })
+      .catch(error => console.error('Error fetching match details:', error));
   }
 </script>
 
