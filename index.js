@@ -3,14 +3,12 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Function to convert EAT (UTC+3) to UTC
+// Convert EAT (UTC+3) to UTC
 const convertToUTC = (time) => {
     const [date, eatTime] = time.split(', ');
     const [hours, minutes] = eatTime.split(':').map(Number);
-
     let utcHours = hours - 3;
     if (utcHours < 0) utcHours += 24; // Adjust for day wrap
-
     return `${date}, ${utcHours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')} UTC`;
 };
 
@@ -24,12 +22,12 @@ const predictions = [
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-// API to get all predictions (homepage)
+// API to get all predictions
 app.get('/api/predictions', (req, res) => {
     res.json(predictions.map(({ id, match, time, prediction, odds }) => ({ id, match, time, prediction, odds })));
 });
 
-// API to get detailed match info (clicked match)
+// API to get detailed match info
 app.get('/api/match/:id', (req, res) => {
     const matchDetails = predictions.find(p => p.id === parseInt(req.params.id));
     if (matchDetails) {
