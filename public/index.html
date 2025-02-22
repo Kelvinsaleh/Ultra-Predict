@@ -6,9 +6,7 @@
   <title>UltraPredict - Football Predictions</title>
   <link rel="stylesheet" href="styles.css">
   <style>
-    body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0; }
-    header { background-color: #4CAF50; padding: 15px; text-align: center; color: white; font-size: 20px; }
-    main { padding: 20px; }
+    body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; }
     .prediction-card {
       background-color: white; padding: 15px; margin-bottom: 15px;
       border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -19,11 +17,10 @@
     .match-odds { color: #555; font-size: 14px; }
     .match-details { display: none; margin-top: 10px; padding: 10px; background: #f9f9f9; border-radius: 5px; }
     .team-name { font-weight: bold; color: #4CAF50; }
+    .toggle-btn { color: #007bff; text-decoration: underline; cursor: pointer; display: block; margin-top: 5px; }
   </style>
 </head>
 <body>
-
-<header>UltraPredict - Football Predictions</header>
 
 <main id="predictionsContainer"></main>
 
@@ -40,7 +37,7 @@
           <div class="match-info">Time: ${prediction.time}</div>
           <div class="match-prediction">Prediction: ${prediction.prediction}</div>
           <div class="match-odds">Odds: ${prediction.odds}</div>
-          <a href="#" onclick="toggleMatchDetails(${prediction.id}, event)">View Analysis</a>
+          <span class="toggle-btn" onclick="toggleMatchDetails(${prediction.id}, event)">View Analysis</span>
           <div class="match-details" id="details-${prediction.id}"></div>
         `;
         predictionsContainer.appendChild(card);
@@ -51,8 +48,8 @@
     event.preventDefault();
     const detailsContainer = document.getElementById(`details-${matchId}`);
     
-    if (detailsContainer.innerHTML) {
-      detailsContainer.innerHTML = ""; // Hide if already loaded
+    if (detailsContainer.style.display === "block") {
+      detailsContainer.style.display = "none"; // Hide if already open
       return;
     }
 
@@ -69,6 +66,7 @@
           <p><strong>Injuries:</strong> ${match.team2.injuries}</p>
           <p><strong>Form:</strong> ${match.team2.form}</p>
         `;
+        detailsContainer.style.display = "block";
       });
   }
 </script>
