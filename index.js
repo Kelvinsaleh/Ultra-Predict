@@ -1,151 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UltraPredict - Football Predictions</title>
-  <link rel="stylesheet" href="styles.css">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      color: #333;
-      margin: 0;
-      padding: 0;
-    }
+const express = require('express');
+const app = express();
+const PORT = process.env.PORT || 3000;
 
-    header {
-      background-color: #4CAF50;
-      padding: 10px 20px;
-      text-align: center;
-    }
+// Predictions provided earlier (converted to UTC for international use)
+const predictions = [
+  { match: "Arsenal Vs. West Ham", time: "15:00 UTC", prediction: "Arsenal", odds: "1.33" },
+  { match: "Aston Villa Vs Chelsea", time: "17:30 UTC", prediction: "Over 1.5 Goals", odds: "1.17" },
+  { match: "Bournemouth Vs Wolves", time: "15:00 UTC", prediction: "Bournemouth (Draw No Bet)", odds: "1.25" },
+  { match: "Las Palmas Vs. Barcelona", time: "20:00 UTC", prediction: "Barcelona", odds: "1.26" },
+  { match: "Huddersfield Vs Peterborough", time: "15:00 UTC", prediction: "Both Teams to Score (Yes)", odds: "1.68" },
+  { match: "Ross County Fc Vs Dundee Fc", time: "15:00 UTC", prediction: "Both Teams to Score (Yes)", odds: "1.70" },
+  { match: "Wydad Ac Vs. Meknes", time: "15:00 UTC", prediction: "Wydad AC", odds: "1.29" },
+  { match: "Barry Town United Fc Vs Connah's Quay Nomads Fc", time: "14:30 UTC", prediction: "Over 1.5 Goals", odds: "1.21" },
+  { match: "Borussia Dortmund Vs Union Berlin", time: "17:30 UTC", prediction: "Both Teams to Score (Yes)", odds: "1.69" },
+  { match: "Venezia Fc Vs Lazio Rome", time: "14:00 UTC", prediction: "Over 1.5 Goals", odds: "1.25" },
+  { match: "Torino Fc Vs Ac Milan", time: "17:00 UTC", prediction: "Over 1.5 Goals", odds: "1.39" },
+  { match: "Inter Milano Vs Genoa Cfc", time: "19:45 UTC", prediction: "Inter Milano & Over 1.5 Goals", odds: "1.54" },
+  { match: "Holstein Kiel Vs. Leverkusen", time: "14:30 UTC", prediction: "Leverkusen", odds: "1.29" },
+  { match: "Ipswich Vs Tottenham", time: "15:00 UTC", prediction: "Tottenham & Over 1.5 Goals", odds: "2.11" },
+  { match: "Valencia Vs Atletico Madrid", time: "17:30 UTC", prediction: "Under 3.5 Goals", odds: "1.24" },
+  { match: "Deportivo Alaves Vs Espanyol", time: "13:00 UTC", prediction: "Draw or Espanyol", odds: "2.01" },
+  { match: "Fulham Vs Crystal Palace", time: "15:00 UTC", prediction: "Draw", odds: "3.45" },
+  { match: "Everton Vs. Manchester United", time: "12:30 UTC", prediction: "Everton", odds: "2.60" },
+  { match: "Southampton Vs Brighton", time: "15:00 UTC", prediction: "Over 2.5 Goals", odds: "1.59" },
+  { match: "Fsv Mainz Vs. St. Pauli", time: "14:30 UTC", prediction: "FSV Mainz", odds: "1.84" },
+  { match: "Derby Vs. Millwall", time: "12:30 UTC", prediction: "Draw", odds: "2.90" }
+];
 
-    header nav ul {
-      list-style-type: none;
-      padding: 0;
-    }
+app.get('/api/predictions', (req, res) => {
+  res.json(predictions);
+});
 
-    header nav ul li {
-      display: inline;
-      margin-right: 20px;
-    }
-
-    header nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-size: 18px;
-    }
-
-    main {
-      padding: 20px;
-    }
-
-    section {
-      margin-bottom: 20px;
-      background-color: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    h2 {
-      color: #4CAF50;
-      font-size: 24px;
-      margin-bottom: 15px;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 10px;
-    }
-
-    th, td {
-      padding: 12px;
-      border: 1px solid #ddd;
-      text-align: left;
-    }
-
-    th {
-      background-color: #4CAF50;
-      color: white;
-    }
-
-    td {
-      background-color: #f9f9f9;
-    }
-
-    footer {
-      background-color: #4CAF50;
-      color: white;
-      text-align: center;
-      padding: 10px;
-      position: fixed;
-      width: 100%;
-      bottom: 0;
-    }
-
-    @media screen and (max-width: 600px) {
-      header nav ul li {
-        display: block;
-        margin-right: 0;
-        margin-bottom: 10px;
-      }
-
-      table th, table td {
-        padding: 8px;
-      }
-
-      footer {
-        position: static;
-      }
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="#football-predictions-today">Football Predictions Today</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main>
-    <section id="football-predictions-today">
-      <h2>Football Predictions Today</h2>
-      <table id="football-predictions-today-table">
-        <thead>
-          <tr>
-            <th>Match</th>
-            <th>Time (EAT)</th>
-            <th>Prediction</th>
-            <th>Odds</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Dynamic content will go here -->
-        </tbody>
-      </table>
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2025 UltraPredict - All Rights Reserved</p>
-  </footer>
-
-  <script>
-    // Fetch Football Predictions Today from the API
-    fetch('/api/predictions')
-      .then(response => response.json())
-      .then(data => {
-        const footballPredictionsTodayTable = document.getElementById('football-predictions-today-table').getElementsByTagName('tbody')[0];
-        data.forEach(prediction => {
-          const row = footballPredictionsTodayTable.insertRow();
-          row.innerHTML = `<td>${prediction.match}</td><td>${prediction.time}</td><td>${prediction.prediction}</td><td>${prediction.odds}</td>`;
-        });
-      })
-      .catch(err => console.error('Error fetching predictions:', err));
-  </script>
-</body>
-</html>
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
