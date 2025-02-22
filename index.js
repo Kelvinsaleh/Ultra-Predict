@@ -1,8 +1,12 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Predictions provided earlier without time conversion
+// Serve static files (Frontend)
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Predictions API
 const predictions = [
   { match: "Arsenal Vs. West Ham", time: "22/02, 18:00", prediction: "Arsenal", odds: "1.33" },
   { match: "Aston Villa Vs Chelsea", time: "22/02, 20:30", prediction: "Over 1.5 Goals", odds: "1.17" },
@@ -29,6 +33,11 @@ const predictions = [
 
 app.get('/api/predictions', (req, res) => {
   res.json(predictions);
+});
+
+// Serve index.html for the root path
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.listen(PORT, () => {
