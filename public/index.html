@@ -1,17 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script async custom-element="amp-auto-ads"
-        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
-</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>UltraPredict - Football Predictions</title>
   <link rel="stylesheet" href="styles.css">
   <style>
-    body<amp-auto-ads type="adsense"
-        data-ad-client="ca-pub-7975016400316135">
-</amp-auto-ads> {
+    body {
       font-family: Arial, sans-serif;
       background-color: #f4f4f4;
       color: #333;
@@ -111,59 +106,27 @@
   <header>
     <nav>
       <ul>
-        <li><a href="#expert-tips">Expert Tips</a></li>
         <li><a href="#football-predictions-today">Football Predictions Today</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Google AdSense Script -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7975016400316135"
-     crossorigin="anonymous"></script>
-
   <main>
-    <!-- AdSense Ad Unit Here -->
-    <section id="ads">
-      <h3>Sponsored Ads</h3>
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-7975016400316135"
-           data-ad-slot="1234567890"
-           data-ad-format="auto"></ins>
-      <script>
-           (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
-    </section>
-
-    <section id="expert-tips">
-      <h2>Expert Tips</h2>
-      <p>Find tips and strategies from the experts for your football predictions.</p>
-    </section>
-
     <section id="football-predictions-today">
       <h2>Football Predictions Today</h2>
       <table id="football-predictions-today-table">
         <thead>
           <tr>
             <th>Match</th>
+            <th>Time</th>
             <th>Prediction</th>
+            <th>Odds</th>
           </tr>
         </thead>
         <tbody>
           <!-- Dynamic content will go here -->
         </tbody>
       </table>
-
-      <!-- Additional AdSense Block -->
-      <h3>Sponsored Ads</h3>
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-7975016400316135"
-           data-ad-slot="9876543210"
-           data-ad-format="auto"></ins>
-      <script>
-           (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
     </section>
   </main>
 
@@ -179,7 +142,7 @@
         const footballPredictionsTodayTable = document.getElementById('football-predictions-today-table').getElementsByTagName('tbody')[0];
         data.forEach(prediction => {
           const row = footballPredictionsTodayTable.insertRow();
-          row.innerHTML = `<td>${prediction.match}</td><td>${prediction.prediction}</td>`;
+          row.innerHTML = `<td>${prediction.match}</td><td>${prediction.time}</td><td>${prediction.prediction}</td><td>${prediction.odds}</td>`;
         });
       })
       .catch(err => console.error('Error fetching predictions:', err));
