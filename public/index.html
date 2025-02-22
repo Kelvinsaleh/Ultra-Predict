@@ -6,160 +6,76 @@
   <title>UltraPredict - Football Predictions</title>
   <link rel="stylesheet" href="styles.css">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      color: #333;
-      margin: 0;
-      padding: 0;
-    }
-
-    header {
-      background-color: #4CAF50;
-      padding: 10px 20px;
-      text-align: center;
-    }
-
-    header nav ul {
-      list-style-type: none;
-      padding: 0;
-    }
-
-    header nav ul li {
-      display: inline;
-      margin-right: 20px;
-    }
-
-    header nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-size: 18px;
-    }
-
-    main {
-      padding: 20px;
-    }
-
-    section {
-      margin-bottom: 20px;
-      background-color: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      overflow-x: auto; /* Ensures table scrolls on small screens */
-    }
-
-    h2 {
-      color: #4CAF50;
-      font-size: 24px;
-      margin-bottom: 15px;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 10px;
-    }
-
-    th, td {
-      padding: 10px;
-      border: 1px solid #ddd;
-      text-align: left;
-    }
-
-    th {
-      background-color: #4CAF50;
-      color: white;
-    }
-
-    td {
-      background-color: #f9f9f9;
-    }
-
-    footer {
-      background-color: #4CAF50;
-      color: white;
-      text-align: center;
-      padding: 10px;
-      position: fixed;
-      width: 100%;
-      bottom: 0;
-    }
-
-    @media screen and (max-width: 800px) {
-      table {
-        font-size: 14px;
-      }
-      header nav ul li {
-        display: block;
-        margin-right: 0;
-        margin-bottom: 10px;
-      }
-      footer {
-        position: static;
-      }
-    }
+    body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0; }
+    header { background-color: #4CAF50; padding: 10px; text-align: center; color: white; font-size: 20px; }
+    main { padding: 20px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td { padding: 12px; border: 1px solid #ddd; text-align: left; }
+    th { background-color: #4CAF50; color: white; }
+    td { background-color: #f9f9f9; }
+    td a { text-decoration: none; color: #333; font-weight: bold; }
+    td a:hover { color: #4CAF50; }
+    #matchDetails { display: none; background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); margin-top: 20px; }
   </style>
 </head>
 <body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="#football-predictions-today">Football Predictions Today</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <main>
-    <section id="football-predictions-today">
-      <h2>Football Predictions Today</h2>
-      <table id="football-predictions-today-table">
-        <thead>
-          <tr>
-            <th>Match</th>
-            <th>Time (UTC)</th>
-            <th>Prediction</th>
-            <th>Odds</th>
-            <th>Analysis</th>
-            <th>Injuries</th>
-            <th>Safe Bet</th>
-            <th>Risky Bet</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Dynamic content will be inserted here -->
-        </tbody>
-      </table>
-    </section>
-  </main>
+<header>UltraPredict - Football Predictions</header>
 
-  <footer>
-    <p>© 2025 UltraPredict - All Rights Reserved</p>
-  </footer>
+<main>
+  <table id="predictionsTable">
+    <thead>
+      <tr>
+        <th>Match</th>
+        <th>Time (UTC)</th>
+        <th>Prediction</th>
+        <th>Odds</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
 
-  <script>
-    // Fetch Football Predictions Today from the API
-    fetch('/api/predictions')
+  <!-- Match Details Section -->
+  <div id="matchDetails">
+    <h2 id="matchTitle"></h2>
+    <p><strong>Analysis:</strong> <span id="matchAnalysis"></span></p>
+    <p><strong>Injuries:</strong> <span id="matchInjuries"></span></p>
+    <p><strong>Form:</strong> <span id="matchForm"></span></p>
+    <button onclick="closeMatchDetails()">Close</button>
+  </div>
+</main>
+
+<script>
+  // Fetch and display predictions
+  fetch('/api/predictions')
+    .then(response => response.json())
+    .then(data => {
+      const tableBody = document.getElementById('predictionsTable').getElementsByTagName('tbody')[0];
+      data.forEach(prediction => {
+        const row = tableBody.insertRow();
+        row.innerHTML = `<td><a href="#" onclick="showMatchDetails(${prediction.id})">${prediction.match}</a></td><td>${prediction.time}</td><td>${prediction.prediction}</td><td>${prediction.odds}</td>`;
+      });
+    })
+    .catch(err => console.error('Error fetching predictions:', err));
+
+  // Fetch match details
+  function showMatchDetails(matchId) {
+    fetch(`/api/match/${matchId}`)
       .then(response => response.json())
-      .then(data => {
-        const footballPredictionsTodayTable = document.getElementById('football-predictions-today-table').getElementsByTagName('tbody')[0];
-        footballPredictionsTodayTable.innerHTML = ""; // Clear old content
-        
-        data.forEach(prediction => {
-          const row = footballPredictionsTodayTable.insertRow();
-          row.innerHTML = `
-            <td>${prediction.match}</td>
-            <td>${prediction.time}</td>
-            <td>${prediction.prediction}</td>
-            <td>${prediction.odds}</td>
-            <td>${prediction.analysis}</td>
-            <td>${prediction.injuries}</td>
-            <td>${prediction.safe_bet}</td>
-            <td>${prediction.risky_bet}</td>
-          `;
-        });
+      .then(match => {
+        document.getElementById('matchTitle').innerText = match.match;
+        document.getElementById('matchAnalysis').innerText = match.analysis;
+        document.getElementById('matchInjuries').innerText = match.injuries;
+        document.getElementById('matchForm').innerText = match.form;
+        document.getElementById('matchDetails').style.display = 'block';
       })
-      .catch(err => console.error('Error fetching predictions:', err));
-  </script>
+      .catch(err => console.error('Error fetching match details:', err));
+  }
+
+  function closeMatchDetails() {
+    document.getElementById('matchDetails').style.display = 'none';
+  }
+</script>
+
 </body>
 </html>
