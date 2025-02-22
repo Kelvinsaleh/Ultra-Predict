@@ -46,6 +46,7 @@
       padding: 20px;
       border-radius: 8px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      overflow-x: auto; /* Ensures table scrolls on small screens */
     }
 
     h2 {
@@ -61,7 +62,7 @@
     }
 
     th, td {
-      padding: 12px;
+      padding: 10px;
       border: 1px solid #ddd;
       text-align: left;
     }
@@ -85,17 +86,15 @@
       bottom: 0;
     }
 
-    @media screen and (max-width: 600px) {
+    @media screen and (max-width: 800px) {
+      table {
+        font-size: 14px;
+      }
       header nav ul li {
         display: block;
         margin-right: 0;
         margin-bottom: 10px;
       }
-
-      table th, table td {
-        padding: 8px;
-      }
-
       footer {
         position: static;
       }
@@ -121,10 +120,14 @@
             <th>Time (UTC)</th>
             <th>Prediction</th>
             <th>Odds</th>
+            <th>Analysis</th>
+            <th>Injuries</th>
+            <th>Safe Bet</th>
+            <th>Risky Bet</th>
           </tr>
         </thead>
         <tbody>
-          <!-- Dynamic content will go here -->
+          <!-- Dynamic content will be inserted here -->
         </tbody>
       </table>
     </section>
@@ -140,9 +143,20 @@
       .then(response => response.json())
       .then(data => {
         const footballPredictionsTodayTable = document.getElementById('football-predictions-today-table').getElementsByTagName('tbody')[0];
+        footballPredictionsTodayTable.innerHTML = ""; // Clear old content
+        
         data.forEach(prediction => {
           const row = footballPredictionsTodayTable.insertRow();
-          row.innerHTML = `<td>${prediction.match}</td><td>${prediction.time}</td><td>${prediction.prediction}</td><td>${prediction.odds}</td>`;
+          row.innerHTML = `
+            <td>${prediction.match}</td>
+            <td>${prediction.time}</td>
+            <td>${prediction.prediction}</td>
+            <td>${prediction.odds}</td>
+            <td>${prediction.analysis}</td>
+            <td>${prediction.injuries}</td>
+            <td>${prediction.safe_bet}</td>
+            <td>${prediction.risky_bet}</td>
+          `;
         });
       })
       .catch(err => console.error('Error fetching predictions:', err));
