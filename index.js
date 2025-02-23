@@ -12,69 +12,22 @@ const convertToUTC = (time) => {
     return `${date}, ${utcHours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')} UTC`;
 };
 
-// Predictions Data with Full Analysis (17 Matches)
+// Predictions Data with Full Analysis
 const predictions = [
-    { 
-        id: 1, match: "Arsenal Vs. West Ham", time: convertToUTC("22/02, 18:00"), prediction: "Arsenal", odds: "1.33",
-        team1: { name: "Arsenal", analysis: "Strong home record, dominant attack.", injuries: "No key injuries.", form: "WWDWW" },
-        team2: { name: "West Ham", analysis: "Struggles against top teams.", injuries: "Key midfielder out.", form: "LDWDL" },
-        analysis: "Arsenal has been solid at home, winning 4 of their last 5 matches. West Ham struggles against top sides, and with a key midfielder missing, their midfield control might weaken."
-    },
-    { 
-        id: 2, match: "Aston Villa Vs Chelsea", time: convertToUTC("22/02, 20:30"), prediction: "Over 1.5", odds: "1.17",
-        team1: { name: "Aston Villa", analysis: "Attacking-minded, scores often.", injuries: "Main defender doubtful.", form: "WDWLW" },
-        team2: { name: "Chelsea", analysis: "Unstable defense but dangerous counterattacks.", injuries: "Striker injured.", form: "DLWWD" },
-        analysis: "Villa’s attacking play should create chances, but Chelsea’s pace on the break is dangerous. Both teams should find the net."
-    },
-    { 
-        id: 3, match: "Bournemouth Vs Wolves", time: convertToUTC("22/02, 18:00"), prediction: "Bournemouth (Draw No Bet)", odds: "1.25",
-        team1: { name: "Bournemouth", analysis: "Solid midfield control.", injuries: "No major absences.", form: "WLWDD" },
-        team2: { name: "Wolves", analysis: "Compact defense but struggles in attack.", injuries: "Main striker suspended.", form: "LDWWL" },
-        analysis: "Bournemouth is hard to break down at home, and with Wolves missing their main striker, Bournemouth has a good chance to take the points."
-    },
-    { 
-        id: 4, match: "Las Palmas Vs. Barcelona", time: convertToUTC("22/02, 23:00"), prediction: "Barcelona", odds: "1.26",
-        team1: { name: "Las Palmas", analysis: "Strong home defense.", injuries: "No key injuries.", form: "WLDDD" },
-        team2: { name: "Barcelona", analysis: "Dominant attack and possession play.", injuries: "Main striker suspended.", form: "WWWDW" },
-        analysis: "Barcelona’s control of possession should overwhelm Las Palmas, even without their main striker."
-    },
-    { 
-        id: 5, match: "Huddersfield Vs Peterborough", time: convertToUTC("22/02, 18:00"), prediction: "Yes (Both Teams To Score)", odds: "1.68",
-        team1: { name: "Huddersfield", analysis: "Weak defense but attacking potential.", injuries: "Defender out.", form: "LDLWD" },
-        team2: { name: "Peterborough", analysis: "Concedes and scores often.", injuries: "No key injuries.", form: "WDWDL" },
-        analysis: "Both teams have shown defensive vulnerabilities but also attacking strength, making a high-scoring game likely."
-    },
-    { 
-        id: 6, match: "Ross County Vs Dundee", time: convertToUTC("22/02, 18:00"), prediction: "Yes (Both Teams To Score)", odds: "1.70",
-        team1: { name: "Ross County", analysis: "Good attacking side, but leaky defense.", injuries: "Midfielder doubtful.", form: "DLWWD" },
-        team2: { name: "Dundee FC", analysis: "Struggles away but scores consistently.", injuries: "No key injuries.", form: "WLDWD" },
-        analysis: "Both teams have attacking intent but struggle defensively, making goals likely."
-    },
-    { 
-        id: 7, match: "Wydad AC Vs. Meknes", time: convertToUTC("22/02, 18:00"), prediction: "Wydad AC", odds: "1.29",
-        team1: { name: "Wydad AC", analysis: "Strongest team in the league.", injuries: "None.", form: "WWWDW" },
-        team2: { name: "Meknes", analysis: "Poor form against top teams.", injuries: "Striker out.", form: "LLDWL" },
-        analysis: "Wydad AC should dominate, especially given Meknes' struggles against top sides."
-    },
-    { 
-        id: 8, match: "Lazio Vs Roma", time: convertToUTC("22/02, 21:45"), prediction: "Under 2.5", odds: "1.60",
-        team1: { name: "Lazio", analysis: "Strong defense, low-scoring games.", injuries: "Defender suspended.", form: "WDLWW" },
-        team2: { name: "Roma", analysis: "Defensive approach in big games.", injuries: "Midfielder injured.", form: "WDLDW" },
-        analysis: "Both teams prioritize defensive play in big matches, making a low-scoring affair likely."
-    },
-    { 
-        id: 9, match: "Bayer Leverkusen Vs Bayern Munich", time: convertToUTC("22/02, 19:30"), prediction: "Over 2.5", odds: "1.45",
-        team1: { name: "Bayer Leverkusen", analysis: "Fast attacking football.", injuries: "No major absences.", form: "WWDWW" },
-        team2: { name: "Bayern Munich", analysis: "Strong offense, scores a lot.", injuries: "Key striker out.", form: "WDWWW" },
-        analysis: "Both teams have high-scoring tendencies, making Over 2.5 goals a strong bet."
-    },
-    // Matches 10 to 17 should be added similarly...
+    { id: 1, match: "MVV Maastricht Vs ADO Den Haag", time: convertToUTC("23/02, 18:45"), prediction: "Yes (Both Teams To Score)", odds: "1.46", team1: { name: "MVV Maastricht", analysis: "Attacking team but weak defensively.", form: "WLWDL" }, team2: { name: "ADO Den Haag", analysis: "Good scoring form but concedes frequently.", form: "DWWLD" }, analysis: "Both teams have shown strong attacking intent but weak defenses, making a Both Teams to Score outcome highly likely.", headToHead: "MVV Maastricht 1-2 ADO Den Haag (Last Match)" },
+    { id: 2, match: "AZ Alkmaar SRL Vs Fortuna Sittard SRL", time: convertToUTC("23/02, 11:00"), prediction: "AZ Alkmaar SRL", odds: "1.33", team1: { name: "AZ Alkmaar SRL", analysis: "Strong squad, excellent home form.", form: "WWDWW" }, team2: { name: "Fortuna Sittard SRL", analysis: "Struggles against top teams.", form: "LDLDW" }, analysis: "AZ Alkmaar has been dominant at home and should secure a comfortable win against a weaker Fortuna Sittard SRL side.", headToHead: "AZ Alkmaar 3-1 Fortuna Sittard (Last Match)" },
+    { id: 3, match: "KRC Genk Vs KAA Gent", time: convertToUTC("23/02, 18:00"), prediction: "KRC Genk (Draw No Bet)", odds: "1.22", team1: { name: "KRC Genk", analysis: "Consistent at home, solid defense.", form: "WWLDW" }, team2: { name: "KAA Gent", analysis: "Struggles in away matches.", form: "LDWWD" }, analysis: "KRC Genk has been defensively solid and should have the edge over KAA Gent at home.", headToHead: "KRC Genk 2-0 KAA Gent (Last Match)" },
+    { id: 4, match: "RSC Anderlecht Vs Union Saint-Gilloise", time: convertToUTC("23/02, 20:30"), prediction: "Over 1.5 Goals", odds: "1.30", team1: { name: "RSC Anderlecht", analysis: "Strong attacking form.", form: "WWDWD" }, team2: { name: "Union Saint-Gilloise", analysis: "Effective counterattacks.", form: "WLWWD" }, analysis: "Both teams have attacking prowess, making over 1.5 goals a likely outcome.", headToHead: "Anderlecht 1-1 Union Saint-Gilloise (Last Match)" },
+    { id: 5, match: "Club Brugge Vs Standard Liege", time: convertToUTC("23/02, 15:30"), prediction: "Club Brugge", odds: "1.35", team1: { name: "Club Brugge", analysis: "Superior home form.", form: "WWLWD" }, team2: { name: "Standard Liege", analysis: "Inconsistent performances.", form: "DLWLD" }, analysis: "Club Brugge should take all three points given their dominance at home.", headToHead: "Club Brugge 2-1 Standard Liege (Last Match)" },
+    { id: 6, match: "Real Madrid Vs Girona", time: convertToUTC("23/02, 18:15"), prediction: "Real Madrid", odds: "1.34", team1: { name: "Real Madrid", analysis: "Title contenders, strong squad.", form: "WDWWW" }, team2: { name: "Girona", analysis: "Surprise package but inconsistent.", form: "LWWDW" }, analysis: "Real Madrid's quality should see them claim victory over Girona.", headToHead: "Real Madrid 4-2 Girona (Last Match)" },
+    { id: 7, match: "Athletic Bilbao Vs Valladolid", time: convertToUTC("23/02, 16:00"), prediction: "Athletic Bilbao", odds: "1.21", team1: { name: "Athletic Bilbao", analysis: "Strong at home.", form: "WDWLW" }, team2: { name: "Valladolid", analysis: "Struggles away from home.", form: "LLDLD" }, analysis: "Bilbao’s home advantage should be enough to secure the win.", headToHead: "Bilbao 2-0 Valladolid (Last Match)" },
+    { id: 8, match: "Manchester City Vs Liverpool", time: convertToUTC("23/02, 19:30"), prediction: "Yes (Both Teams To Score)", odds: "1.40", team1: { name: "Manchester City", analysis: "Elite attack.", form: "WWWDW" }, team2: { name: "Liverpool", analysis: "Dangerous attack but leaky defense.", form: "WLWWD" }, analysis: "Both teams have immense attacking talent, making a BTTS bet a strong option.", headToHead: "Man City 3-2 Liverpool (Last Match)" }
 ];
 
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/api/predictions', (req, res) => {
-    res.json(predictions.map(({ id, match, time, prediction, odds }) => ({ id, match, time, prediction, odds })));
+    res.json(predictions);
 });
 
 app.get('/api/match/:id', (req, res) => {
