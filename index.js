@@ -12,24 +12,72 @@ const convertToUTC = (time) => {
     return `${date}, ${utcHours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')} UTC`;
 };
 
-// Predictions Data with Full Analysis
+// Updated Predictions Data with Full Analysis
 const predictions = [
-    { id: 1, match: "MVV Maastricht Vs ADO Den Haag", time: convertToUTC("23/02, 18:45"), prediction: "Yes (Both Teams To Score)", odds: "1.46", team1: { name: "MVV Maastricht", analysis: "Attacking team but weak defensively.", form: "WLWDL" }, team2: { name: "ADO Den Haag", analysis: "Good scoring form but concedes frequently.", form: "DWWLD" }, analysis: "Both teams have shown strong attacking intent but weak defenses, making a Both Teams to Score outcome highly likely.", headToHead: "MVV Maastricht 1-2 ADO Den Haag (Last Match)" },
-    { id: 2, match: "AZ Alkmaar SRL Vs Fortuna Sittard SRL", time: convertToUTC("23/02, 11:00"), prediction: "AZ Alkmaar SRL", odds: "1.33", team1: { name: "AZ Alkmaar SRL", analysis: "Strong squad, excellent home form.", form: "WWDWW" }, team2: { name: "Fortuna Sittard SRL", analysis: "Struggles against top teams.", form: "LDLDW" }, analysis: "AZ Alkmaar has been dominant at home and should secure a comfortable win against a weaker Fortuna Sittard SRL side.", headToHead: "AZ Alkmaar 3-1 Fortuna Sittard (Last Match)" },
-    { id: 3, match: "KRC Genk Vs KAA Gent", time: convertToUTC("23/02, 18:00"), prediction: "KRC Genk (Draw No Bet)", odds: "1.22", team1: { name: "KRC Genk", analysis: "Consistent at home, solid defense.", form: "WWLDW" }, team2: { name: "KAA Gent", analysis: "Struggles in away matches.", form: "LDWWD" }, analysis: "KRC Genk has been defensively solid and should have the edge over KAA Gent at home.", headToHead: "KRC Genk 2-0 KAA Gent (Last Match)" },
-    { id: 4, match: "RSC Anderlecht Vs Union Saint-Gilloise", time: convertToUTC("23/02, 20:30"), prediction: "Over 1.5 Goals", odds: "1.30", team1: { name: "RSC Anderlecht", analysis: "Strong attacking form.", form: "WWDWD" }, team2: { name: "Union Saint-Gilloise", analysis: "Effective counterattacks.", form: "WLWWD" }, analysis: "Both teams have attacking prowess, making over 1.5 goals a likely outcome.", headToHead: "Anderlecht 1-1 Union Saint-Gilloise (Last Match)" },
-    { id: 5, match: "Club Brugge Vs Standard Liege", time: convertToUTC("23/02, 15:30"), prediction: "Club Brugge", odds: "1.35", team1: { name: "Club Brugge", analysis: "Dominates home matches.", form: "WWDWL" }, team2: { name: "Standard Liege", analysis: "Struggles against top teams.", form: "LDWLD" }, analysis: "Club Brugge has been dominant at home and should secure a win.", headToHead: "Club Brugge 2-0 Standard Liege (Last Match)" },
-    { id: 6, match: "Real Madrid Vs Girona", time: convertToUTC("23/02, 18:15"), prediction: "Real Madrid", odds: "1.34", team1: { name: "Real Madrid", analysis: "In top form, strong attack.", form: "WWWWW" }, team2: { name: "Girona", analysis: "Decent attack but shaky defense.", form: "LWWLD" }, analysis: "Real Madrid's form and home advantage make them favorites.", headToHead: "Real Madrid 3-1 Girona (Last Match)" },
-    { id: 7, match: "Manchester City Vs Liverpool", time: convertToUTC("23/02, 19:30"), prediction: "Yes (Both Teams To Score)", odds: "1.40", team1: { name: "Manchester City", analysis: "Strong attack but concedes goals.", form: "WWDWW" }, team2: { name: "Liverpool", analysis: "Excellent attack, inconsistent defense.", form: "WDWLW" }, analysis: "Both teams have top-class attacks, making both teams scoring likely.", headToHead: "Man City 2-2 Liverpool (Last Match)" },
-    { id: 8, match: "Newcastle Vs Nottingham Forest", time: convertToUTC("23/02, 17:00"), prediction: "Draw", odds: "3.90", analysis: "Newcastle and Nottingham Forest have been inconsistent, making a draw likely.", headToHead: "Newcastle 1-1 Nottingham Forest (Last Match)", form: "LWDLD" },
-    { id: 9, match: "Bayern Munich Vs Eintracht Frankfurt", time: convertToUTC("23/02, 19:30"), prediction: "Bayern Munich", odds: "1.27", analysis: "Bayern's home form should be enough to secure a win.", headToHead: "Bayern Munich 4-1 Eintracht Frankfurt (Last Match)", form: "WWLDW" },
-    { id: 10, match: "Cosenza Calcio Vs Palermo Fc", time: convertToUTC("23/02, 17:00"), prediction: "Under 2.5 Goals", odds: "1.66", analysis: "Both teams struggle to score, making under 2.5 goals likely.", headToHead: "Cosenza 0-0 Palermo (Last Match)", form: "DLDWL" }
+    {
+        id: 1,
+        match: "Sheffield United vs. Leeds United",
+        time: convertToUTC("24/02, 23:00"),
+        prediction: "Leeds United to win in a low-scoring match",
+        odds: "1.90",
+        team1: { name: "Sheffield United", analysis: "Struggling defensively.", form: "LDWDL" },
+        team2: { name: "Leeds United", analysis: "Strong attack, solid defense.", form: "WWDWW" },
+        analysis: "Leeds boasts a superior attack and solid defense.",
+        headToHead: "Sheffield United 0-2 Leeds United (Last Match)"
+    },
+    {
+        id: 2,
+        match: "Sevilla vs. Mallorca",
+        time: convertToUTC("24/02, 23:00"),
+        prediction: "Sevilla to lead at half-time",
+        odds: "2.10",
+        team1: { name: "Sevilla", analysis: "Strong home team.", form: "WDLWW" },
+        team2: { name: "Mallorca", analysis: "Struggles defensively.", form: "LLDWL" },
+        analysis: "Sevilla’s home advantage makes them likely to lead early.",
+        headToHead: "Sevilla 2-0 Mallorca (Last Match)"
+    },
+    {
+        id: 3,
+        match: "Roma vs. Monza",
+        time: convertToUTC("24/02, 22:45"),
+        prediction: "Paulo Dybala to score first",
+        odds: "3.50",
+        team1: { name: "Roma", analysis: "Attacking strength.", form: "WWWLW" },
+        team2: { name: "Monza", analysis: "Defensive struggles.", form: "LDLLW" },
+        analysis: "Dybala is in great form and likely to score first.",
+        headToHead: "Roma 3-1 Monza (Last Match)"
+    },
+    {
+        id: 4,
+        match: "Viborg FF vs. Silkeborg IF",
+        time: convertToUTC("24/02, 21:00"),
+        prediction: "Draw",
+        odds: "3.30",
+        team1: { name: "Viborg FF", analysis: "Struggles to secure wins.", form: "DDWDL" },
+        team2: { name: "Silkeborg IF", analysis: "Inconsistent results.", form: "WLWDD" },
+        analysis: "Both teams have similar form, making a draw likely.",
+        headToHead: "Viborg FF 1-1 Silkeborg IF (Last Match)"
+    },
+    {
+        id: 5,
+        match: "Motor Lublin vs. GKS Katowice",
+        time: convertToUTC("24/02, 21:00"),
+        prediction: "Under 2.5 Goals",
+        odds: "1.75",
+        team1: { name: "Motor Lublin", analysis: "Low-scoring team.", form: "WLDDL" },
+        team2: { name: "GKS Katowice", analysis: "Defensive approach.", form: "DDLDW" },
+        analysis: "Both teams struggle to score, making under 2.5 goals likely.",
+        headToHead: "Motor Lublin 1-0 GKS Katowice (Last Match)"
+    }
 ];
 
 app.use(express.static(path.join(__dirname, 'public')));
+
 app.get('/api/predictions', (req, res) => res.json(predictions));
+
 app.get('/api/match/:id', (req, res) => {
     const matchDetails = predictions.find(p => p.id === parseInt(req.params.id));
     matchDetails ? res.json(matchDetails) : res.status(404).json({ error: "Match not found" });
 });
+
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
