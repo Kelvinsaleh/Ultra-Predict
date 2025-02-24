@@ -1,4 +1,4 @@
-const express = require('express');
+⁹const express = require('express');
 const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -112,16 +112,6 @@ app.get('/terms', (req, res) => {
 
                 <h2>7. Contact Information</h2>
                 <p>For any questions, contact us at <strong>support@ultra-predict.co.ke</strong></p>
-                // Contact Us Route
-app.get('/contact', (req, res) => {
-    res.send(`
-        <html>
-            <head><title>Contact Us - UltraPredict</title></head>
-            <body>
-                <h1>Contact Us</h1>
-                <p>If you have any questions or concerns, feel free to reach out to us:</p>
-                <p><strong>Email:</strong> <a href="mailto:Knsalee@gmail.com">Knsalee@gmail.com</a></p>
-                <p><strong>Phone:</strong> <a href="tel:+254742608319">+254742608319</a></p>
             </body>
         </html>
     `);
