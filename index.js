@@ -1,4 +1,4 @@
-⁹const express = require('express');
+const express = require('express');
 const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -82,6 +82,7 @@ app.get('/api/match/:id', (req, res) => {
 
 // Terms of Service Route
 app.get('/terms', (req, res) => {
+    res.setHeader('Content-Type', 'text/html');
     res.send(`
         <html>
             <head><title>Terms of Service - UltraPredict</title></head>
