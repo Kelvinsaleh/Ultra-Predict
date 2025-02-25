@@ -55,7 +55,7 @@ const predictions = [
     },
     {
         id: 16,
-        match: "Angers vs. Opponent",
+        match: "Angers vs. Reims",
         time: convertToUTC("25/02, 22:30"),
         prediction: "Angers to Win",
         odds: "1.70",
@@ -66,7 +66,7 @@ const predictions = [
     },
     {
         id: 17,
-        match: "Chelsea vs. Opponent",
+        match: "Chelsea vs. Southamptom",
         time: convertToUTC("25/02, 22:30"),
         prediction: "Chelsea or Draw & Both Teams to Score",
         odds: "1.80",
