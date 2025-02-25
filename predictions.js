@@ -52,6 +52,28 @@ const predictions = [
         team2: { name: "Leyton Orient", analysis: "Struggles in away matches and inconsistent performances.", form: "LWLDD" },
         analysis: "Birmingham has been dominant at home and faces a weaker Leyton Orient side.",
         headToHead: "Birmingham 3-1 Leyton Orient (Last Match)"
+    },
+    {
+        id: 16,
+        match: "Angers vs. Opponent",
+        time: convertToUTC("25/02, 22:30"),
+        prediction: "Angers to Win",
+        odds: "1.70",
+        team1: { name: "Angers", analysis: "Consistent form and strong at home.", form: "WWLDW" },
+        team2: { name: "Opponent", analysis: "Struggles in away games and weak defensively.", form: "LDLWL" },
+        analysis: "Angers has been dominant at home and should secure a win.",
+        headToHead: "Angers 2-0 Opponent (Last Match)"
+    },
+    {
+        id: 17,
+        match: "Chelsea vs. Opponent",
+        time: convertToUTC("25/02, 22:30"),
+        prediction: "Chelsea or Draw & Both Teams to Score",
+        odds: "1.80",
+        team1: { name: "Chelsea", analysis: "Strong attack but shaky defense.", form: "WDLWW" },
+        team2: { name: "Opponent", analysis: "Capable of scoring but inconsistent results.", form: "DWLWL" },
+        analysis: "Chelsea is likely to avoid defeat, but both teams are expected to score.",
+        headToHead: "Chelsea 2-1 Opponent (Last Match)"
     }
 ];
 
