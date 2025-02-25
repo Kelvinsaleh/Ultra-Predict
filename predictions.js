@@ -41,6 +41,17 @@ const predictions = [
         team2: { name: "Fulham", analysis: "Poor away record and inconsistent attack.", form: "LDDWL" },
         analysis: "Both teams have struggled offensively, so a low-scoring match is expected.",
         headToHead: "Wolves 1-1 Fulham (Last Match)"
+    },
+    {
+        id: 15,
+        match: "Birmingham vs. Leyton Orient",
+        time: convertToUTC("25/02, 22:30"),
+        prediction: "Birmingham to Win",
+        odds: "1.85",
+        team1: { name: "Birmingham", analysis: "Strong home record and superior squad depth.", form: "WLWWD" },
+        team2: { name: "Leyton Orient", analysis: "Struggles in away matches and inconsistent performances.", form: "LWLDD" },
+        analysis: "Birmingham has been dominant at home and faces a weaker Leyton Orient side.",
+        headToHead: "Birmingham 3-1 Leyton Orient (Last Match)"
     }
 ];
 
