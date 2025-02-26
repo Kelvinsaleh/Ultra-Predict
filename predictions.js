@@ -91,10 +91,6 @@ const predictions = [
          time: convertToUTC("26/02, 22:00"),
         prediction: "PSV Eindhoven to win ",
         odds: "1.21",
-        team1: { name: "", analysis: "", form: "WLDWD" },
-        team2: { name: "", analysis: ".", form: "WWWDW" },
-        analysis: ".",
-        headToHead: ""
     },
     {
      id: 27,
@@ -102,8 +98,6 @@ const predictions = [
          time: convertToUTC("26/02, 22:45"),
         prediction: "leipzig to win or Draw ",
         odds: "1.28",
-        team1: { name: "", : "", form: "" },
-        team2: { name: "", : ".", form: "" },
     },
      {
      id: 28,
@@ -114,7 +108,7 @@ const predictions = [
         team1: { name: " Sl Benfica", : "", form: "WWWDW" },
         team2: { name: "Sc Braga", : form: "WWWDW" },
         analysis: "While we expext Braga to put up a fight  Benfica boasts a solid home record  and we see them coming with the desired result to reach the semi-finals.",
-        headToHead: ""
+       
      },
       {
         id: 29,
