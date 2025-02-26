@@ -110,8 +110,14 @@ const predictions = [
         analysis: "While we expext Braga to put up a fight  Benfica boasts a solid home record  and we see them coming with the desired result to reach the semi-finals.",
        
      },
+     {
+     id: 29,
+        match:"Dundee United Vs. Hibernian Fc",
+         time: convertToUTC("26/02, 22:45"),
+        prediction: "BTTS  yes ",
+        odds: "1.71",
       {
-        id: 29,
+        id: 30,
         match: "Real Sociedad vs. Real Madrid",
         time: convertToUTC("26/02, 23:30"),
         prediction: "Draw or Real Madrid & Over 2.5 goals  ",
