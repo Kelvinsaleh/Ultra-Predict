@@ -24,8 +24,8 @@ const predictions = [
         id: 20,
         match: "Tottenham vs. Manchester City",
         time: convertToUTC("26/02, 22:30"),
-        prediction: "Draw or Manchester City",
-        odds: "1.38",
+        prediction: "Draw or Manchester City &BTTS",
+        odds: "1.86",
         team1: { name: "Tottenham", analysis: "Strong at home but missing key players.", form: "WLDWL" },
         team2: { name: "Manchester City", analysis: "Excellent form and title contenders.", form: "WWWDW" },
         analysis: "City's dominance makes them favorites, but Tottenham could snatch a draw.",
@@ -86,15 +86,47 @@ const predictions = [
         analysis: "United is expected to get at least a draw with multiple goals in the match.",
         headToHead: "First competitive meeting in years"
     },
+    {   id: 26,
+        match:"PSV  Eindhoven vs. Go ahead Eagles",
+         time: convertToUTC("26/02, 22:00"),
+        prediction: "PSV Eindhoven to win ",
+        odds: "1.21",
+        team1: { name: "", analysis: "", form: "WLDWD" },
+        team2: { name: "", analysis: ".", form: "WWWDW" },
+        analysis: ".",
+        headToHead: ""
+    },
     {
-        id: 26,
+     id: 27,
+        match:"Leipzig Vs. Wolfsburg",
+         time: convertToUTC("26/02, 22:45"),
+        prediction: "leipzig to win or Draw ",
+        odds: "1.28",
+        team1: { name: "", : "", form: "" },
+        team2: { name: "", : ".", form: "" },
+        analysis: ".",
+        headToHead: ""
+    },
+     {
+     id: 28,
+        match:"SI Benfica Vs. Sc Braga",
+         time: convertToUTC("26/02, 23:45"),
+        prediction: "Sl Benfica to win   CS 3:1 ",
+        odds: "1.39",
+        team1: { name: " Sl Benfica", : "", form: "WWWDW" },
+        team2: { name: "Sc Braga", : ".", form: "WWWDW" },
+        analysis: "While we expext Braga to put up a fight  Benfica boasts a solid home record  and we see them coming with the desired result to reach the semi-finals.",
+        headToHead: ""
+     },
+      {
+        id: 29,
         match: "Real Sociedad vs. Real Madrid",
         time: convertToUTC("26/02, 23:30"),
-        prediction: "Draw or Real Madrid",
-        odds: "1.50",
+        prediction: "Draw or Real Madrid & Over 2.5 goals  ",
+        odds: "2.44",
         team1: { name: "Real Sociedad", analysis: "Solid team but struggles against top opposition.", form: "WLDWD" },
         team2: { name: "Real Madrid", analysis: "Top form and experienced squad.", form: "WWWDW" },
-        analysis: "Madrid has the quality to avoid defeat.",
+        analysis: "Madrid has the quality to avoid defeat This is todays value bet.",
         headToHead: "Real Sociedad 1-2 Real Madrid (Last Match)"
     }
 ];
