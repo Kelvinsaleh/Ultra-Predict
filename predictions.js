@@ -116,6 +116,7 @@ const predictions = [
          time: convertToUTC("26/02, 22:45"),
         prediction: "BTTS  yes ",
         odds: "1.71",
+     },
       {
         id: 30,
         match: "Real Sociedad vs. Real Madrid",
