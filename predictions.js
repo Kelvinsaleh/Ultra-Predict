@@ -105,8 +105,8 @@ const predictions = [
          time: convertToUTC("26/02, 23:45"),
         prediction: "Sl Benfica to win   CS 3:1 ",
         odds: "1.39",
-        team1: { name: " Sl Benfica", : "", form: "WWWDW" },
-        team2: { name: "Sc Braga", : form: "WWWDW" },
+        team1: { name: " Sl Benfica", form: "WWWDW" },
+        team2: { name: "Sc Braga", form: "WWWDW" },
         analysis: "While we expext Braga to put up a fight  Benfica boasts a solid home record  and we see them coming with the desired result to reach the semi-finals.",
        
      },
