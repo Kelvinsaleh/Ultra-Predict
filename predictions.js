@@ -71,6 +71,20 @@ const predictions = [
         time: convertToUTC("27/02, 23:45"),
         prediction: "Sporting Lisbon to Win",
         odds: "1.44",
+    },
+    {
+        id: 40,
+        match: "Bologna FC vs. AC Milan",
+        time: convertToUTC("27/02, 22:45"),
+        prediction: "Both Teams to Score (BTTS) - Yes",
+        odds: "1.77",
+    },
+    {
+        id: 41,
+        match: "West Ham vs. Leicester",
+        time: convertToUTC("27/02, 23:00"),
+        prediction: "Both Teams to Score (BTTS) - Yes",
+        odds: "1.77",
     }
 ];
 
