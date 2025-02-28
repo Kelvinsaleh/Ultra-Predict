@@ -120,6 +120,20 @@ const predictions = [
         time: convertToUTC("28/02, 23:00"),
         prediction: "1",
         odds: "1.20",
+    },
+    {
+        id: 47,
+        match: "AS Monaco vs. Stade Reims",
+        time: convertToUTC("28/02, 22:45"),
+        prediction: "1X2 • AS Monaco",
+        odds: "1.35",
+    },
+    {
+        id: 48,
+        match: "Sheffield Wednesday vs. Sunderland",
+        time: convertToUTC("28/02, 23:00"),
+        prediction: "TOTAL • Over 1.5",
+        odds: "1.35",
     }
 ];
 
