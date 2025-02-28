@@ -7,7 +7,7 @@ const convertToUTC = (time) => {
     return `${date}, ${utcHours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')} UTC`;
 };
 
-// Predictions for February 27th Matches
+// Predictions for February 27th and 28th Matches
 const predictions = [
     {
         id: 31,
@@ -106,6 +106,20 @@ const predictions = [
         time: convertToUTC("27/02, 20:00"),
         prediction: "+1.5 Goals",
         odds: "1.35",
+    },
+    {
+        id: 45,
+        match: "Stuttgart vs. Bayern Munich",
+        time: convertToUTC("28/02, 22:30"),
+        prediction: "2",
+        odds: "1.69",
+    },
+    {
+        id: 46,
+        match: "Aston Villa vs. Cardiff",
+        time: convertToUTC("28/02, 23:00"),
+        prediction: "1",
+        odds: "1.20",
     }
 ];
 
