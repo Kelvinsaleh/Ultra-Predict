@@ -6,5 +6,9 @@
     { "source": "/terms", "destination": "/public/terms.html" },
     { "source": "/privacy", "destination": "/public/privacy.html" },
     { "source": "/contact", "destination": "/public/contact.html" }
-  ]
+  ],
+  "static": {
+    "src": "public",
+    "headers": { "Cache-Control": "public, max-age=0, must-revalidate" }
+  }
 }
