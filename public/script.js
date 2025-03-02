@@ -8,11 +8,10 @@ async function loadPredictions(type) {
     try {
         const response = await fetch('predictions.json');
         const data = await response.json();
-        console.log("Fetched Predictions:", data); // Debugging line
-        
         let filteredData = data;
+
         if (type !== 'all') {
-            filteredData = data.filter(item => item.type.toLowerCase().includes(type.toLowerCase()));
+            filteredData = data.filter(item => item.type.includes(type));
         }
 
         updateTable(filteredData);
@@ -21,24 +20,33 @@ async function loadPredictions(type) {
     }
 }
 
+// Function to load fantasy league predictions
+async function loadFantasy() {
+    try {
+        const response = await fetch('fantasy.js');
+        const data = await response.json();
+        updateTable(data);
+    } catch (error) {
+        console.error("Error loading fantasy predictions:", error);
+    }
+}
+
 // Function to update the table with data
 function updateTable(data) {
     const tableBody = document.querySelector("#predictions-table tbody");
-    tableBody.innerHTML = "";
-
-    if (data.length === 0) {
-        tableBody.innerHTML = "<tr><td colspan='4'>No predictions available</td></tr>";
-        return;
-    }
+    tableBody.innerHTML = "";  
 
     data.forEach(prediction => {
-        const row = `<tr>
-                        <td>${prediction.date}</td>
-                        <td>${prediction.type}</td>
-                        <td>${prediction.match}</td>
-                        <td>${prediction.odds}</td>
-                     </tr>`;
-        tableBody.innerHTML += row;
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+            <td>${prediction.date}</td>
+            <td>${prediction.type}</td>
+            <td>${prediction.match}</td>
+            <td>${prediction.odds}</td>
+        `;
+
+        tableBody.appendChild(row);
     });
 }
 
