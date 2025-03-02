@@ -11,6 +11,7 @@
     <nav class="navbar">
         <button id="menu-toggle">☰ Menu</button>
         <ul id="nav-links" class="hidden">
+            <li><a href="#" onclick="loadPredictions('all')">All Predictions</a></li>
             <li><a href="#" onclick="loadPredictions('value')">Value Bet</a></li>
             <li><a href="#" onclick="loadPredictions('today')">Football Predictions Today</a></li>
             <li><a href="#" onclick="loadFantasy()">Fantasy League Predictions</a></li>
@@ -23,11 +24,12 @@
     </header>
 
     <main id="content">
-        <h2>Today's Football Predictions</h2>
+        <h2>All Predictions</h2>
         <table id="predictions-table">
             <thead>
                 <tr>
                     <th>Date</th>
+                    <th>Category</th>
                     <th>Match</th>
                     <th>Odds</th>
                 </tr>
@@ -36,7 +38,9 @@
         </table>
     </main>
 
-    <footer id="footer"></footer>
-
+    <!-- Footer (Now loads properly) -->
+    <footer>
+        <iframe src="footer.html" frameborder="0" width="100%" height="50"></iframe>
+    </footer>
 </body>
 </html>
