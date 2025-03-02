@@ -1,6 +1,5 @@
 {
   "rewrites": [
-    { "source": "/predictions", "destination": "/public/predictions.html" },
     { "source": "/fantasy", "destination": "/public/fantasy.html" },
     { "source": "/expert-tips", "destination": "/public/expert-tips.html" },
     { "source": "/terms", "destination": "/public/terms.html" },
