@@ -1,55 +1,55 @@
 [
     {
         "date": "02/03, 18:15",
-        "type": "1X2 - Value Bet",
+        "type": "1",
         "match": "Barcelona Vs. Real Sociedad",
         "odds": 1.30
     },
     {
         "date": "02/03, 19:30",
-        "type": "Total - Over 1.5 - Today",
+        "type": "Total - Over 1.5",
         "match": "Manchester United Vs Fulham",
         "odds": 1.26
     },
     {
         "date": "02/03, 20:30",
-        "type": "Total - Over 2.5 - Value Bet",
+        "type": "Total - Over 2.5",
         "match": "Fenerbahce Istanbul Vs Antalyaspor",
         "odds": 1.53
     },
     {
         "date": "02/03, 18:30",
-        "type": "Total - Under 2.5 - Today",
+        "type": "Total - Under 2.5",
         "match": "Boavista Porto Vs Santa Clara Azores",
         "odds": 1.48
     },
     {
         "date": "02/03, 22:45",
-        "type": "GG/NG - Yes - Value Bet",
+        "type": "GG/NG - Yes ",
         "match": "AC Milan Vs Lazio Rome",
         "odds": 1.68
     },
     {
         "date": "02/03, 21:00",
-        "type": "Total - Under 2.5 - Today",
+        "type": "Total - Under 2.5",
         "match": "Rapid Bucuresti 1923 Vs Fotbal Club Fcsb",
         "odds": 1.59
     },
     {
         "date": "02/03, 20:00",
-        "type": "1X2 - Today",
+        "type": "1",
         "match": "AS Roma Vs. Como 1907",
         "odds": 2.02
     },
     {
         "date": "02/03, 19:15",
-        "type": "1X2 - Value Bet",
+        "type": "2",
         "match": "Montpellier HSC Vs. Stade Rennes",
         "odds": 2.09
     },
     {
         "date": "02/03, 20:00",
-        "type": "1X2 - Today",
+        "type": "2",
         "match": "Aalborg BK Vs. FC Copenhagen",
         "odds": 1.50
     }
