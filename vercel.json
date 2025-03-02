@@ -1,7 +1,10 @@
 {
   "rewrites": [
-    { "source": "/public/predictions", "destination": "/public/predictions.html" },
-    { "source": "/public/fantasy", "destination": "/public/fantasy.html" },
-    { "source": "/public/expert-tips", "destination": "/public/expert-tips.html" }
+    { "source": "/predictions", "destination": "/public/predictions.html" },
+    { "source": "/fantasy", "destination": "/public/fantasy.html" },
+    { "source": "/expert-tips", "destination": "/public/expert-tips.html" },
+    { "source": "/terms", "destination": "/public/terms.html" },
+    { "source": "/privacy", "destination": "/public/privacy.html" },
+    { "source": "/contact", "destination": "/public/contact.html" }
   ]
 }
