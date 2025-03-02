@@ -1,13 +1,10 @@
 {
-  "routes": [
-    { "src": "/football-predictions", "dest": "/predictions.html" },
-    { "src": "/fantasy", "dest": "/fantasy.html" },
-    { "src": "/expert-tips", "dest": "/expert-tips.html" },
-    { "src": "/terms", "dest": "/terms.html" },
-    { "src": "/privacy", "dest": "/privacy.html" },
-    { "src": "/contact", "dest": "/contact.html" }
-  ],
-  "static": {
-    "directory": "public"
-  }
+  "rewrites": [
+    { "source": "/football-predictions", "destination": "/public/predictions.html" },
+    { "source": "/fantasy", "destination": "/public/fantasy.html" },
+    { "source": "/expert-tips", "destination": "/public/expert-tips.html" },
+    { "source": "/terms", "destination": "/public/terms.html" },
+    { "source": "/privacy", "destination": "/public/privacy.html" },
+    { "source": "/contact", "destination": "/public/contact.html" }
+  ]
 }
