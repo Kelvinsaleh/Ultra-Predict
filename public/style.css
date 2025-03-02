@@ -1,16 +1,16 @@
-/* General Page Styling */
+/* Green Theme Styling */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #d4edda; /* Light green background */
+    background-color: #e8f5e9; /* Light green background */
     color: #155724; /* Dark green text */
 }
 
 /* Navbar Styling */
 .navbar {
-    background-color: #006400; /* Dark green */
-    padding: 10px;
+    background-color: #004d00; /* Dark green */
+    padding: 15px;
     text-align: center;
 }
 
@@ -26,7 +26,7 @@ body {
     list-style: none;
     padding: 0;
     display: none;
-    background-color: #228B22; /* Forest Green */
+    background-color: #228B22; /* Medium green */
 }
 
 #nav-links li {
@@ -44,7 +44,7 @@ body {
     display: none;
 }
 
-/* Header Styling */
+/* Header */
 header {
     text-align: center;
     padding: 20px;
@@ -58,18 +58,18 @@ main {
     padding: 20px;
 }
 
-/* Table Styling */
+/* Table */
 table {
     margin: auto;
     border-collapse: collapse;
     width: 90%;
-    background-color: #f0fff0; /* Honeydew (light greenish) */
+    background-color: #f0fff0; /* Soft green background */
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 100, 0, 0.5); /* Green shadow */
 }
 
 th, td {
-    padding: 10px;
+    padding: 12px;
     border: 1px solid #228B22; /* Forest Green */
     text-align: center;
 }
@@ -79,13 +79,15 @@ th {
     color: white;
 }
 
-/* Footer Styling */
+/* Footer */
 footer {
-    background-color: #006400; /* Dark green */
+    background-color: #004d00; /* Dark green */
     color: white;
     text-align: center;
     padding: 15px;
-    margin-top: 20px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
 }
 
 .footer-links a {
