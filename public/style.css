@@ -3,13 +3,13 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #e8f5e9; /* Light green */
-    color: #1b5e20; /* Dark green */
+    background-color: #d4edda; /* Light green background */
+    color: #155724; /* Dark green text */
 }
 
 /* Navbar Styling */
 .navbar {
-    background-color: #004d00; /* Dark green */
+    background-color: #006400; /* Dark green */
     padding: 10px;
     text-align: center;
 }
@@ -26,7 +26,7 @@ body {
     list-style: none;
     padding: 0;
     display: none;
-    background-color: #2e7d32; /* Medium green */
+    background-color: #228B22; /* Forest Green */
 }
 
 #nav-links li {
@@ -36,6 +36,7 @@ body {
 #nav-links a {
     color: white;
     text-decoration: none;
+    font-weight: bold;
 }
 
 /* Show menu when button is clicked */
@@ -47,7 +48,7 @@ body {
 header {
     text-align: center;
     padding: 20px;
-    background-color: #1b5e20; /* Dark green */
+    background-color: #006400; /* Dark green */
     color: white;
 }
 
@@ -62,35 +63,36 @@ table {
     margin: auto;
     border-collapse: collapse;
     width: 90%;
-    background-color: white; /* White background for contrast */
+    background-color: #f0fff0; /* Honeydew (light greenish) */
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 100, 0, 0.5); /* Green shadow */
 }
 
 th, td {
     padding: 10px;
-    border: 1px solid #2e7d32; /* Green border */
+    border: 1px solid #228B22; /* Forest Green */
     text-align: center;
 }
 
 th {
-    background-color: #1b5e20; /* Dark green */
+    background-color: #006400; /* Dark green */
     color: white;
 }
 
 /* Footer Styling */
 footer {
-    background-color: #004d00; /* Dark green */
+    background-color: #006400; /* Dark green */
     color: white;
     text-align: center;
-    padding: 10px;
+    padding: 15px;
     margin-top: 20px;
 }
 
 .footer-links a {
-    color: #c8e6c9; /* Light green links */
+    color: #90EE90; /* Light green */
     text-decoration: none;
-    margin: 0 10px;
+    margin: 0 15px;
+    font-weight: bold;
 }
 
 .footer-links a:hover {
