@@ -5,102 +5,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UltraPredict - Football Predictions</title>
     <link rel="stylesheet" href="styles.css">
-    <script defer src="predictions.js"></script>
-    
-    <!-- Insert Google AdSense script here -->
-    <!-- Example: <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
 </head>
 <body>
-    <!-- Navigation Toolbar -->
-    <nav>
-        <div class="menu-icon">&#9776;</div>
-        <ul class="nav-links">
-            <li><a href="#">Football Predictions</a></li>
-            <li><a href="#">Value Bet</a></li>
-            <li><a href="#">Fantasy League Predictions</a></li>
-        </ul>
-    </nav>
 
-    <!-- Hero Section -->
-    <header>
-        <h1>Welcome to UltraPredict</h1>
-        <p>Your ultimate assistant for accurate football predictions</p>
-    </header>
+<header>
+    <h1>Welcome to UltraPredict</h1>
+</header>
 
-    <!-- AdSense Ad Placement (Top Ad) -->
-    <div class="adsense-container">
-        <!-- Insert Google AdSense ad unit here -->
-        <!-- Example: <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXX" data-ad-slot="YYYYYYYYYY" data-ad-format="auto"></ins> -->
-    </div>
+<nav class="navbar">
+    <div class="menu-toggle">☰</div>
+    <ul class="nav-menu">
+        <li><a href="predictions.html">Football Predictions</a></li>
+        <li><a href="fantasy.html">Fantasy League Predictions</a></li>
+        <li><a href="expert-tips.html">Expert Tips</a></li>
+    </ul>
+</nav>
 
-    <!-- Predictions Table -->
-    <section id="predictions">
-        <h2>Today's Football Predictions</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Match</th>
-                    <th>Prediction</th>
-                    <th>Odds</th>
-                </tr>
-            </thead>
-            <tbody id="predictions-table">
-                <!-- Data will be inserted here dynamically -->
-            </tbody>
-        </table>
-    </section>
+<div class="welcome">
+    <h2>Your ultimate assistant for accurate football predictions</h2>
+</div>
 
-    <!-- AdSense Ad Placement (Middle Ad) -->
-    <div class="adsense-container">
-        <!-- Insert Google AdSense ad unit here -->
-    </div>
+<!-- Adsense Ad Placeholder -->
+<div class="adsense">
+    <!-- Insert AdSense code here -->
+</div>
 
-    <!-- Footer -->
-    <footer>
-        <p>
-            <a href="#" onclick="showInfo('terms')">Terms and Conditions</a> | 
-            <a href="#" onclick="showInfo('privacy')">Privacy Policy</a> | 
-            <a href="mailto:knsalee@gmail.com">Contact Us</a>
-        </p>
-    </footer>
+<section class="predictions">
+    <h2>Today's Football Predictions</h2>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Match</th>
+            <th>Prediction</th>
+            <th>Odds</th>
+        </tr>
+        <tr>
+            <td>02/03, 16:30</td>
+            <td>Almere City FC vs. Ajax Amsterdam</td>
+            <td>Ajax Amsterdam</td>
+            <td>1.45</td>
+        </tr>
+    </table>
+</section>
 
-    <!-- AdSense Ad Placement (Bottom Ad) -->
-    <div class="adsense-container">
-        <!-- Insert Google AdSense ad unit here -->
-    </div>
+<footer class="footer">
+    <p>Terms and Conditions | Privacy Policy | Contact Us</p>
+</footer>
 
-    <!-- Terms, Privacy & Contact Info Modal -->
-    <div id="info-modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeInfo()">&times;</span>
-            <div id="info-content"></div>
-        </div>
-    </div>
-
-    <script>
-        function showInfo(type) {
-            let content = {
-                terms: "<h2>Terms and Conditions</h2><p>By using UltraPredict, you agree to our terms...</p>",
-                privacy: "<h2>Privacy Policy</h2><p>We value your privacy. Here’s how we handle data...</p>"
-            };
-            document.getElementById('info-content').innerHTML = content[type];
-            document.getElementById('info-modal').style.display = 'block';
-        }
-
-        function closeInfo() {
-            document.getElementById('info-modal').style.display = 'none';
-        }
-    </script>
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const menuToggle = document.querySelector(".menu-toggle");
-    const navMenu = document.querySelector(".nav-menu");
+    // Mobile Menu Toggle Script
+    document.addEventListener("DOMContentLoaded", function() {
+        const menuToggle = document.querySelector(".menu-toggle");
+        const navMenu = document.querySelector(".nav-menu");
 
-    menuToggle.addEventListener("click", function() {
-      navMenu.classList.toggle("active");
+        menuToggle.addEventListener("click", function() {
+            navMenu.classList.toggle("active");
+        });
     });
-  });
 </script>
+
 </body>
 </html>
