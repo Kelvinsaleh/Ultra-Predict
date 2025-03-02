@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UltraPredict - Football Predictions</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Ensure styles.css is in the correct path -->
 </head>
 <body>
 
@@ -12,12 +12,13 @@
     <h1>Welcome to UltraPredict</h1>
 </header>
 
+<!-- Navigation Bar -->
 <nav class="navbar">
     <div class="menu-toggle">☰</div>
     <ul class="nav-menu">
-        <li><a href="predictions.html">Football Predictions</a></li>
-        <li><a href="fantasy.html">Fantasy League Predictions</a></li>
-        <li><a href="expert-tips.html">Expert Tips</a></li>
+        <li><a href="public/predictions.html">Football Predictions</a></li>
+        <li><a href="public/fantasy.html">Fantasy League Predictions</a></li>
+        <li><a href="public/expert-tips.html">Expert Tips</a></li>
     </ul>
 </nav>
 
@@ -30,6 +31,7 @@
     <!-- Insert AdSense code here -->
 </div>
 
+<!-- Predictions Table -->
 <section class="predictions">
     <h2>Today's Football Predictions</h2>
     <table>
@@ -48,12 +50,17 @@
     </table>
 </section>
 
+<!-- Footer -->
 <footer class="footer">
-    <p>Terms and Conditions | Privacy Policy | Contact Us</p>
+    <p>
+        <a href="public/terms.html">Terms and Conditions</a> |
+        <a href="public/privacy.html">Privacy Policy</a> |
+        <a href="public/contact.html">Contact Us</a>
+    </p>
 </footer>
 
+<!-- Mobile Menu Toggle Script -->
 <script>
-    // Mobile Menu Toggle Script
     document.addEventListener("DOMContentLoaded", function() {
         const menuToggle = document.querySelector(".menu-toggle");
         const navMenu = document.querySelector(".nav-menu");
