@@ -5,33 +5,36 @@ document.getElementById('menu-toggle').addEventListener('click', function () {
 
 // Function to load predictions (All, Value Bet, or Today)
 async function loadPredictions(type) {
-    const response = await fetch('predictions.json');
-    const data = await response.json();
-    let filteredData = data;
+    try {
+        const response = await fetch('predictions.json');
+        const data = await response.json();
+        console.log("Fetched Predictions:", data); // Debugging line
+        
+        let filteredData = data;
+        if (type !== 'all') {
+            filteredData = data.filter(item => item.type.toLowerCase().includes(type.toLowerCase()));
+        }
 
-    if (type !== 'all') {
-        filteredData = data.filter(item => item.type === type);
+        updateTable(filteredData);
+    } catch (error) {
+        console.error("Error loading predictions:", error);
     }
-
-    updateTable(filteredData, type);
-}
-
-// Function to load fantasy league predictions
-async function loadFantasy() {
-    const response = await fetch('fantasy.js');
-    const data = await response.json();
-    updateTable(data, 'Fantasy League');
 }
 
 // Function to update the table with data
-function updateTable(data, category) {
+function updateTable(data) {
     const tableBody = document.querySelector("#predictions-table tbody");
     tableBody.innerHTML = "";
+
+    if (data.length === 0) {
+        tableBody.innerHTML = "<tr><td colspan='4'>No predictions available</td></tr>";
+        return;
+    }
 
     data.forEach(prediction => {
         const row = `<tr>
                         <td>${prediction.date}</td>
-                        <td>${category || prediction.type}</td>
+                        <td>${prediction.type}</td>
                         <td>${prediction.match}</td>
                         <td>${prediction.odds}</td>
                      </tr>`;
