@@ -16,7 +16,7 @@
 <nav class="navbar">
     <div class="menu-toggle">☰</div>
     <ul class="nav-menu">
-        <li><a href="predictions.html">Football Predictions</a></li>
+        <li><a href="football-predictions.html">Football Predictions</a></li>
         <li><a href="fantasy.html">Fantasy League Predictions</a></li>
         <li><a href="expert-tips.html">Expert Tips</a></li>
     </ul>
@@ -35,18 +35,17 @@
 <section class="predictions">
     <h2>Today's Football Predictions</h2>
     <table>
-        <tr>
-            <th>Date</th>
-            <th>Match</th>
-            <th>Prediction</th>
-            <th>Odds</th>
-        </tr>
-        <tr>
-            <td>02/03, 16:30</td>
-            <td>Almere City FC vs. Ajax Amsterdam</td>
-            <td>Ajax Amsterdam</td>
-            <td>1.45</td>
-        </tr>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Match</th>
+                <th>Prediction</th>
+                <th>Odds</th>
+            </tr>
+        </thead>
+        <tbody id="predictions-table">
+            <!-- Predictions will be dynamically inserted here -->
+        </tbody>
     </table>
 </section>
 
@@ -68,6 +67,27 @@
         menuToggle.addEventListener("click", function() {
             navMenu.classList.toggle("active");
         });
+
+        // Fetch and display predictions
+        fetch("predictions.js")
+            .then(response => response.json())
+            .then(predictions => {
+                const predictionsTable = document.getElementById("predictions-table");
+
+                predictions.forEach(prediction => {
+                    let row = document.createElement("tr");
+
+                    row.innerHTML = `
+                        <td>${prediction.date}, ${prediction.time}</td>
+                        <td>${prediction.match}</td>
+                        <td>${prediction.prediction}</td>
+                        <td>${prediction.odds}</td>
+                    `;
+
+                    predictionsTable.appendChild(row);
+                });
+            })
+            .catch(error => console.error("Error loading predictions:", error));
     });
 </script>
 
