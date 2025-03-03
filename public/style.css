@@ -18,12 +18,12 @@ body {
 /* Bigger Menu Button */
 #menu-toggle {
     background: none;
-    border: 2px solid white;
+    border: 2px solid black;
     font-size: 24px; /* Bigger button */
-    color: white;
+    color: green;
     padding: 12px; /* More padding */
     cursor: pointer;
-    background-color: #228B22; /* Medium green */
+    background-color: #004d00; /* Dark green */
     border-radius: 5px;
 }
 
