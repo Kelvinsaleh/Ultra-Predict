@@ -1,56 +1,56 @@
 [
     {
-        "date": "02/03, 18:15",
+        "date": "03/03, 18:30",
         "type": "1",
-        "match": "Barcelona Vs. Real Sociedad",
-        "odds": 1.30
-    },
-    {
-        "date": "02/03, 19:30",
-        "type": "Total - Over 1.5",
-        "match": "Manchester United Vs Fulham",
+        "match": "Sumgayit FK Vs. Qarabag FK",
         "odds": 1.26
     },
     {
-        "date": "02/03, 20:30",
-        "type": "Total - Over 2.5",
-        "match": "Fenerbahce Istanbul Vs Antalyaspor",
-        "odds": 1.53
+        "date": "03/03, 19:00",
+        "type": "1",
+        "match": "Esteghlal Vs. Al-Nassr FC",
+        "odds": 1.85
     },
     {
-        "date": "02/03, 18:30",
+        "date": "03/03, 22:30",
         "type": "Total - Under 2.5",
-        "match": "Boavista Porto Vs Santa Clara Azores",
-        "odds": 1.48
+        "match": "Mirandes Vs. Tenerife",
+        "odds": 1.43
     },
     {
-        "date": "02/03, 22:45",
-        "type": "GG/NG - Yes ",
-        "match": "AC Milan Vs Lazio Rome",
+        "date": "03/03, 19:00",
+        "type": "Total - Under 2.5",
+        "match": "Express FC Vs. Wakiso Giants FC",
+        "odds": 1.47
+    },
+    {
+        "date": "03/03, 16:30",
+        "type": "GG/NG - Yes",
+        "match": "Gokulam Kerala FC Vs. Shillong Lajong FC",
+        "odds": 1.49
+    },
+    {
+        "date": "03/03, 21:00",
+        "type": "Total - Under 2.5",
+        "match": "Al-Wasl FC Vs. Al Sadd SC",
+        "odds": 2.33
+    },
+    {
+        "date": "03/03, 22:00",
+        "type": "GG/NG - Yes",
+        "match": "Jong FC Utrecht Vs. TOP Oss",
         "odds": 1.68
     },
     {
-        "date": "02/03, 21:00",
-        "type": "Total - Under 2.5",
-        "match": "Rapid Bucuresti 1923 Vs Fotbal Club Fcsb",
-        "odds": 1.59
-    },
-    {
-        "date": "02/03, 20:00",
+        "date": "03/03, 22:45",
         "type": "1",
-        "match": "AS Roma Vs. Como 1907",
-        "odds": 2.02
+        "match": "Juventus Turin Vs. Hellas Verona",
+        "odds": 1.35
     },
     {
-        "date": "02/03, 19:15",
-        "type": "2",
-        "match": "Montpellier HSC Vs. Stade Rennes",
-        "odds": 2.09
-    },
-    {
-        "date": "02/03, 20:00",
-        "type": "2",
-        "match": "Aalborg BK Vs. FC Copenhagen",
+        "date": "03/03, 22:30",
+        "type": "Double Chance - 1X",
+        "match": "Nottingham Forest Vs. Ipswich",
         "odds": 1.50
     }
 ]
