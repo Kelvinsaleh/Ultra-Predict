@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
     fetch("predictions.json")
         .then(response => response.json())
-        .then(predictions => {
-            const tableBody = document.getElementById("predictions-table");
+        .then(data => {
+            const table = document.getElementById("predictions");
 
-            predictions.forEach(prediction => {
+            data.forEach(prediction => {
                 const row = `
                     <tr>
                         <td>${prediction.match}</td>
@@ -14,8 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
                         <td>${prediction.time}</td>
                     </tr>
                 `;
-                tableBody.innerHTML += row;
+                table.innerHTML += row;
             });
         })
-        .catch(error => console.error("Failed to fetch predictions:", error));
+        .catch(err => console.error("Error fetching predictions:", err));
 });

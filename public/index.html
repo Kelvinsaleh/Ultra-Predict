@@ -1,126 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Meta Tags for SEO -->
-<title>UltraPredict | Expert Football Predictions & Correct Score Tips</title>
-<meta name="description" content="Get expert football predictions, correct score tips, bet of the day, value bets, and high-accuracy betting tips. Updated daily with the best odds.">
-<meta name="keywords" content="football predictions, correct score predictions, bet of the day, value bet predictions, best football tips, accurate betting tips, btts tips, over 2.5 goals, 1x2 predictions">
-<meta name="author" content="UltraPredict">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://ultrapredict.com/">
-
-<!-- Open Graph for Social Media (Facebook, WhatsApp, Twitter) -->
-<meta property="og:title" content="UltraPredict | Expert Football Predictions & Betting Tips">
-<meta property="og:description" content="Find the best football betting tips, including correct score predictions, bet of the day, and value bets.">
-<meta property="og:url" content="https://ultrapredict.com/">
-<meta property="og:image" content="https://ultrapredict.com/images/ultrapredict-banner.jpg">
-<meta property="og:type" content="website">
-
-<!-- Twitter Card for SEO -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="UltraPredict | Expert Football Predictions">
-<meta name="twitter:description" content="Daily football betting tips, correct score predictions, and expert analysis.">
-<meta name="twitter:image" content="https://ultrapredict.com/images/ultrapredict-banner.jpg">
-
-<!-- Favicon -->
-<link rel="icon" type="image/png" href="/images/favicon.png">
-
-<!-- Schema Markup for Google (Structured Data) -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SportsOrganization",
-  "name": "UltraPredict",
-  "url": "https://ultrapredict.com/",
-  "logo": "https://ultrapredict.com/images/logo.png",
-  "description": "UltraPredict provides expert football predictions, correct score tips, bet of the day, and value betting insights.",
-  "foundingDate": "2025",
-  "sameAs": [
-    "https://twitter.com/ultrapredict",
-    "https://www.facebook.com/ultrapredict",
-    "https://www.instagram.com/ultrapredict"
-  ]
-}
-</script>
-    <script>
-document.addEventListener("DOMContentLoaded", function() {
-    let adBlockEnabled = false;
-    let testAd = document.createElement('div');
-    testAd.innerHTML = "&nbsp;";
-    testAd.className = "adsbox";
-    document.body.appendChild(testAd);
-    
-    window.setTimeout(function() {
-        if (testAd.offsetHeight === 0) {
-            adBlockEnabled = true;
-        }
-        testAd.remove();
-        if (adBlockEnabled) {
-            Hell0👋("Please disable your ad blocker to support our website.");
-        }
-    }, 100);
-});
-    </script>
-    <link rel="stylesheet" href="/public/styles.css">
-    <!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-NB0ZTFMPQK"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-NB0ZTFMPQK');
-</script>
-<!-- End Google Analytics -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7975016400316135"
-     crossorigin="anonymous"></script>
-    <script>(function(d,z,s){s.src='https://'+d+'/401/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('groleegni.net',9005912,document.createElement('script'))</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UltraPredict</title>
+    <title>Today's Football Predictions | UltraPredict</title>
+    <meta name="description" content="Accurate football predictions, correct score tips, and bet of the day. Updated daily with expert betting tips.">
+    <meta name="keywords" content="football predictions, correct score predictions, bet of the day, value bet tips, btts tips">
+    <meta name="robots" content="index, follow">
     <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
 </head>
 <body>
-
-    <!-- Navbar -->
-    <nav class="navbar">
-        <button id="menu-toggle">☰ Menu</button>
-        <ul id="nav-links" class="hidden">
-            <nav>
-    <a href="correct-score.html">Correct Scores</a>
-            <li><a href="#" onclick="loadPredictions('all')">Football Predictions today</a><li>
-            <li><a href="#" onclick="loadFantasy()">Fantasy League Predictions</a></li>
-        </ul>
-    </nav>
-
-    <!-- Header Section -->
     <header>
-        <h1>Welcome to UltraPredict</h1>
-        <p>Your ultimate assistant in today's football predictions.</p>
+        <h1>Today's Football Predictions</h1>
+        <p>Expert daily football betting tips.</p>
     </header>
 
-    <!-- Main Content -->
-    <main id="content">
-        <h2>All Predictions</h2>
-        <table id="predictions-table">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Category</th>
-                    <th>Match</th>
-                    <th>Odds</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
+    <main>
+        <section>
+            <h2>🔥 Today's Predictions</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Match</th>
+                        <th>Prediction</th>
+                        <th>Odds</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody id="predictions">
+                    <!-- Predictions will load here -->
+                </tbody>
+            </table>
+        </section>
     </main>
 
-    <!-- Footer (Fix for Proper Display) -->
     <footer>
-    <a href="public/footer/contact.html">Contact Us</a> |
-    <a href="public/footer/terms.html">Terms of Service</a> |
-    <a href="public/footer/privacy.html">Privacy Policy</a>
+        <p>&copy; 2025 UltraPredict | All Rights Reserved</p>
     </footer>
+
+    <script src="predictions.js"></script>
 </body>
 </html>
