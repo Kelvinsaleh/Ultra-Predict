@@ -2,9 +2,11 @@ document.addEventListener("DOMContentLoaded", () => {
     fetch("predictions.json")
         .then(response => response.json())
         .then(data => {
-            const table = document.getElementById("predictions");
+            const predictionsTable = document.getElementById("predictions");
+            const correctScoreTable = document.getElementById("correct-score");
+            const betOfTheDayTable = document.getElementById("bet-of-the-day");
 
-            data.forEach(prediction => {
+            data.forEach((prediction, index) => {
                 const row = `
                     <tr>
                         <td>${prediction.match}</td>
@@ -14,7 +16,10 @@ document.addEventListener("DOMContentLoaded", () => {
                         <td>${prediction.time}</td>
                     </tr>
                 `;
-                table.innerHTML += row;
+
+                if (predictionsTable) predictionsTable.innerHTML += row;
+                if (correctScoreTable && prediction.prediction.includes(":")) correctScoreTable.innerHTML += row;
+                if (betOfTheDayTable && index === 0) betOfTheDayTable.innerHTML += row;
             });
         })
         .catch(err => console.error("Error fetching predictions:", err));
