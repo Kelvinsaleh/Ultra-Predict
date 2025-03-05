@@ -115,3 +115,8 @@ footer nav a:hover {
         font-size: 14px;
     }
 }
+/* Styling for the welcome section */
+#welcome {
+    padding: 15px;
+    text-align: center;
+}
