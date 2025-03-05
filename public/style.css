@@ -76,11 +76,27 @@ tr:nth-child(even) {
 
 /* Footer */
 footer {
+    background-color: #0b3d0b; /* Dark green */
+    color: white;
     text-align: center;
     padding: 15px;
-    background: #006400;
-    color: white;
     margin-top: 20px;
+    font-size: 14px;
+}
+
+footer nav {
+    margin-top: 10px;
+}
+
+footer nav a {
+    color: #ffcc00; /* Gold color for contrast */
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: bold;
+}
+
+footer nav a:hover {
+    text-decoration: underline;
 }
 
 /* Responsive Design */
