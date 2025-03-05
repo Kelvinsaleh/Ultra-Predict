@@ -1,3 +1,5 @@
 User-agent: *
+Disallow: /admin
 Allow: /
-Sitemap: https://ultrapredict.com/sitemap.xml
+
+Sitemap: https://ultrapredict.co.ke/sitemap.xml
