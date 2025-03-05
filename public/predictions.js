@@ -1,35 +1,21 @@
-document.addEventListener("DOMContentLoaded", function () {
-  if (window.location.pathname.includes("yesterday.html")) {
+document.addEventListener("DOMContentLoaded", () => {
     fetch("predictions.json")
-      .then(response => response.json())
-      .then(data => {
-        const yesterday = new Date();
-        yesterday.setDate(yesterday.getDate() - 1);
-        const yesterdayDate = yesterday.toISOString().split("T")[0]; // Format YYYY-MM-DD
+        .then(response => response.json())
+        .then(predictions => {
+            const tableBody = document.getElementById("predictions-table");
 
-        const yesterdayPredictions = data.filter(pred => pred.date === yesterdayDate);
-
-        if (yesterdayPredictions.length > 0) {
-          let predictionsHTML = `
-            <table>
-              <tr><th>Match</th><th>Prediction</th><th>Odds</th></tr>`;
-
-          yesterdayPredictions.forEach(pred => {
-            predictionsHTML += `
-              <tr>
-                <td>${pred.match}</td>
-                <td>${pred.prediction}</td>
-                <td>${pred.odds}</td>
-              </tr>`;
-          });
-
-          predictionsHTML += "</table>";
-          document.getElementById("yesterday-predictions").innerHTML = predictionsHTML;
-        } else {
-          document.getElementById("yesterday-predictions").innerHTML =
-            "<h2>No predictions available for yesterday.</h2>";
-        }
-      })
-      .catch(error => console.error("Error fetching predictions:", error));
-  }
+            predictions.forEach(prediction => {
+                const row = `
+                    <tr>
+                        <td>${prediction.match}</td>
+                        <td><strong>${prediction.prediction}</strong></td>
+                        <td>${prediction.odds}</td>
+                        <td>${prediction.date}</td>
+                        <td>${prediction.time}</td>
+                    </tr>
+                `;
+                tableBody.innerHTML += row;
+            });
+        })
+        .catch(error => console.error("Failed to fetch predictions:", error));
 });
