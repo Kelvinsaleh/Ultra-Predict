@@ -1,41 +1,38 @@
 document.addEventListener("DOMContentLoaded", function () {
     const analysisContent = document.getElementById("analysis-content");
 
-    // Example: Replace with real analysis data
     const matchAnalysis = `
         <p>
-            Today's football fixtures bring us some thrilling encounters. The biggest clash of the day is the highly anticipated battle between 
-            <strong>Manchester United</strong> and <strong>Liverpool</strong>. Both teams come into this fixture in great form, with Liverpool 
-            boasting an aggressive attacking style, while United relies on strong midfield control and counterattacks. The match is expected to 
-            be a high-scoring affair, given the recent performances of both squads.
+            <strong>Feyenoord vs Inter Milan</strong>: This match is expected to be a tightly contested battle, with both teams showing defensive 
+            discipline. Our prediction of a 1-1 draw reflects the balanced nature of the game, where Inter Milan's attacking firepower will be 
+            matched by Feyenoord's resilience at home. Expect an intense midfield battle and a game that could be decided by set-pieces.
         </p>
 
         <p>
-            Another exciting fixture is <strong>Barcelona vs. Real Madrid</strong>. El Clásico never disappoints, and this time, both teams have 
-            everything to play for. Real Madrid has been dominant in recent weeks, securing crucial wins in La Liga and the Champions League. 
-            However, Barcelona's young squad is showing resilience, and their home advantage could play a significant role. Expect an intense 
-            tactical battle between the two managers, with key players like Vinícius Jr. and Pedri set to shine.
+            <strong>PSG vs Liverpool</strong>: A high-scoring thriller is anticipated in this Champions League showdown. Both PSG and Liverpool 
+            boast world-class attacking talent, and our predicted 2-2 draw suggests that neither team will hold back. PSG's fluid attack led by 
+            their forwards will test Liverpool's defense, while the English side will look to capitalize on counterattacks. Goals are almost 
+            guaranteed in this fixture.
         </p>
 
         <p>
-            In the English Premier League, <strong>Chelsea takes on Arsenal</strong> in a crucial London Derby. Chelsea, struggling with inconsistency, 
-            will need to find a way to break down Arsenal’s compact defensive structure. Meanwhile, Arsenal, with their title ambitions alive, will look 
-            to capitalize on any weaknesses in Chelsea's defensive setup. The midfield battle between Declan Rice and Enzo Fernández could be the 
-            deciding factor in this encounter.
+            <strong>Bayern Munich vs Bayer Leverkusen</strong>: Bayern Munich is expected to take control of this Bundesliga encounter with 
+            a solid 2-0 victory. The German champions have been dominant at home, and Leverkusen will find it difficult to break through their 
+            well-organized defense. Expect Bayern to control possession and patiently break down their opponent’s resistance.
         </p>
 
         <p>
-            Lastly, in Serie A, <strong>Inter Milan faces Juventus</strong> in a match that could determine the fate of the league title race. Juventus, 
-            known for their defensive solidity, will aim to frustrate Inter's attacking threats. On the other hand, Inter's high-pressing style might 
-            force Juventus into making mistakes. This game is expected to be a low-scoring tactical showdown.
+            <strong>Benfica vs Barcelona</strong>: An exciting clash in European competition sees Barcelona traveling to face Benfica. 
+            With our prediction of a 3-1 win for the Spanish giants, Barcelona's attacking quality is likely to be the deciding factor. 
+            Benfica will look to make use of home advantage and hit on the counter, but Barcelona’s possession-based game should give them 
+            the upper hand.
         </p>
 
         <p>
-            As we analyze these key matches, one thing is certain: football fans are in for an exciting day full of drama, goals, and surprises. 
-            Stay tuned for post-match analysis and insights as we break down the key moments from these epic clashes.
+            With these predictions in mind, fans can expect a night full of drama, skill, and top-tier football action. Keep an eye on these 
+            matchups, as each one carries significant stakes for their respective leagues and tournaments.
         </p>
     `;
 
-    // Insert the match analysis into the HTML
     analysisContent.innerHTML = matchAnalysis;
 });
