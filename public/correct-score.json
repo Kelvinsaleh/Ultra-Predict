@@ -1,32 +1,66 @@
 [
     {
-        "match": "Feyenoord vs Inter Milan",
-        "prediction": "1:1",
-        "odds": 7.40,
-        "date": "05/03",
+        "match": "Fc Copenhagen vs Chelsea",
+        "market": "1X2",
+        "prediction": "Chelsea",
+        "odds": 1.68,
+        "date": "06/03",
         "time": "20:45"
     },
-  {
-        "match": "PSG vs  Liverpool",
-        "prediction": "2:2",
-        "odds": 9.80,
-        "date": "05/03",
-        "time": "23:00"
-    },
-  {
-        "match": "Bayern Munich vs Bayer Leverkusen",
-        "prediction": "2:0",
-        "odds": 8.00,
-        "date": "05/03",
-        "time": "23:00"
-    },
-
-
     {
-        "match": "Benfica vs Barcelona",
-        "prediction": "1:3",
-        "odds": 12.00,
-        "date": "05/03",
+        "match": "AS Roma vs Athletic Bilbao",
+        "market": "AS Roma to win either half",
+        "prediction": "Yes",
+        "odds": 1.70,
+        "date": "06/03",
         "time": "23:00"
+    },
+    {
+        "match": "Ajax Amsterdam vs Eintracht Frankfurt",
+        "market": "Total",
+        "prediction": "Over 1.5",
+        "odds": 1.20,
+        "date": "06/03",
+        "time": "23:00"
+    },
+    {
+        "match": "Viktoria Plzen vs Lazio Rome",
+        "market": "Total",
+        "prediction": "Over 1.5",
+        "odds": 1.29,
+        "date": "06/03",
+        "time": "23:00"
+    },
+    {
+        "match": "Fenerbahce Istanbul vs Glasgow Rangers",
+        "market": "1X2",
+        "prediction": "Fenerbahce Istanbul",
+        "odds": 1.71,
+        "date": "06/03",
+        "time": "20:45"
+    },
+    {
+        "match": "Real Betis Seville vs Vitoria SC Guimaraes",
+        "market": "Total",
+        "prediction": "Over 1.5",
+        "odds": 1.32,
+        "date": "06/03",
+        "time": "20:45"
+    },
+    {
+        "match": "AZ Alkmaar vs Tottenham",
+        "market": "Both Teams to Score (GG/NG)",
+        "prediction": "Yes",
+        "odds": 1.61,
+        "date": "06/03",
+        "time": "20:45"
+    },
+    {
+        "match": "Real Sociedad vs Manchester United",
+        "market": "Both Teams to Score (GG/NG)",
+        "prediction": "Yes",
+        "odds": 1.88,
+        "date": "06/03",
+        "time": "20:45"
     }
 ]
