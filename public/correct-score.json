@@ -1,65 +1,29 @@
 [
     {
-        "match": "Fc Copenhagen vs Chelsea",
-        "market": "1X2",
-        "prediction": "Chelsea",
-        "odds": 1.68,
+        "match": "Real Sociedad vs Manchester United",
+        "prediction": "2:1",
+        "odds": 7.50,
         "date": "06/03",
         "time": "20:45"
     },
     {
-        "match": "AS Roma vs Athletic Bilbao",
-        "market": "AS Roma to win either half",
-        "prediction": "Yes",
-        "odds": 1.70,
+        "match": "FC Copenhagen vs Chelsea",
+        "prediction": "1:2",
+        "odds": 6.80,
         "date": "06/03",
-        "time": "23:00"
+        "time": "20:45"
     },
     {
         "match": "Ajax Amsterdam vs Eintracht Frankfurt",
-        "market": "Total",
-        "prediction": "Over 1.5",
-        "odds": 1.20,
-        "date": "06/03",
-        "time": "23:00"
-    },
-    {
-        "match": "Viktoria Plzen vs Lazio Rome",
-        "market": "Total",
-        "prediction": "Over 1.5",
-        "odds": 1.29,
+        "prediction": "2:2",
+        "odds": 8.20,
         "date": "06/03",
         "time": "23:00"
     },
     {
         "match": "Fenerbahce Istanbul vs Glasgow Rangers",
-        "market": "1X2",
-        "prediction": "Fenerbahce Istanbul",
-        "odds": 1.71,
-        "date": "06/03",
-        "time": "20:45"
-    },
-    {
-        "match": "Real Betis Seville vs Vitoria SC Guimaraes",
-        "market": "Total",
-        "prediction": "Over 1.5",
-        "odds": 1.32,
-        "date": "06/03",
-        "time": "20:45"
-    },
-    {
-        "match": "AZ Alkmaar vs Tottenham",
-        "market": "Both Teams to Score (GG/NG)",
-        "prediction": "Yes",
-        "odds": 1.61,
-        "date": "06/03",
-        "time": "20:45"
-    },
-    {
-        "match": "Real Sociedad vs Manchester United",
-        "market": "Both Teams to Score (GG/NG)",
-        "prediction": "Yes",
-        "odds": 1.88,
+        "prediction": "3:1",
+        "odds": 9.50,
         "date": "06/03",
         "time": "20:45"
     }
