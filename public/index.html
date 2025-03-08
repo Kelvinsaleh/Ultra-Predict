@@ -15,6 +15,30 @@
     <script src="../predictions.js" defer></script>
 </head>
 <body>
+    <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-analytics.js";
+
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyBp72a-Ft6vqAnEzqvq5IXSpqvx8Tg03A",
+    authDomain: "ultrapredict-d60f4.firebaseapp.com",
+    projectId: "ultrapredict-d60f4",
+    storageBucket: "ultrapredict-d60f4.appspot.com",
+    messagingSenderId: "997625707020",
+    appId: "1:997625707020:web:7b321d4ba50eb25374c29",
+    measurementId: "G-DV33RT4T3W"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+    </script>
     <header>
         <h1>UltraPredict</h1>
         <p>Your #1 source for expert football predictions</p>
