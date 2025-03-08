@@ -1,4 +1,4 @@
-// firebaseConfig.js - Corrected
+// firebaseConfig.js - Fixed
 const firebaseConfig = {
     apiKey: "ATzAsByPZa-Ft6vQAnEzqvqXJ5XPq9xTgB3A",
     authDomain: "ultrapredict-d60f4.firebaseapp.com",
