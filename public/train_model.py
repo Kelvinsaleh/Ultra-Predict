@@ -1,14 +1,20 @@
-
-import pandas as pd
-import pickle
+# train_model.py - Fixed
 from sklearn.ensemble import RandomForestClassifier
+import numpy as np
+import firebase_admin
+from firebase_admin import credentials, firestore
 
-data = pd.read_csv("historical_matches.csv")  # Replace with actual dataset
-X = data[['stat1', 'stat2', 'stat3']]  # Replace with actual feature columns
-y = data['outcome']
+# Initialize Firebase
+cred = credentials.Certificate("serviceAccount.json")
+firebase_admin.initialize_app(cred)
+db = firestore.client()
 
+# Dummy training data
+X_train = np.array([[1, 2], [2, 3], [3, 4]])
+y_train = np.array([0, 1, 1])
+
+# Train model
 model = RandomForestClassifier()
-model.fit(X, y)
+model.fit(X_train, y_train)
 
-pickle.dump(model, open("ml_model.pkl", "wb"))
-print("Model trained and saved!")
+print("Model trained successfully!")
