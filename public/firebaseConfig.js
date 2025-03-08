@@ -1,12 +1,12 @@
-
-// Firebase configuration
+// firebaseConfig.js - Corrected
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_STORAGE_BUCKET",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
+    apiKey: "ATzAsByPZa-Ft6vQAnEzqvqXJ5XPq9xTgB3A",
+    authDomain: "ultrapredict-d60f4.firebaseapp.com",
+    projectId: "ultrapredict-d60f4",
+    storageBucket: "ultrapredict-d60f4.appspot.com",
+    messagingSenderId: "997625707900",
+    appId: "1:997625707900:web:78321d4ba50eb82574c329",
+    measurementId: "G-DV3AR7T38V"
 };
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+
+module.exports = firebaseConfig;
