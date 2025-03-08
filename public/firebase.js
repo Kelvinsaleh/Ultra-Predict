@@ -1,4 +1,4 @@
-// firebase.js - Corrected
+// firebase.js - Fixed
 const admin = require("firebase-admin");
 const serviceAccount = require("./serviceAccount.json"); // Ensure this file exists
 
