@@ -1,31 +1,20 @@
-const axios = require("axios");
-const admin = require("firebase-admin");
-const serviceAccount = require("../config/serviceAccountKey.json");
-require("dotenv").config();
+# fetch_data.py - Fixed
+import requests
 
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-});
+# Example: Fetching data from an API
+API_URL = "https://api.example.com/data"
 
-const db = admin.firestore();
-const API_URL = "https://v3.football.api-sports.io/fixtures";
-const API_KEY = process.env.API_KEY;
+def fetch_data():
+    try:
+        response = requests.get(API_URL)
+        response.raise_for_status()  # Raise an error for HTTP failures
+        data = response.json()
+        return data
+    except requests.exceptions.RequestException as e:
+        print("Error fetching data:", e)
+        return None
 
-async function fetchAndStoreMatches() {
-  try {
-    const response = await axios.get(API_URL, {
-      headers: { "x-apisports-key": API_KEY },
-    });
-
-    if (response.status === 200 && response.data.response) {
-      await db.collection("matches").doc("latest").set({ data: response.data.response });
-      console.log("Matches stored successfully!");
-    } else {
-      console.log("No match data found.");
-    }
-  } catch (error) {
-    console.error("Error fetching matches:", error);
-  }
-}
-
-fetchAndStoreMatches();
+if __name__ == "__main__":
+    fetched_data = fetch_data()
+    if fetched_data:
+        print("Fetched Data:", fetched_data)
