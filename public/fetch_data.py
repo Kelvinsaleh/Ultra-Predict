@@ -1,29 +1,31 @@
-import requests
-import json
+const axios = require("axios");
+const admin = require("firebase-admin");
+const serviceAccount = require("../config/serviceAccountKey.json");
+require("dotenv").config();
 
-API_KEY = "your_api_key"  # Replace with your actual API key
-URL = "https://v3.football.api-sports.io/fixtures"
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+});
 
-params = {
-    "league": "39",  # Example: English Premier League
-    "season": "2024",
+const db = admin.firestore();
+const API_URL = "https://v3.football.api-sports.io/fixtures";
+const API_KEY = process.env.API_KEY;
+
+async function fetchAndStoreMatches() {
+  try {
+    const response = await axios.get(API_URL, {
+      headers: { "x-apisports-key": API_KEY },
+    });
+
+    if (response.status === 200 && response.data.response) {
+      await db.collection("matches").doc("latest").set({ data: response.data.response });
+      console.log("Matches stored successfully!");
+    } else {
+      console.log("No match data found.");
+    }
+  } catch (error) {
+    console.error("Error fetching matches:", error);
+  }
 }
 
-headers = {"x-apisports-key": API_KEY}
-
-def fetch_matches():
-    response = requests.get(URL, headers=headers, params=params)
-    
-    if response.status_code == 200:
-        data = response.json()
-        if "response" in data:
-            with open("matches.json", "w") as f:
-                json.dump(data["response"], f, indent=4)
-            print("Match data fetched successfully.")
-        else:
-            print("Error: Unexpected API response format.")
-    else:
-        print(f"Failed to fetch match data. Status: {response.status_code}, Error: {response.text}")
-
-if __name__ == "__main__":
-    fetch_matches()
+fetchAndStoreMatches();
