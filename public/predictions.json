@@ -1,66 +1,124 @@
-[
+{
+  "predictions": [
     {
-        "match": "Fc Copenhagen vs Chelsea",
-        "market": "1X2",
-        "prediction": "Chelsea",
-        "odds": 1.68,
-        "date": "06/03",
-        "time": "20:45"
+      "match": "PSV Eindhoven Vs. SC Heerenveen",
+      "market": "1X2",
+      "prediction": "PSV Eindhoven",
+      "odds": 1.22,
+      "date": "08/03",
+      "time": "22:00"
     },
     {
-        "match": "AS Roma vs Athletic Bilbao",
-        "market": "AS Roma to win either half",
-        "prediction": "Yes",
-        "odds": 1.70,
-        "date": "06/03",
-        "time": "23:00"
+      "match": "Antalyaspor Vs. Rizespor",
+      "market": "TOTAL",
+      "prediction": "Under 2.5",
+      "odds": 1.92,
+      "date": "08/03",
+      "time": "16:00"
     },
     {
-        "match": "Ajax Amsterdam vs Eintracht Frankfurt",
-        "market": "Total",
-        "prediction": "Over 1.5",
-        "odds": 1.20,
-        "date": "06/03",
-        "time": "23:00"
+      "match": "Bayern Munich Vs. Bochum",
+      "market": "TOTAL",
+      "prediction": "Over 2.5",
+      "odds": 1.27,
+      "date": "08/03",
+      "time": "17:30"
     },
     {
-        "match": "Viktoria Plzen vs Lazio Rome",
-        "market": "Total",
-        "prediction": "Over 1.5",
-        "odds": 1.29,
-        "date": "06/03",
-        "time": "23:00"
+      "match": "Parma Calcio Vs. Torino FC",
+      "market": "TOTAL",
+      "prediction": "Under 2.5",
+      "odds": 1.72,
+      "date": "08/03",
+      "time": "17:00"
     },
     {
-        "match": "Fenerbahce Istanbul vs Glasgow Rangers",
-        "market": "1X2",
-        "prediction": "Fenerbahce Istanbul",
-        "odds": 1.71,
-        "date": "06/03",
-        "time": "20:45"
+      "match": "Leverkusen Vs. Werder Bremen",
+      "market": "1X2",
+      "prediction": "Leverkusen",
+      "odds": 1.28,
+      "date": "08/03",
+      "time": "17:30"
     },
     {
-        "match": "Real Betis Seville vs Vitoria SC Guimaraes",
-        "market": "Total",
-        "prediction": "Over 1.5",
-        "odds": 1.32,
-        "date": "06/03",
-        "time": "20:45"
+      "match": "Brighton Vs. Fulham",
+      "market": "BOTH TEAMS TO SCORE (GG/NG)",
+      "prediction": "Yes",
+      "odds": 1.71,
+      "date": "08/03",
+      "time": "18:00"
     },
     {
-        "match": "AZ Alkmaar vs Tottenham",
-        "market": "Both Teams to Score (GG/NG)",
-        "prediction": "Yes",
-        "odds": 1.61,
-        "date": "06/03",
-        "time": "20:45"
+      "match": "Crystal Palace Vs. Ipswich",
+      "market": "1X2",
+      "prediction": "Crystal Palace",
+      "odds": 1.59,
+      "date": "08/03",
+      "time": "18:00"
     },
     {
-        "match": "Real Sociedad vs Manchester United",
-        "market": "Both Teams to Score (GG/NG)",
-        "prediction": "Yes",
-        "odds": 1.88,
-        "date": "06/03",
-        "time": "20:45"
+      "match": "Wolves Vs. Everton",
+      "market": "DOUBLE CHANCE",
+      "prediction": "Draw or Everton",
+      "odds": 1.50,
+      "date": "08/03",
+      "time": "23:00"
+    },
+    {
+      "match": "Liverpool Vs. Southampton",
+      "market": "TOTAL",
+      "prediction": "Over 1.5",
+      "odds": 1.08,
+      "date": "08/03",
+      "time": "18:00"
+    },
+    {
+      "match": "Nottingham Forest Vs. Manchester City",
+      "market": "BOTH TEAMS TO SCORE (GG/NG)",
+      "prediction": "Yes",
+      "odds": 1.51,
+      "date": "08/03",
+      "time": "15:30"
+    },
+    {
+      "match": "Brentford Vs. Aston Villa",
+      "market": "DOUBLE CHANCE",
+      "prediction": "Brentford or Draw",
+      "odds": 1.43,
+      "date": "08/03",
+      "time": "20:30"
+    },
+    {
+      "match": "Barcelona Vs. Osasuna",
+      "market": "TOTAL",
+      "prediction": "Over 1.5",
+      "odds": 1.10,
+      "date": "08/03",
+      "time": "23:00"
+    },
+    {
+      "match": "Inter Milano Vs. AC Monza",
+      "market": "1X2",
+      "prediction": "Inter Milano",
+      "odds": 1.14,
+      "date": "08/03",
+      "time": "22:45"
+    },
+    {
+      "match": "Wolfsburg Vs. St. Pauli",
+      "market": "1X2",
+      "prediction": "Wolfsburg",
+      "odds": 1.85,
+      "date": "08/03",
+      "time": "17:30"
+    },
+    {
+      "match": "Stade Rennes Vs. Paris Saint-Germain",
+      "market": "DOUBLE CHANCE",
+      "prediction": "Draw or Paris Saint-Germain",
+      "odds": 1.35,
+      "date": "08/03",
+      "time": "19:00"
     }
-]
+  ]
+}
