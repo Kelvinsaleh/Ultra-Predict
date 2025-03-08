@@ -1,11 +1,20 @@
+# predict.py - Fixed
+import firebase_admin
+from firebase_admin import credentials, firestore
 
-import pickle
-import numpy as np
+# Initialize Firebase
+cred = credentials.Certificate("serviceAccount.json")  # Ensure this file exists
+firebase_admin.initialize_app(cred)
 
-model = pickle.load(open("ml_model.pkl", "rb"))
+db = firestore.client()
 
-def predict_match(stat1, stat2, stat3):
-    features = np.array([stat1, stat2, stat3]).reshape(1, -1)
-    return model.predict(features)[0]
+def get_predictions():
+    try:
+        predictions_ref = db.collection("predictions").stream()
+        for prediction in predictions_ref:
+            print("Prediction:", prediction.to_dict())
+    except Exception as e:
+        print("Error fetching predictions:", e)
 
-print("Prediction system ready!")
+if __name__ == "__main__":
+    get_predictions()
