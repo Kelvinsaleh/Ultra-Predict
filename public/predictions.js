@@ -1,26 +1,16 @@
-document.addEventListener("DOMContentLoaded", () => {
-    fetch("predictions.json")
-        .then(response => response.json())
-        .then(data => {
-            const predictionsTable = document.getElementById("predictions");
-            const correctScoreTable = document.getElementById("correct-score");
-            const betOfTheDayTable = document.getElementById("bet-of-the-day");
+// Fetch predictions from predictions.json and display them
+fetch("predictions.json")
+  .then(response => response.json())
+  .then(predictions => {
+    let predictionsTable = document.getElementById("predictions-table");
 
-            data.forEach((prediction, index) => {
-                const row = `
-                    <tr>
-                        <td>${prediction.match}</td>
-                        <td><strong>${prediction.prediction}</strong></td>
-                        <td>${prediction.odds}</td>
-                        <td>${prediction.date}</td>
-                        <td>${prediction.time}</td>
-                    </tr>
-                `;
-
-                if (predictionsTable) predictionsTable.innerHTML += row;
-                if (correctScoreTable && prediction.prediction.includes(":")) correctScoreTable.innerHTML += row;
-                if (betOfTheDayTable && index === 0) betOfTheDayTable.innerHTML += row;
-            });
-        })
-        .catch(err => console.error("Error fetching predictions:", err));
-});
+    predictions.forEach(match => {
+      let row = predictionsTable.insertRow();
+      row.insertCell(0).innerText = match.match_date;
+      row.insertCell(1).innerText = match.home_team;
+      row.insertCell(2).innerText = match.away_team;
+      row.insertCell(3).innerText = match.prediction;
+      row.insertCell(4).innerText = match.confidence + "%";
+    });
+  })
+  .catch(error => console.error("Error loading predictions:", error));
