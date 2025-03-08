@@ -1,4 +1,4 @@
-# predict.py - Fixed
+# predict.py - Handles Missing Firestore Data
 import firebase_admin
 from firebase_admin import credentials, firestore
 
@@ -11,8 +11,13 @@ db = firestore.client()
 def get_predictions():
     try:
         predictions_ref = db.collection("predictions").stream()
-        for prediction in predictions_ref:
-            print("Prediction:", prediction.to_dict())
+        predictions = [prediction.to_dict() for prediction in predictions_ref]
+
+        if not predictions:
+            print("No predictions found in Firestore.")
+
+        for prediction in predictions:
+            print("Prediction:", prediction)
     except Exception as e:
         print("Error fetching predictions:", e)
 
