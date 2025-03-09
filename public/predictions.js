@@ -1,17 +1,20 @@
-// Import Firebase configuration
+// predictions.js - Fetches Live Predictions from Firestore
+
 import firebaseConfig from './firebaseConfig.js';
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 // Fetch predictions from Firestore and display them in real-time
-async function fetchPredictions() {
+function fetchPredictions() {
     const predictionsTable = document.getElementById("predictions-table");
     predictionsTable.innerHTML = ""; // Clear previous data
 
     try {
-        db.collection("predictions").onSnapshot(snapshot => {
+        onSnapshot(collection(db, "predictions"), (snapshot) => {
             predictionsTable.innerHTML = ""; // Clear table before inserting new data
 
             if (snapshot.empty) {
@@ -29,13 +32,12 @@ async function fetchPredictions() {
                 row.insertCell(1).innerText = data.home_team || "N/A";
                 row.insertCell(2).innerText = data.away_team || "N/A";
                 row.insertCell(3).innerText = data.prediction || "N/A";
-                row.insertCell(4).innerText = data.confidence ? `${data.confidence}%` : "N/A";
+                row.insertCell(4).innerText = (data.odds ? `Odds: ${data.odds}` : "N/A");
             });
-        }, error => {
+        }, (error) => {
             console.error("Error fetching predictions:", error);
             predictionsTable.innerHTML = "<tr><td colspan='5'>Error loading predictions.</td></tr>";
         });
-
     } catch (error) {
         console.error("Error setting up Firestore listener:", error);
         predictionsTable.innerHTML = "<tr><td colspan='5'>Error initializing predictions.</td></tr>";
