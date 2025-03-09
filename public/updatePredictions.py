@@ -1,28 +1,35 @@
-# updatePredictions.py - Ensures Firestore Connection
-import firebase_admin
-from firebase_admin import credentials, firestore
+// Import Firebase configuration
+import firebaseConfig from './firebaseConfig.js';
 
-cred = credentials.Certificate("serviceAccount.json")
-firebase_admin.initialize_app(cred)
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
 
-db = firestore.client()
+/**
+ * Update or add a prediction in Firestore
+ * @param {string} predictionId - Unique ID for the prediction (e.g., "chelsea_vs_liverpool_over_2.5")
+ * @param {object} newData - The new prediction data
+ */
+async function updatePrediction(predictionId, newData) {
+    try {
+        const docRef = db.collection("predictions").doc(predictionId);
+        await docRef.set(newData, { merge: true }); // Merge to avoid overwriting other fields
 
-def update_prediction(prediction_id, new_data):
-    try:
-        doc_ref = db.collection("predictions").document(prediction_id)
-        doc_ref.set(new_data, merge=True)  # 🔥 Use set() instead of update() to create if missing
-        print(f"Prediction {prediction_id} updated successfully.")
-    except Exception as e:
-        print("Error updating prediction:", e)
-
-if __name__ == "__main__":
-    test_prediction_id = "chelsea_vs_liverpool_over_2.5"
-    new_data = {
-        "match_date": "2025-03-10",
-        "home_team": "Chelsea",
-        "away_team": "Liverpool",
-        "prediction": "Over 2.5",
-        "odds": 1.75,
-        "confidence": 85
+        console.log(`Prediction ${predictionId} updated successfully.`);
+    } catch (error) {
+        console.error("Error updating prediction:", error);
     }
-    update_prediction(test_prediction_id, new_data)
+}
+
+// Example usage:
+const testPredictionId = "chelsea_vs_liverpool_over_2.5";
+const newPredictionData = {
+    match_date: "2025-03-09",
+    home_team: "Chelsea",
+    away_team: "Liverpool",
+    prediction: "Over 2.5",
+    odds: 1.75
+};
+
+// Call the function to update Firestore
+updatePrediction(testPredictionId, newPredictionData);
