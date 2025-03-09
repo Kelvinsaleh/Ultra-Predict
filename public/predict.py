@@ -1,4 +1,3 @@
-# predict.py - Handles Missing Firestore Data
 import firebase_admin
 from firebase_admin import credentials, firestore
 
@@ -8,18 +7,36 @@ firebase_admin.initialize_app(cred)
 
 db = firestore.client()
 
-def get_predictions():
+# Function to save predictions to Firestore
+def save_prediction(prediction_data):
     try:
-        predictions_ref = db.collection("predictions").stream()
-        predictions = [prediction.to_dict() for prediction in predictions_ref]
-
-        if not predictions:
-            print("No predictions found in Firestore.")
-
-        for prediction in predictions:
-            print("Prediction:", prediction)
+        db.collection("predictions").add(prediction_data)
+        print(f"✅ Saved prediction: {prediction_data}")
     except Exception as e:
-        print("Error fetching predictions:", e)
+        print("❌ Error saving prediction:", e)
+
+# Function to generate and save machine predictions
+def generate_predictions():
+    predictions = [
+        {
+            "match_date": "2025-03-09",
+            "home_team": "Chelsea",
+            "away_team": "Liverpool",
+            "prediction": "Over 2.5",
+            "odds": 1.75
+        },
+        {
+            "match_date": "2025-03-09",
+            "home_team": "Man City",
+            "away_team": "Arsenal",
+            "prediction": "Both Teams To Score",
+            "odds": 1.90
+        }
+    ]
+    
+    # Save each prediction to Firestore
+    for pred in predictions:
+        save_prediction(pred)
 
 if __name__ == "__main__":
-    get_predictions()
+    generate_predictions()
