@@ -2,12 +2,12 @@ import firebase_admin
 from firebase_admin import credentials, firestore
 
 # Initialize Firebase
-cred = credentials.Certificate("serviceAccount.json")  # Ensure this file exists
+cred = credentials.Certificate("serviceAccount.json")  
 firebase_admin.initialize_app(cred)
 
 db = firestore.client()
 
-# Function to save predictions to Firestore
+# Function to save predictions
 def save_prediction(prediction_data):
     try:
         db.collection("predictions").add(prediction_data)
@@ -15,7 +15,7 @@ def save_prediction(prediction_data):
     except Exception as e:
         print("❌ Error saving prediction:", e)
 
-# Function to generate and save machine predictions
+# Function to generate predictions
 def generate_predictions():
     predictions = [
         {
@@ -34,7 +34,6 @@ def generate_predictions():
         }
     ]
     
-    # Save each prediction to Firestore
     for pred in predictions:
         save_prediction(pred)
 
