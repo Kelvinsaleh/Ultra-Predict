@@ -1,41 +1,32 @@
-import firebase_admin
-from firebase_admin import credentials, firestore
+import torch  # If using PyTorch
+import joblib  # If using scikit-learn
+import os
 
-# Initialize Firebase
-cred = credentials.Certificate("serviceAccount.json")  
-firebase_admin.initialize_app(cred)
+# Load the appropriate model type
+def load_model():
+    model_path_pytorch = "public/model.pth"
+    model_path_sklearn = "public/model.pkl"
 
-db = firestore.client()
+    if os.path.exists(model_path_pytorch):
+        model = torch.load(model_path_pytorch, map_location=torch.device('cpu'))
+        model.eval()
+        print("Loaded PyTorch model.")
+        return model
+    elif os.path.exists(model_path_sklearn):
+        model = joblib.load(model_path_sklearn)
+        print("Loaded Scikit-learn model.")
+        return model
+    else:
+        raise FileNotFoundError("No valid model found!")
 
-# Function to save predictions
-def save_prediction(prediction_data):
-    try:
-        db.collection("predictions").add(prediction_data)
-        print(f"✅ Saved prediction: {prediction_data}")
-    except Exception as e:
-        print("❌ Error saving prediction:", e)
+# Load the model
+model = load_model()
 
-# Function to generate predictions
-def generate_predictions():
-    predictions = [
-        {
-            "match_date": "2025-03-09",
-            "home_team": "Chelsea",
-            "away_team": "Liverpool",
-            "prediction": "Over 2.5",
-            "odds": 1.75
-        },
-        {
-            "match_date": "2025-03-09",
-            "home_team": "Man City",
-            "away_team": "Arsenal",
-            "prediction": "Both Teams To Score",
-            "odds": 1.90
-        }
-    ]
-    
-    for pred in predictions:
-        save_prediction(pred)
+# Example prediction function (modify based on your model)
+def predict(input_data):
+    if isinstance(model, torch.nn.Module):
+        with torch.no_grad():
+            return model(torch.tensor(input_data)).numpy()
+    else:
+        return model.predict([input_data])
 
-if __name__ == "__main__":
-    generate_predictions()
