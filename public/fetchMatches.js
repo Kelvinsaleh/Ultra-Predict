@@ -1,40 +1,35 @@
-const axios = require("axios");
-const admin = require("firebase-admin");
-const serviceAccount = require("../config/serviceAccountKey.json");
+require('dotenv').config();
+const axios = require('axios');
+const fs = require('fs');
 
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-});
+// Fetch matches from API-FOOTBALL
+async function fetchMatchData() {
+    try {
+        const response = await axios.get('https://v3.football.api-sports.io/fixtures', {
+            headers: {
+                'x-apisports-key': process.env.API_KEY
+            },
+            params: {
+                date: new Date().toISOString().split('T')[0], // Today's matches
+                league: process.env.LEAGUE_ID,  
+                season: process.env.SEASON_YEAR
+            }
+        });
 
-const db = admin.firestore();
-const API_URL = "https://v3.football.api-sports.io/fixtures";
-const API_KEY = "your_api_key"; // Replace with your actual key
+        if (!response.data.response || response.data.response.length === 0) {
+            console.log("No matches found.");
+            return;
+        }
 
-async function fetchAndStoreMatches() {
-  try {
-    const response = await axios.get(API_URL, {
-      headers: { "x-apisports-key": API_KEY },
-      params: { league: "39", season: "2024" },
-    });
+        console.log("Fetched Matches:", response.data.response);
+        
+        // Save matches locally (optional)
+        fs.writeFileSync('predictions.json', JSON.stringify(response.data.response, null, 2));
 
-    const matches = response.data.response;
-
-    if (!matches || matches.length === 0) {
-      console.log("No matches found.");
-      return;
+    } catch (error) {
+        console.error("API Fetch Error:", error.response ? error.response.data : error.message);
     }
-
-    const batch = db.batch();
-    matches.forEach((match) => {
-      const docRef = db.collection("matches").doc(match.fixture.id.toString());
-      batch.set(docRef, match);
-    });
-
-    await batch.commit();
-    console.log("Matches updated in Firebase");
-  } catch (error) {
-    console.error("Error fetching matches:", error.message);
-  }
 }
 
-fetchAndStoreMatches();
+// Run fetch function
+fetchMatchData();
