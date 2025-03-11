@@ -4,14 +4,16 @@
     {
       "src": "public/**/*",
       "use": "@vercel/static"
-    },
-    {
-      "src": "api/**/*",
-      "use": "@vercel/node"
     }
   ],
   "routes": [
     { "src": "/(.*)", "dest": "/public/$1" },
-    { "src": "/api/(.*)", "dest": "/api/$1" }
+    { "src": "/api/updatePredictions", "dest": "/api/updatePredictions.js" }
+  ],
+  "crons": [
+    {
+      "schedule": "0 * * * *",  // Runs every hour
+      "url": "/api/updatePredictions"
+    }
   ]
 }
