@@ -1,74 +1,68 @@
+import os
+import json
 import pickle
 import numpy as np
+from dotenv import load_dotenv
 import firebase_admin
 from firebase_admin import credentials, firestore
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 
-# 🔥 1️⃣ Initialize Firebase
-try:
-    firebase_admin.get_app()
-except ValueError:
-    cred = credentials.Certificate("serviceAccount.json")  # Ensure this file exists!
+# Load environment variables from .env
+load_dotenv()
+
+# Initialize Firebase
+if not firebase_admin._apps:
+    cred_path = os.getenv("FIREBASE_SERVICE_ACCOUNT")  # Get JSON path from .env
+    with open(cred_path) as f:
+        cred_dict = json.load(f)
+    cred = credentials.Certificate(cred_dict)
     firebase_admin.initialize_app(cred)
 
+# Initialize Firestore
 db = firestore.client()
 
-# 🔄 2️⃣ Generate Fake Match Data (features) and Labels (0 or 1 for win/loss)
-np.random.seed(42)
-X = np.random.rand(500, 5)  # 500 samples, 5 features each
-y = np.random.randint(0, 2, 500)  # 500 labels (0 or 1)
+# Function to save predictions to Firestore
+def save_prediction(match_id, prediction):
+    doc_ref = db.collection("predictions").document(str(match_id))
+    doc_ref.set({"prediction": prediction})
+    print(f"✅ Prediction {prediction} saved for match {match_id}")
 
-# 🏋️‍♂️ 3️⃣ Split Data for Training & Testing
+# 1️⃣ Generate random training data (features & labels)
+np.random.seed(42)  # Ensure reproducibility
+X = np.random.rand(500, 5)  # 500 samples, 5 features each
+y = np.random.randint(0, 2, 500)  # Binary labels (0 or 1)
+
+# 2️⃣ Split into training & testing data
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# 🤖 4️⃣ Train a RandomForest Model
+# 3️⃣ Train a RandomForest model
 model = RandomForestClassifier(n_estimators=50, random_state=42)
 model.fit(X_train, y_train)
 
-# 🎯 5️⃣ Test Model Accuracy
+# 4️⃣ Evaluate the model
 y_pred = model.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
 print(f"✅ Model trained with accuracy: {accuracy:.2f}")
 
-# 💾 6️⃣ Save the Trained Model as `machine.pkl`
+# 5️⃣ Save the trained model as machine.pkl
 with open("machine.pkl", "wb") as f:
     pickle.dump(model, f)
 
 print("✅ Model saved as machine.pkl")
 
-# 🔮 7️⃣ Load Model & Predict Matches
+# 6️⃣ Load the model & make a test prediction
 def predict_match(features):
-    """Load the trained model and make a prediction."""
+    """Load the model and make a prediction on new data"""
     with open("machine.pkl", "rb") as f:
         loaded_model = pickle.load(f)
-    prediction = loaded_model.predict([features])[0]
-    return prediction
+    prediction = loaded_model.predict([features])
+    return prediction[0]
 
-# 🔥 8️⃣ Fetch New Matches from Firestore, Predict, and Save
-def process_new_matches():
-    matches_ref = db.collection("matches")
-    docs = matches_ref.where("predicted", "==", False).stream()  # Get unpredicted matches
+# 7️⃣ Make an automatic prediction and save to Firestore
+sample_input = np.random.rand(5)
+predicted_outcome = predict_match(sample_input)
+save_prediction("auto_match", int(predicted_outcome))
 
-    for doc in docs:
-        data = doc.to_dict()
-        match_id = doc.id  # Firestore match document ID
-
-        if "features" in data:
-            features = np.array(data["features"]).reshape(1, -1)
-            prediction = predict_match(features)
-
-            # 🔥 Save Prediction in Firestore
-            db.collection("predictions").document(match_id).set({
-                "prediction": str(prediction),
-                "confidence": 0.9,  # Placeholder confidence score
-                "timestamp": firestore.SERVER_TIMESTAMP
-            })
-            # ✅ Mark Match as Predicted
-            db.collection("matches").document(match_id).update({"predicted": True})
-
-            print(f"✅ Prediction saved for match {match_id}: {prediction}")
-
-# 🔄 Run Predictions
-process_new_matches()
+print(f"🔮 Automatic prediction saved: {predicted_outcome}")
