@@ -12,7 +12,7 @@
   ],
   "crons": [
     {
-      "schedule": "30 6 * * *",  // Runs every day at 6:30 AM
+      "schedule": "30 6 * * *",  
       "url": "/api/updatePredictions"
     }
   ]
