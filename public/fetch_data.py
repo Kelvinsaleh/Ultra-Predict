@@ -1,8 +1,12 @@
-# fetch_data.py - Fixed
 import requests
+import os
+from dotenv import load_dotenv
 
-# Example: Fetching data from an API
-API_URL = "https://api.example.com/data"
+# Load environment variables from .env file
+load_dotenv()
+
+# Use the API URL from .env instead of hardcoding
+API_URL = os.getenv("API_URL")
 
 def fetch_data():
     try:
