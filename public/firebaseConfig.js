@@ -1,12 +1,11 @@
-// firebaseConfig.js - Fixed API Key & Config
 const firebaseConfig = {
-    apiKey: "AIzaSyBp72a-Ft6vgAnEzqyvq5IXSpqvx8Tg03A",  // Correct API key
-    authDomain: "ultrapredict-d60f4.firebaseapp.com",
-    projectId: "ultrapredict-d60f4",
-    storageBucket: "ultrapredict-d60f4.appspot.com",
-    messagingSenderId: "997625707020",  // Corrected sender ID
-    appId: "1:997625707020:web:78321d4ba50eb825374c29",  // Corrected App ID
-    measurementId: "G-DV33RT4T3W"
+    apiKey: process.env.FIREBASE_API_KEY,
+    authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.FIREBASE_PROJECT_ID,
+    storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.FIREBASE_APP_ID,
+    measurementId: process.env.FIREBASE_MEASUREMENT_ID
 };
 
 module.exports = firebaseConfig;
