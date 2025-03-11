@@ -1,26 +1,26 @@
+import os
+from dotenv import load_dotenv
 import firebase_admin
 from firebase_admin import credentials, firestore
+import json
 
-cred = credentials.Certificate("serviceAccount.json")
+# Load .env file
+load_dotenv()
+
+# Initialize Firebase
+cred = credentials.Certificate(os.getenv("FIREBASE_SERVICE_ACCOUNT"))
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
-def save_prediction(prediction_id, data):
-    try:
-        doc_ref = db.collection("predictions").document(prediction_id)
-        doc_ref.set(data)  # Use set() instead of update()
-        print(f"✅ Prediction {prediction_id} saved successfully.")
-    except Exception as e:
-        print("❌ Error saving prediction:", e)
+# Load Predictions from JSON
+with open("public/predictions.json", "r") as f:
+    predictions = json.load(f)
 
-if __name__ == "__main__":
-    test_prediction_id = "chelsea_vs_liverpool"
-    new_data = {
-        "match_date": "2025-03-10",
-        "home_team": "Chelsea",
-        "away_team": "Liverpool",
-        "prediction": "Over 2.5",
-        "odds": 1.75
-    }
-    save_prediction(test_prediction_id, new_data)
+# Push to Firestore
+collection_ref = db.collection("predictions")
 
+for match_id, prediction in predictions.items():
+    doc_ref = collection_ref.document(match_id)
+    doc_ref.set(prediction)
+
+print("Predictions updated in Firestore.")
