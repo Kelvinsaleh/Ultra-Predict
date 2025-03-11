@@ -1,6 +1,5 @@
-// firebase.js - Fixed Firestore Initialization
 const admin = require("firebase-admin");
-const serviceAccount = require("./serviceAccount.json"); // Ensure this file exists
+const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
