@@ -3,8 +3,21 @@ const axios = require('axios');
 const admin = require('firebase-admin');
 const fs = require('fs');
 
+// Parse Firebase credentials from .env
+const serviceAccount = {
+  type: process.env.FIREBASE_TYPE,
+  project_id: process.env.FIREBASE_PROJECT_ID,
+  private_key_id: process.env.FIREBASE_PRIVATE_KEY_ID,
+  private_key: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'), // Fix multiline key
+  client_email: process.env.FIREBASE_CLIENT_EMAIL,
+  client_id: process.env.FIREBASE_CLIENT_ID,
+  auth_uri: process.env.FIREBASE_AUTH_URI,
+  token_uri: process.env.FIREBASE_TOKEN_URI,
+  auth_provider_x509_cert_url: process.env.FIREBASE_AUTH_PROVIDER_CERT_URL,
+  client_x509_cert_url: process.env.FIREBASE_CLIENT_CERT_URL
+};
+
 // Initialize Firebase
-const serviceAccount = require('./serviceAccountKey.json');
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: process.env.FIREBASE_DATABASE_URL
@@ -22,7 +35,7 @@ async function fetchMatches() {
   try {
     const response = await axios.get(API_URL, {
       headers: { 'x-apisports-key': API_KEY },
-      params: { date: new Date().toISOString().split('T')[0], league: '39', season: '2024' } // EPL Example
+      params: { date: new Date().toISOString().split('T')[0], league: '39', season: '2024' }
     });
 
     return response.data.response;
@@ -40,7 +53,6 @@ function generatePrediction(match) {
 
   let prediction = "Unknown";
 
-  // Rule: Team form (Last 5 matches)
   if (stats.home.form && stats.away.form) {
     const homeWins = (stats.home.form.match(/W/g) || []).length;
     const awayWins = (stats.away.form.match(/W/g) || []).length;
@@ -50,7 +62,6 @@ function generatePrediction(match) {
     else prediction = "Draw";
   }
 
-  // Rule: Over 1.5 Goals
   if (stats.home.goalsAvg >= 2 || stats.away.goalsAvg >= 2) {
     prediction += " & Over 1.5 Goals";
   }
@@ -67,10 +78,7 @@ async function updatePredictions() {
   const matches = await fetchMatches();
   const predictions = matches.map(generatePrediction);
 
-  // Save to Firebase
   await predictionsRef.set(predictions);
-  
-  // Save to local JSON file
   fs.writeFileSync('predictions.json', JSON.stringify(predictions, null, 2));
 
   console.log("Predictions updated successfully!");
