@@ -1,12 +1,17 @@
-fetch('/api/predictions')
-    .then(response => response.json())
-    .then(predictions => {
-        let table = document.getElementById("predictionsTable");
-        predictions.forEach(pred => {
-            let row = table.insertRow();
-            row.insertCell(0).innerText = pred.match;
-            row.insertCell(1).innerText = pred.prediction;
-            row.insertCell(2).innerText = new Date(pred.date).toLocaleString();
-        });
-    })
-    .catch(err => console.error("Error fetching predictions:", err));
+const express = require('express');
+const admin = require('firebase-admin');
+const router = express.Router();
+
+const db = admin.firestore();
+
+router.get('/predictions', async (req, res) => {
+    try {
+        const snapshot = await db.collection('predictions').get();
+        const predictions = snapshot.docs.map(doc => doc.data());
+        res.json(predictions);
+    } catch (error) {
+        res.status(500).json({ error: "Failed to fetch predictions" });
+    }
+});
+
+module.exports = router;
