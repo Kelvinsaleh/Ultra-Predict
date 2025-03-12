@@ -1,13 +1,13 @@
 {
   "name": "ultrapredict",
   "version": "1.0.0",
-  "description": "UltraPredict - Football Match Predictions Website",
-  "author": "Salee",
-  "license": "MIT",
   "scripts": {
-    "start": "vercel dev",
-    "deploy": "vercel --prod"
+    "start": "node backend/fetchPredictions.js"
   },
-  "dependencies": {},
-  "devDependencies": {}
+  "dependencies": {
+    "express": "^4.17.1",
+    "firebase-admin": "^11.0.0",
+    "dotenv": "^16.0.3",
+    "axios": "^1.2.0"
+  }
 }
