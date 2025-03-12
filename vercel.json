@@ -2,14 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "api/fetchPredictions.js",
+      "src": "public/fetchPredictions.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/api/predictions",
-      "dest": "api/fetchPredictions.js"
+      "dest": "public/fetchPredictions.js"
     }
   ],
   "env": {
