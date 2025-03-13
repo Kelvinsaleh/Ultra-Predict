@@ -1,13 +1,16 @@
 {
   "name": "ultrapredict",
   "version": "1.0.0",
+  "main": "api/index.js",
   "scripts": {
-    "start": "node backend/fetchPredictions.js"
+    "start": "node api/index.js",
+    "fetch-matches": "node api/fetchMatches.js",
+    "train-model": "python3 train_model.py"
   },
   "dependencies": {
-    "express": "^4.17.1",
-    "firebase-admin": "^11.0.0",
+    "axios": "^1.4.0",
     "dotenv": "^16.0.3",
-    "axios": "^1.2.0"
+    "express": "^4.17.1",
+    "firebase-admin": "^11.10.1"
   }
 }
