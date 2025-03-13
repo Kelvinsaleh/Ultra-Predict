@@ -1,88 +1,92 @@
+<!-- public/index.html (Updated: Secure Firebase Config & VIP Authentication) -->
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="index, follow">
-    <meta name="description" content="UltraPredict Kenya offers the most accurate football predictions with expert tips. Get daily predictions, value bets, and VIP access for better betting outcomes.">
-    <meta name="keywords" content="football predictions Kenya, betting tips, value bets, VIP football predictions, sports betting Kenya, expert football tips">
-    
-    <!-- Open Graph Meta Tags (For Social Media Previews) -->
-    <meta property="og:title" content="UltraPredict Kenya - Accurate Football Predictions">
-    <meta property="og:description" content="Get the most accurate football predictions, expert tips, and betting insights in Kenya. Access daily predictions, value bets, and VIP tips.">
-    <meta property="og:image" content="link-to-image.jpg">
-    <meta property="og:url" content="https://www.ultrapredict.co.ke">
-    
-    <title>UltraPredict Kenya - Football Predictions</title>
+    <title>UltraPredict</title>
     <link rel="stylesheet" href="styles.css">
-    <script defer src="predictions.js"></script>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js"></script>
 </head>
-
 <body>
+    <h1>UltraPredict Football Predictions</h1>
     
-    <!-- Navigation Bar -->
-    <nav id="navbar">
-        <ul>
-            <li><a href="#football-predictions">Football Predictions</a></li>
-            <li><a href="#value-bet">Value Bet</a></li>
-            <li><a href="#vip-section">VIP Section</a></li>
-        </ul>
-    </nav>
-
-    <!-- Hero Section -->
-    <header class="hero">
-        <h1>Welcome to UltraPredict Kenya</h1>
-        <p>Your trusted source for football predictions and expert betting tips in Kenya.</p>
-    </header>
-
-    <!-- Football Predictions Today -->
-    <section id="football-predictions">
-        <h2>Football Predictions Today</h2>
-        <p>Get accurate football predictions for today's matches in Kenya. Our expert tips and predictions help you make informed betting decisions.</p>
-        
-        <table id="predictions-table">
-            <thead>
-                <tr>
-                    <th>Match</th>
-                    <th>Date</th>
-                    <th>Prediction</th>
-                    <th>Odds</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Predictions will be dynamically loaded from predictions.js -->
-            </tbody>
-        </table>
-    </section>
-
-    <!-- Value Bet Section -->
-    <section id="value-bet">
-        <h2>Value Bet</h2>
-        <p>Find the best value bet today and increase your chances of winning. Our data-driven analysis identifies the most profitable bets.</p>
-        <!-- Dynamic content can be added here -->
-    </section>
-
+    <!-- Regular Predictions Table -->
+    <h2>Free Predictions</h2>
+    <table id="predictionsTable">
+        <tr><th>Match</th><th>Prediction</th></tr>
+    </table>
+    
     <!-- VIP Section -->
-    <section id="vip-section">
-        <h2>VIP Predictions</h2>
-        <p>Unlock our highest accuracy predictions with VIP membership. Get premium tips with odds between 3 to 5 for the best betting outcomes.</p>
-        <button onclick="window.location.href='/vip-signup'">Join VIP Now</button>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-        <h2>Contact Us</h2>
-        <p>For inquiries or VIP membership, reach out to us via WhatsApp:</p>
-        <p><a href="https://wa.me/254797236260" target="_blank">WhatsApp: 0797 236 260</a></p>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 UltraPredict Kenya. All rights reserved.</p>
-    </footer>
-
+    <div id="vip-section">
+        <h2>VIP Predictions (Exclusive)</h2>
+        <p>Subscribe to get premium betting tips with higher accuracy.</p>
+        <div id="vip-auth">
+            <input type="email" id="vip-email" placeholder="Enter your email">
+            <input type="password" id="vip-password" placeholder="Enter your password">
+            <button onclick="registerVIP()">Register</button>
+            <button onclick="loginVIP()">Login</button>
+            <button onclick="logoutVIP()" style="display:none;">Logout</button>
+        </div>
+        <button id="subscribe-btn" onclick="subscribeVIP()">Subscribe to VIP</button>
+        <table id="vipPredictionsTable" style="display:none;">
+            <tr><th>Match</th><th>VIP Tip</th></tr>
+        </table>
+    </div>
+    
+    <!-- PayPal Script -->
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID"></script>
+    <script>
+        // Fetch Firebase config from the backend
+        fetch('/firebase-config')
+            .then(response => response.json())
+            .then(config => {
+                firebase.initializeApp(config);
+            })
+            .catch(error => console.error("Error loading Firebase config:", error));
+        
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+        
+        function registerVIP() {
+            const email = document.getElementById("vip-email").value;
+            const password = document.getElementById("vip-password").value;
+            auth.createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => alert("Registered successfully!"))
+                .catch((error) => alert(error.message));
+        }
+        
+        function loginVIP() {
+            const email = document.getElementById("vip-email").value;
+            const password = document.getElementById("vip-password").value;
+            auth.signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    alert("Login successful!");
+                    document.getElementById("vipPredictionsTable").style.display = "block";
+                    document.querySelector("button[onclick='logoutVIP()']").style.display = "block";
+                })
+                .catch((error) => alert(error.message));
+        }
+        
+        function logoutVIP() {
+            auth.signOut().then(() => {
+                alert("Logged out successfully!");
+                document.getElementById("vipPredictionsTable").style.display = "none";
+                document.querySelector("button[onclick='logoutVIP()']").style.display = "none";
+            });
+        }
+        
+        function subscribeVIP() {
+            alert("Redirecting to PayPal for VIP Subscription...");
+            // PayPal payment integration logic (to be implemented)
+        }
+    </script>
+    
+    <script src="./fetchPredictions.js"></script>
+    <script src="./predictions.js"></script>
 </body>
-
 </html>
