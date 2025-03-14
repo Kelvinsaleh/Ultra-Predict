@@ -1,19 +1,32 @@
 {
   "version": 2,
+  "public": true,
   "builds": [
     {
-      "src": "server.js",
+      "src": "index.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "vip.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "styles.css",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "predictions.js",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "api/firebase-config.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
-      "src": "/predictions",
-      "dest": "/server.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "src": "/firebase-config",
+      "dest": "/api/firebase-config.js"
     }
   ]
 }
