@@ -1,5 +1,3 @@
-// vip.js (Handles VIP Authentication & Access Control)
-
 document.addEventListener("DOMContentLoaded", async function () {
     try {
         const firebaseConfig = await fetch("/firebase-config").then(res => res.json());
@@ -11,22 +9,20 @@ document.addEventListener("DOMContentLoaded", async function () {
         const logoutBtn = document.getElementById("logoutBtn");
         const vipContent = document.getElementById("vip-content");
 
-        // Handle login
         loginBtn?.addEventListener("click", async () => {
             const provider = new firebase.auth.GoogleAuthProvider();
             await auth.signInWithPopup(provider);
         });
 
-        // Handle logout
         logoutBtn?.addEventListener("click", async () => {
             await auth.signOut();
             location.reload();
         });
 
-        // Check authentication state
         auth.onAuthStateChanged(async (user) => {
             if (user) {
-                // Check if the user has VIP access
+                loginBtn.style.display = "none";
+                logoutBtn.style.display = "block";
                 const userRef = db.collection("vipUsers").doc(user.uid);
                 const userDoc = await userRef.get();
 
@@ -59,6 +55,28 @@ document.addEventListener("DOMContentLoaded", async function () {
                 });
             }
         }
+
+        // Payment Processing
+        window.subscribeVIP = async function (amount) {
+            const user = auth.currentUser;
+            if (!user) {
+                alert("Please log in first.");
+                return;
+            }
+
+            const response = await fetch("/create-payment", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ amount, uid: user.uid })
+            });
+
+            const data = await response.json();
+            if (data.url) {
+                window.location.href = data.url; // Redirect to PayPal
+            } else {
+                alert("Payment failed. Try again.");
+            }
+        };
     } catch (error) {
         console.error("Error handling VIP access:", error);
     }
