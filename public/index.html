@@ -1,92 +1,76 @@
-<!-- public/index.html (Updated: Secure Firebase Config & VIP Authentication) -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UltraPredict</title>
+    <title>UltraPredict - Football Predictions</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+    <script defer src="predictions.js"></script>
 </head>
 <body>
-    <h1>UltraPredict Football Predictions</h1>
+    <header>
+        <h1>UltraPredict</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="vip.html">VIP Section</a></li>
+            </ul>
+        </nav>
+    </header>
     
-    <!-- Regular Predictions Table -->
-    <h2>Free Predictions</h2>
-    <table id="predictionsTable">
-        <tr><th>Match</th><th>Prediction</th></tr>
-    </table>
+    <main>
+        <section id="bet-of-the-day">
+            <h2>Bet of the Day</h2>
+            <p id="betOfTheDay">Loading...</p>
+        </section>
+        
+        <section id="free-predictions">
+            <h2>Free Predictions</h2>
+            <table id="predictionsTable">
+                <tr>
+                    <th>Match</th>
+                    <th>Prediction</th>
+                </tr>
+            </table>
+        </section>
+    </main>
     
-    <!-- VIP Section -->
-    <div id="vip-section">
-        <h2>VIP Predictions (Exclusive)</h2>
-        <p>Subscribe to get premium betting tips with higher accuracy.</p>
-        <div id="vip-auth">
-            <input type="email" id="vip-email" placeholder="Enter your email">
-            <input type="password" id="vip-password" placeholder="Enter your password">
-            <button onclick="registerVIP()">Register</button>
-            <button onclick="loginVIP()">Login</button>
-            <button onclick="logoutVIP()" style="display:none;">Logout</button>
-        </div>
-        <button id="subscribe-btn" onclick="subscribeVIP()">Subscribe to VIP</button>
-        <table id="vipPredictionsTable" style="display:none;">
-            <tr><th>Match</th><th>VIP Tip</th></tr>
-        </table>
-    </div>
+    <footer>
+        <p>&copy; 2025 UltraPredict. All rights reserved.</p>
+    </footer>
     
-    <!-- PayPal Script -->
-    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID"></script>
     <script>
-        // Fetch Firebase config from the backend
-        fetch('/firebase-config')
-            .then(response => response.json())
-            .then(config => {
-                firebase.initializeApp(config);
-            })
-            .catch(error => console.error("Error loading Firebase config:", error));
-        
-        const auth = firebase.auth();
-        const db = firebase.firestore();
-        
-        function registerVIP() {
-            const email = document.getElementById("vip-email").value;
-            const password = document.getElementById("vip-password").value;
-            auth.createUserWithEmailAndPassword(email, password)
-                .then((userCredential) => alert("Registered successfully!"))
-                .catch((error) => alert(error.message));
-        }
-        
-        function loginVIP() {
-            const email = document.getElementById("vip-email").value;
-            const password = document.getElementById("vip-password").value;
-            auth.signInWithEmailAndPassword(email, password)
-                .then((userCredential) => {
-                    alert("Login successful!");
-                    document.getElementById("vipPredictionsTable").style.display = "block";
-                    document.querySelector("button[onclick='logoutVIP()']").style.display = "block";
-                })
-                .catch((error) => alert(error.message));
-        }
-        
-        function logoutVIP() {
-            auth.signOut().then(() => {
-                alert("Logged out successfully!");
-                document.getElementById("vipPredictionsTable").style.display = "none";
-                document.querySelector("button[onclick='logoutVIP()']").style.display = "none";
-            });
-        }
-        
-        function subscribeVIP() {
-            alert("Redirecting to PayPal for VIP Subscription...");
-            // PayPal payment integration logic (to be implemented)
-        }
-    </script>
+        document.addEventListener("DOMContentLoaded", async function () {
+            try {
+                const firebaseConfig = await fetch("/firebase-config").then(res => res.json());
+                firebase.initializeApp(firebaseConfig);
+                const db = firebase.firestore();
     
-    <script src="./fetchPredictions.js"></script>
-    <script src="./predictions.js"></script>
+                // Fetch Bet of the Day
+                const betRef = db.collection('betOfTheDay').doc('latest');
+                const betDoc = await betRef.get();
+                if (betDoc.exists) {
+                    document.getElementById("betOfTheDay").innerText = betDoc.data().bet;
+                }
+    
+                // Fetch Free Predictions
+                const predictionsRef = db.collection('predictions').doc('latest');
+                const doc = await predictionsRef.get();
+                if (doc.exists) {
+                    const predictions = doc.data().matches;
+                    const table = document.getElementById("predictionsTable");
+                    predictions.forEach(match => {
+                        let row = table.insertRow();
+                        row.insertCell(0).innerText = match.match;
+                        row.insertCell(1).innerText = match.prediction;
+                    });
+                }
+            } catch (error) {
+                console.error("Error fetching predictions:", error);
+            }
+        });
+    </script>
 </body>
 </html>
