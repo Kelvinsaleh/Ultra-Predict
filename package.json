@@ -1,0 +1,13 @@
+{
+  "name": "ultrapredict",
+  "version": "1.0.0",
+  "description": "UltraPredict - Football Match Predictions Website",
+  "author": "Salee",
+  "license": "MIT",
+  "scripts": {
+    "start": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
