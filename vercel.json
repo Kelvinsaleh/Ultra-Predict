@@ -2,11 +2,16 @@
   "version": 2,
   "builds": [
     {
+      "src": "api/fetch_and_predict.py",
+      "use": "@vercel/python"
+    },
+    {
       "src": "public/**/*",
       "use": "@vercel/static"
     }
   ],
   "routes": [
+    { "src": "/api/fetch", "dest": "api/fetch_and_predict.py" },
     { "src": "/(.*)", "dest": "/public/$1" }
   ]
 }
