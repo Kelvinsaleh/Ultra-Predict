@@ -1,38 +1,76 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
-const { filterVipTips } = require("./vipFilter");
-const { filterGeneralTips } = require("./generalFilter");
+const axios = require("axios");
+const { filterVipTips } = require("./filterVipTips");
+const { filterGeneralTips } = require("./filterGeneralTips");
 
 admin.initializeApp();
 const db = admin.firestore();
 
-// Replace this with real AI model fetch if needed
-async function fetchPredictions() {
-  // Simulated predictions — replace with actual model output
-  return [
-    { match: "Man City vs Spurs", prediction: "GG", market: "GG", confidence: 92, odds: 1.78 },
-    { match: "PSG vs Lille", prediction: "Over 2.5", market: "Over", confidence: 95, odds: 1.55 },
-    { match: "AC Milan vs Inter", prediction: "1", market: "1X2", confidence: 84, odds: 1.60 },
-    { match: "Roma vs Napoli", prediction: "Under 2.5", market: "Under", confidence: 77, odds: 1.72 },
-    { match: "Barça vs Getafe", prediction: "1", market: "1X2", confidence: 69, odds: 1.80 }
-  ];
+// Replace this with your API key for API-Football
+const API_FOOTBALL_KEY = "your-api-football-key";
+
+// 1. Fetch match data from the API
+async function fetchMatchData() {
+  try {
+    const response = await axios.get("https://api-football-v1.p.rapidapi.com/v3/fixtures", {
+      headers: {
+        "X-RapidAPI-Key": API_FOOTBALL_KEY,
+      },
+    });
+
+    const matches = response.data.response.map(match => ({
+      match: `${match.teams.home.name} vs ${match.teams.away.name}`,
+      date: match.fixture.date,
+      odds: match.odds, // Placeholder, replace with real odds structure
+      teamStats: match.statistics, // Placeholder, replace with real data
+    }));
+
+    return matches;
+  } catch (error) {
+    console.error("Error fetching match data:", error);
+    return [];
+  }
 }
 
+// 2. Generate AI model predictions (stub example)
+async function generateAIPredictions(matches) {
+  return matches.map(match => ({
+    match: match.match,
+    prediction: "Over 2.5",  // Simulate a prediction type
+    confidence: Math.random() * 100,  // Random confidence between 0 and 100
+    odds: Math.random() * 5 + 1,  // Simulate odds between 1 and 6
+  }));
+}
+
+// 3. Cloud Function to generate VIP and General predictions
 exports.generatePredictions = functions.pubsub.schedule("every day 06:00").timeZone("Africa/Nairobi").onRun(async (context) => {
-  const predictions = await fetchPredictions();
+  // Step 1: Fetch live match data
+  const matchData = await fetchMatchData();
 
-  const vipSlip = filterVipTips(predictions);
-  const generalTips = filterGeneralTips(predictions);
+  if (!matchData.length) {
+    console.log("No match data found");
+    return;
+  }
 
+  // Step 2: Generate AI model predictions
+  const predictions = await generateAIPredictions(matchData);
+
+  // Step 3: Filter predictions
+  const vipSlip = filterVipTips(predictions);  // VIP tips filter
+  const generalTips = filterGeneralTips(predictions);  // General tips filter
+
+  // Step 4: Get today's date
   const today = new Date().toISOString().split("T")[0];
 
+  // Step 5: Save predictions to Firestore
   if (vipSlip) {
     await db.collection("vipTips").doc(today).set(vipSlip);
+    console.log("VIP tips updated for:", today);
   }
 
   if (generalTips.length > 0) {
     await db.collection("generalTips").doc(today).set({ tips: generalTips });
+    console.log("General tips updated for:", today);
   }
-
-  console.log("Predictions updated:", today);
 });
