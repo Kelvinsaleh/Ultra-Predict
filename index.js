@@ -1,83 +1,72 @@
-const functions = require("firebase-functions");
-const admin = require("firebase-admin");
-const axios = require("axios");
-const { filterVipTips } = require("./filterVipTips");
-const { filterGeneralTips } = require("./filterGeneralTips");
-const { filterBetOfTheDay } = require("./filterBetOfTheDay");
+require('dotenv').config();
+const axios = require('axios');
+const fs = require('fs');
+const path = require('path');
 
-admin.initializeApp();
-const db = admin.firestore();
+const API_KEY = process.env.API_KEY;
+const BASE_URL = 'https://v3.football.api-sports.io/fixtures';
+const HEADERS = { 'x-apisports-key': API_KEY };
 
-// Replace this with your API key for API-Football
-const API_FOOTBALL_KEY = "your-api-football-key";
+const leagues = {
+  EPL: 39,
+  La_Liga: 140,
+  Serie_A: 135,
+  Bundesliga: 78,
+  Ligue_1: 61,
+  Eredivisie: 88,
+  Primeira_Liga: 94,
+  UCL: 2,
+  UEL: 3,
+  UECL: 848,
+  FA_Cup: 45,
+  Carabao_Cup: 46,
+  Championship: 40,
+  World_Cup: 1,
+  Euro: 4,
+  AFCON: 5,
+  Copa_America: 9,
+  Nations_League: 6
+};
 
-// 1. Fetch match data from the API
-async function fetchMatchData() {
-  try {
-    const response = await axios.get("https://api-football-v1.p.rapidapi.com/v3/fixtures", {
-      headers: {
-        "X-RapidAPI-Key": API_FOOTBALL_KEY,
-      },
+const seasons = [2021, 2022, 2023];
+
+async function fetchMatches(leagueName, leagueId, season) {
+  const allMatches = [];
+  for (let page = 1; page <= 20; page++) {
+    const response = await axios.get(BASE_URL, {
+      headers: HEADERS,
+      params: {
+        league: leagueId,
+        season: season,
+        status: 'FT',
+        page: page
+      }
     });
 
-    const matches = response.data.response.map(match => ({
-      match: `${match.teams.home.name} vs ${match.teams.away.name}`,
-      date: match.fixture.date,
-      odds: match.odds, // Placeholder, replace with real odds structure
-      teamStats: match.statistics, // Placeholder, replace with real data
-    }));
+    const data = response.data.response;
+    if (!data || data.length === 0) break;
 
-    return matches;
-  } catch (error) {
-    console.error("Error fetching match data:", error);
-    return [];
+    allMatches.push(...data);
+    await new Promise(resolve => setTimeout(resolve, 1300)); // Delay to avoid rate limits
   }
+
+  const dir = path.join(__dirname, 'raw_matches');
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir);
+
+  const filename = path.join(dir, `${leagueName}_${season}.json`);
+  fs.writeFileSync(filename, JSON.stringify(allMatches, null, 2));
+  console.log(`Saved ${filename}`);
 }
 
-// 2. Generate AI model predictions (stub example)
-async function generateAIPredictions(matches) {
-  return matches.map(match => ({
-    match: match.match,
-    prediction: "Over 2.5",  // Simulate a prediction type
-    confidence: Math.random() * 100,  // Random confidence between 0 and 100
-    odds: Math.random() * 5 + 1,  // Simulate odds between 1 and 6
-  }));
-}
-
-// 3. Cloud Function to generate VIP, General predictions and Bet of the Day
-exports.generatePredictions = functions.pubsub.schedule("every day 06:00").timeZone("Africa/Nairobi").onRun(async (context) => {
-  // Step 1: Fetch live match data
-  const matchData = await fetchMatchData();
-
-  if (!matchData.length) {
-    console.log("No match data found");
-    return;
+(async () => {
+  for (const [leagueName, leagueId] of Object.entries(leagues)) {
+    for (const season of seasons) {
+      try {
+        console.log(`Fetching: ${leagueName} (${season})`);
+        await fetchMatches(leagueName, leagueId, season);
+      } catch (error) {
+        console.error(`Error fetching ${leagueName} (${season}):`, error.message);
+      }
+    }
   }
-
-  // Step 2: Generate AI model predictions
-  const predictions = await generateAIPredictions(matchData);
-
-  // Step 3: Filter predictions
-  const vipSlip = filterVipTips(predictions);  // VIP tips filter
-  const generalTips = filterGeneralTips(predictions);  // General tips filter
-  const betOfTheDay = filterBetOfTheDay(predictions); // Bet of the Day filter
-
-  // Step 4: Get today's date
-  const today = new Date().toISOString().split("T")[0];
-
-  // Step 5: Save predictions to Firestore
-  if (vipSlip) {
-    await db.collection("vipTips").doc(today).set(vipSlip);
-    console.log("VIP tips updated for:", today);
-  }
-
-  if (generalTips.length > 0) {
-    await db.collection("generalTips").doc(today).set({ tips: generalTips });
-    console.log("General tips updated for:", today);
-  }
-
-  if (betOfTheDay) {
-    await db.collection("betOfTheDay").doc(today).set(betOfTheDay);
-    console.log("Bet of the Day updated for:", today);
-  }
-});
+})();
