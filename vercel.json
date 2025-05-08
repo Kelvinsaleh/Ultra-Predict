@@ -13,5 +13,8 @@
   "routes": [
     { "src": "/api/fetch", "dest": "api/fetch_and_predict.py" },
     { "src": "/(.*)", "dest": "/public/$1" }
+  ],
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
