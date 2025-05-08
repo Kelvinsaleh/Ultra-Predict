@@ -1,12 +1,12 @@
 require('dotenv').config();
 const axios = require('axios');
 const fs = require('fs');
-const path = require('path');
 
 const API_KEY = process.env.API_KEY;
 const BASE_URL = 'https://v3.football.api-sports.io/fixtures';
 const HEADERS = { 'x-apisports-key': API_KEY };
 
+// Major leagues and tournaments
 const leagues = {
   EPL: 39,
   La_Liga: 140,
@@ -47,26 +47,30 @@ async function fetchMatches(leagueName, leagueId, season) {
     if (!data || data.length === 0) break;
 
     allMatches.push(...data);
-    await new Promise(resolve => setTimeout(resolve, 1300)); // Delay to avoid rate limits
+
+    // Wait between requests to avoid rate limiting
+    await new Promise(resolve => setTimeout(resolve, 1300));
   }
 
-  const dir = path.join(__dirname, 'raw_matches');
-  if (!fs.existsSync(dir)) fs.mkdirSync(dir);
-
-  const filename = path.join(dir, `${leagueName}_${season}.json`);
-  fs.writeFileSync(filename, JSON.stringify(allMatches, null, 2));
-  console.log(`Saved ${filename}`);
+  return allMatches;
 }
 
 (async () => {
+  const allData = {};
+
   for (const [leagueName, leagueId] of Object.entries(leagues)) {
     for (const season of seasons) {
       try {
         console.log(`Fetching: ${leagueName} (${season})`);
-        await fetchMatches(leagueName, leagueId, season);
+        const key = `${leagueName}_${season}`;
+        const matches = await fetchMatches(leagueName, leagueId, season);
+        allData[key] = matches;
       } catch (error) {
         console.error(`Error fetching ${leagueName} (${season}):`, error.message);
       }
     }
   }
+
+  fs.writeFileSync('all_matches.json', JSON.stringify(allData, null, 2));
+  console.log('Saved all_matches.json');
 })();
