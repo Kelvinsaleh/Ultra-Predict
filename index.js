@@ -3,6 +3,7 @@ const admin = require("firebase-admin");
 const axios = require("axios");
 const { filterVipTips } = require("./filterVipTips");
 const { filterGeneralTips } = require("./filterGeneralTips");
+const { filterBetOfTheDay } = require("./filterBetOfTheDay");
 
 admin.initializeApp();
 const db = admin.firestore();
@@ -43,7 +44,7 @@ async function generateAIPredictions(matches) {
   }));
 }
 
-// 3. Cloud Function to generate VIP and General predictions
+// 3. Cloud Function to generate VIP, General predictions and Bet of the Day
 exports.generatePredictions = functions.pubsub.schedule("every day 06:00").timeZone("Africa/Nairobi").onRun(async (context) => {
   // Step 1: Fetch live match data
   const matchData = await fetchMatchData();
@@ -59,6 +60,7 @@ exports.generatePredictions = functions.pubsub.schedule("every day 06:00").timeZ
   // Step 3: Filter predictions
   const vipSlip = filterVipTips(predictions);  // VIP tips filter
   const generalTips = filterGeneralTips(predictions);  // General tips filter
+  const betOfTheDay = filterBetOfTheDay(predictions); // Bet of the Day filter
 
   // Step 4: Get today's date
   const today = new Date().toISOString().split("T")[0];
@@ -72,5 +74,10 @@ exports.generatePredictions = functions.pubsub.schedule("every day 06:00").timeZ
   if (generalTips.length > 0) {
     await db.collection("generalTips").doc(today).set({ tips: generalTips });
     console.log("General tips updated for:", today);
+  }
+
+  if (betOfTheDay) {
+    await db.collection("betOfTheDay").doc(today).set(betOfTheDay);
+    console.log("Bet of the Day updated for:", today);
   }
 });
