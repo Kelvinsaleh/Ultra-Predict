@@ -1,0 +1,21 @@
+// Filter Bet of the Day based on confidence and odds
+function filterBetOfTheDay(predictions) {
+  const betOfTheDay = predictions.filter(prediction => 
+    prediction.confidence >= 75 && prediction.odds >= 1.8
+  );
+
+  // If there's at least one valid Bet of the Day, return it
+  if (betOfTheDay.length === 1) {
+    return {
+      date: new Date().toISOString().split("T")[0],  // Store the date
+      match: betOfTheDay[0].match,
+      prediction: betOfTheDay[0].prediction,
+      confidence: betOfTheDay[0].confidence,
+      odds: betOfTheDay[0].odds,
+    };
+  }
+
+  return null;  // If no valid Bet of the Day found
+}
+
+module.exports = { filterBetOfTheDay };
