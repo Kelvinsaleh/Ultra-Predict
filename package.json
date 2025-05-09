@@ -1,0 +1,30 @@
+{
+  "name": "vip-football-project",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev:frontend": "next dev -p 3000 -r ./frontend",
+    "dev:backend": "nodemon backend/app.js",
+    "train:model": "node model/train.js",
+    "predict:model": "node model/predict.js",
+    "start": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\""
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "body-parser": "^1.20.2",
+    "paypal-rest-sdk": "^1.8.1",
+    "firebase": "^9.23.0",
+    "firebase-admin": "^11.10.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "next": "^14.0.0",
+    "@tensorflow/tfjs-node": "^4.11.0",
+    "axios": "^1.6.0",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2",
+    "concurrently": "^8.2.0"
+  }
+}
